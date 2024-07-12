@@ -1,0 +1,59 @@
+body{
+    width:100%; 
+}
+#SuperLogo
+{
+    position: relative;
+    /* width: 10%; */
+    width: 15%;
+   float: right;
+}
+header{
+    /* display: flex; */
+    position: absolute;
+    align-items: center;
+    justify-content: space-between;
+    padding: 27px 30px;
+   /* background-color:rgba(0, 255, 106, 0.192); */
+    background-color: rgb(219, 253, 224);
+    /* background-color:rgb(204, 238, 211); */
+    top:0;
+  box-shadow: 0 1px 4px black;   
+    width:100%; 
+    z-index: 100;
+    position: sticky;
+   
+}
+/* header div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+#navbar
+{
+    display: flex;
+    align-items:start;
+    justify-content:left;
+
+}
+
+#navbar li
+{
+    list-style: none;
+    padding: 0 20px;
+    padding-top:50px ;
+    
+}
+
+#navbar li a
+{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    color:rgb(61, 61, 61);
+}
+#navbar li a:hover
+{
+    color:rgb(54, 168, 130);
+    
+} 
