@@ -17,7 +17,8 @@
         <div >
             <!-- <a><i  id="cartIcon" class="bi bi-cart3"></i></a> -->
             <ul id="navbar">
-                <li ><a href="#" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
+                <li id="threeLines"><a href="#"><h4><i class="bi bi-list"></i></h4></a></li>
+                <li id="hiddenCart"><a href="#" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
                 <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
              
                  <!-- <li><a href="#">קטגוריות <i class="bi bi-bookmark"></i></a></li>  -->
@@ -28,7 +29,37 @@
                 
             </ul>
         </div>
+        <div class="categoryDiv">
+                <ul>
+    
+                    <li id="X"><i class="bi bi-x-lg"></i></li>
+                  <li>  <form action="" class="searchBar">
+                      <button type="submit"><i class="bi bi-search"></i></button>
+                        <input type="text" placeholder="...חפש">
+                      
+                    </form></li>
+                    <br>
+                   <li ><a href="#">בשר</a></li>
+                   
+                    <li><a href="#">דגים</a> </li>
+                    <li><a href="#">מוצרי חלב</a></li>
+                    <li><a href="#">פירות</a></li>
+                    <li><a href="#">ירקות</a></li>
+                    <li><a href="#">ניקיון</a></li>
+                    <li><a href="#">יבשים (קטניות, פסטות, שימורים)</a></li>
+                    <li><a href="#"> ממתקים וחטיפים</a></li>
+                    <li><a href="#">משקאות</a></li>
+                    <li><a href="#">קפואים</a></li>
+                    <li> <a href="#">לחמים ומאפים</a></li>   
+                </ul>
+        </div>
+        <div id="smallerScreen">
+            <a href="#"><h4><i class="bi bi-list"></i></h4></a>
+            <a href="#" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
     </header>
+
+    
+  
     <div class="logos">
         <div class="logos-slide">
             <img src="/public/img/Awesome_logo.png" />
@@ -58,6 +89,5 @@
             <img src="/public/img/vilifood_logo.png" />
         </div>
     </div>
- 
 </body>
 </html>
