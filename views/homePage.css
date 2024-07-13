@@ -5,7 +5,7 @@ body{
 {
     position: relative;
     /* width: 10%; */
-    width: 15%;
+    width: 27vh;
    float: right;
 }
 header{
@@ -24,17 +24,28 @@ header{
     position: sticky;
    
 }
-/* header div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
+
 #navbar
 {
     display: flex;
     align-items:start;
     justify-content:left;
 
+}
+
+#smallerScreen 
+{
+    display: none;
+    align-items:center;
+   /* background-color: blue; */
+}
+#smallerScreen a, .categoryDiv li 
+{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    color:rgb(61, 61, 61);
+    padding: 3%;
 }
 
 #navbar li
@@ -44,19 +55,31 @@ header{
     padding-top:50px ;
     
 }
-
-#navbar li a
+/* .categoryDiv li
+{
+    margin-left: -13px;
+    width: 320px;
+    padding: 0 20px;
+} */
+#navbar li a, .categoryDiv li a
 {
     text-decoration: none;
     font-size: 19px;
     font-weight: 500;
     color:rgb(61, 61, 61);
 }
-#navbar li a:hover
+#navbar li a:hover, .categoryDiv a:hover
 {
     color:rgb(54, 168, 130);
-    
-} 
+}
+
+.categoryDiv li:not(:first-child):not(:nth-child(2)):hover
+{
+    background-color: rgba(197, 231, 202, 0.541);
+    margin-left: -32px;
+
+    border-radius: 10px;
+}
 @keyframes slide {
     from {
       transform: translateX(0);
@@ -73,37 +96,8 @@ header{
     background: white;
     white-space: nowrap;
     position: relative;
-    @keyframes slide {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-100%);
-        }
-      }
-    
-      .logos {
-      
-        overflow: hidden;
-        padding: 60px 0;
-        background: white;
-        white-space: nowrap;
-        position: relative;
-     
-        z-index: 1;
-      }
-      
-      .logos-slide {
-        display: inline-block;
-        animation: 22s slide infinite linear;
-      }
-      
-      .logos-slide img {
-        height: 55px;
-        margin: 0 40px;
-      }
-    
-    
+ 
+    z-index: 1;
   }
   
   .logos-slide {
@@ -116,3 +110,144 @@ header{
     margin: 0 40px;
   }
 
+
+
+.categoryDiv
+  {
+      
+      display: none;
+      /* align-items: flex-end; */
+      /* justify-content: flex-start; */
+      position: fixed;
+      top:0;
+      left: 0px;
+      height: 100vh;
+      width: 320px;
+      background-color: white;
+      box-shadow: 0 0.1px 3px black; 
+    text-align: end;
+
+  }
+.categoryDiv li
+{
+    position: relative;
+    list-style: none;
+    padding: 0 20px;
+    padding-top:12px ;
+    top:30px;
+    width: 320px;
+    margin-left: -30px;
+    
+}
+#X
+{
+    top:5px;
+}
+
+ .searchBar 
+ {
+    position: relative;
+
+    display: flex;
+    margin-left: -12px;
+    width: 120%;
+    max-width: 300px;
+    padding: 14px 25px;
+    border-radius: 60px;
+    /* border-color: rgb(54, 168, 130); */
+    align-items: center;
+    background-color: rgba(197, 231, 202, 0.822);
+    /* background-color:rgba(54, 168, 130, 0.397); */
+    /* border-color:   rgb(54, 168, 130); */
+    
+ }
+ .searchBar input
+ {
+    background: transparent;
+    text-align: right;
+    border: 0;
+   /* border-width: 0.2mm;
+   border-color: rgb(54, 168, 130); */
+ 
+    outline: none;
+    padding: 2% 3%;
+    margin-left: 4%;
+    width: 185px;
+    
+}
+::placeholder
+{
+    color: rgba(25, 134, 98, 0.986);
+    font-weight:500;
+}
+.searchBar button
+{
+    border:0;
+    border-radius: 50%;
+    background-color:rgba(73, 201, 158, 0.486);
+    color:rgba(25, 134, 98, 0.986) ;
+    width: 60px; 
+    height: 50px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+
+}
+  @media (max-width:1124px)
+  {
+
+#navbar
+{
+    /* display: flex; */
+    /* display: none; */
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    position: fixed;
+    top:0;
+    left: 0px;
+    height: 100vh;
+    width: 320px;
+    background-color: white;
+    box-shadow: 0 0.1px 3px black; 
+  
+}
+#navbar li
+{
+    position: relative;
+    list-style: none;
+    padding: 0 20px;
+    padding-top:3px ;
+    top:60px;
+    
+}
+
+#threeLines, #hiddenCart
+{
+    display: none;
+}
+#smallerScreen
+{
+    display: block;
+    display: flex;
+    align-items:start;
+    justify-content:left;
+}
+
+/* #smallerScreen a
+{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    color:rgb(61, 61, 61);
+    padding: 3%;
+} */
+#SuperLogo
+{
+    position: relative;
+    /* width: 10%; */
+    width: 20vh;
+   float: right;
+}
+
+  }
