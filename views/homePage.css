@@ -192,6 +192,10 @@ header{
 }
 #recommended
 {
+    text-align: center;
+}
+#recommended_title
+{
     font-size: 300%;
     /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;*/
     font-family: 'Rubik';
