@@ -6,9 +6,210 @@
     font-weight: 100;
 }
 /* סגנון לאלמנט עם id מסוים */
-#myElement 
+#myElement
 {
     font-family: 'Rubik';/* החלת הגופן שהוגדר */
     font-size: 300%;
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    margin: 0;
 }
+body{
+    width:100%; 
+}
+#SuperLogo
+{
+    position: relative;
+    /* width: 10%; */
+    width: 15em;
+   float: right;
+  
+}
+header{
+    /* display: flex; */
+    position: absolute;
+    align-items: center;
+    justify-content: space-between;
+    padding: 27px 30px;
+   /* background-color:rgba(0, 255, 106, 0.192); */
+    background-color: rgb(219, 253, 224);
+    /* background-color:rgb(204, 238, 211); */
+    top:0;
+  box-shadow: 0 1px 4px black;   
+    width:100%; 
+    z-index: 100;
+    position: sticky;
+   
+}
+
+#navbar
+{
+    display: flex;
+    align-items:start;
+    justify-content:left;
+
+}
+.categoryDiv, .categoryDivSmall
+  {
+    visibility: hidden;
+      /* align-items: flex-end; */
+      /* justify-content: flex-start; */
+      position: fixed;
+      top:0;
+      left: 0px;
+      height: 100vh;
+      width: 320px;
+      background-color: white;
+      box-shadow: 0 0.1px 3px black; 
+    text-align: end;
+    overflow-y: auto; 
+    overflow-x: hidden;
+  
+  }
+ 
+.categoryDiv li, .categoryDivSmall li
+{
+    position: relative;
+    list-style: none;
+    padding: 0 20px;
+    padding-top:12px ;
+    top:30px;
+    width: 320px;
+    margin-left: -43px;
+    padding-right: 20px;
+    
+}
+#X, #XforSmall
+{
+    top:5px;
+    cursor: pointer;
+}
+
+ .searchBar 
+ {
+    position: relative;
+
+    display: flex;
+    margin-left: 5px;
+    width: 120%;
+    max-width: 300px;
+    padding: 9px 25px;
+    border-radius: 60px;
+    align-items: center;
+    background-color: rgba(197, 231, 202, 0.822);
+    
+ }
+ .searchBar input
+ {
+    background: transparent;
+    text-align: right;
+    border: 0;
+    outline: none;
+    padding: 2% 3%;
+    margin-left: 4%;
+    width: 185px;
+    
+}
+::placeholder
+{
+    color: rgba(25, 134, 98, 0.986);
+    font-weight:500;
+}
+.searchBar button
+{
+    border:0;
+    border-radius: 50%;
+    background-color:rgba(73, 201, 158, 0.486);
+    color:rgba(25, 134, 98, 0.986) ;
+    width: 60px; 
+    height: 50px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+
+}
+#smallerScreen 
+ {
+    display: none;
+    align-items:center;
+   /* background-color: blue; */
+}
+#smallerScreen a, .categoryDiv li, .categoryDivSmall li
+{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    color:rgb(61, 61, 61);
+    padding: 3%;
+}
+
+#navbar li
+{
+    list-style: none;
+    padding: 0 20px;
+    padding-top:50px ;
+    
+}
+
+#navbar li a, .categoryDiv li a, .categoryDivSmall li a
+{
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    color:rgb(61, 61, 61);
+}
+#navbar li a:hover, .categoryDiv a:hover, #smallerScreen a:hover
+{
+    color:rgb(54, 168, 130);
+}
+
+.categoryDiv li:not(:first-child):not(:nth-child(2)):hover, .categoryDivSmall li:not(:first-child):not(:nth-child(2)):hover
+{
+    background-color: rgba(197, 231, 202, 0.541);
+    margin-left: -45px;
+
+    border-radius: 10px;
+}
+@keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width:1124px)
+  {
+
+#navbar
+{
+    display: none;
+  
+}
+
+
+
+#smallerScreen
+{
+   /* display: none; */
+     display: flex;
+    align-items:start;
+    justify-content:left;
+}
+
+
+#SuperLogo
+{
+    position: absolute;
+    /* width: 10%; */
+
+ right: 0;
+
+  
+}
+
+  }
