@@ -46,7 +46,7 @@ header{
       background-color: white;
       box-shadow: 0 0.1px 3px black; 
     text-align: end;
-    overflow-y: auto; /* מוסיף גלילה אנכית בלבד */
+    overflow-y: auto; 
     overflow-x: hidden;
   
   }
@@ -77,7 +77,7 @@ header{
     margin-left: 5px;
     width: 120%;
     max-width: 300px;
-    padding: 14px 25px;
+    padding: 9px 25px;
     border-radius: 60px;
     align-items: center;
     background-color: rgba(197, 231, 202, 0.822);
@@ -184,8 +184,20 @@ header{
     margin: 0 30px;
   }
 
-
-
+  @font-face {
+    font-family:'Rubik' ;
+    src: url("/public/fonts/RubikDoodleShadow-Regular.ttf");
+    font-style: normal ;
+    font-weight: 100;
+}
+#recommended
+{
+    font-size: 300%;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;*/
+    font-family: 'Rubik';
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+}
 
   @media (max-width:1124px)
   {
