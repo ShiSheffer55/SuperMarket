@@ -33,7 +33,7 @@ header{
     justify-content:left;
 
 }
-.categoryDiv
+.categoryDiv, .categoryDivSmall
   {
     visibility: hidden;
       /* align-items: flex-end; */
@@ -46,23 +46,11 @@ header{
       background-color: white;
       box-shadow: 0 0.1px 3px black; 
     text-align: end;
-
+    overflow-y: auto; /* מוסיף גלילה אנכית בלבד */
+    overflow-x: hidden;
+  
   }
-  .categoryDivSmall
-  {
-    visibility: hidden;
-      /* align-items: flex-end; */
-      /* justify-content: flex-start; */
-      position: fixed;
-      top:0;
-      left: 0px;
-      height: 100vh;
-      width: 320px;
-      background-color: white;
-      box-shadow: 0 0.1px 3px black; 
-    text-align: end;
-
-  }
+ 
 .categoryDiv li, .categoryDivSmall li
 {
     position: relative;
@@ -71,7 +59,8 @@ header{
     padding-top:12px ;
     top:30px;
     width: 320px;
-    margin-left: -30px;
+    margin-left: -43px;
+    padding-right: 20px;
     
 }
 #X, #XforSmall
@@ -85,7 +74,7 @@ header{
     position: relative;
 
     display: flex;
-    margin-left: -2px;
+    margin-left: 5px;
     width: 120%;
     max-width: 300px;
     padding: 14px 25px;
@@ -161,7 +150,7 @@ header{
 .categoryDiv li:not(:first-child):not(:nth-child(2)):hover, .categoryDivSmall li:not(:first-child):not(:nth-child(2)):hover
 {
     background-color: rgba(197, 231, 202, 0.541);
-    margin-left: -32px;
+    margin-left: -45px;
 
     border-radius: 10px;
 }
