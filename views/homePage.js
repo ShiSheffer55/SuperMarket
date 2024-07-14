@@ -16,3 +16,12 @@ function ShowCatBarSmall()
 {
     document.getElementsByClassName('categoryDivSmall')[0].style.visibility='visible';
 }
+function HideCatBarVerySmall()
+{
+    document.getElementsByClassName('categoryDivVerySmall')[0].style.visibility='hidden';
+}
+
+function ShowCatBarVerySmall()
+{
+    document.getElementsByClassName('categoryDivVerySmall')[0].style.visibility='visible';
+}
