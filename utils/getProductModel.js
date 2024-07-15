@@ -1,20 +1,8 @@
-const { Double } = require('mongodb');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const schema = mongoose.schema; 
-
-// Category Schema
-const categorySchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: String
-});
-
-const Category = mongoose.model('Category', categorySchema);
-
-
-let ProductSchema = new mongoose.Schema({
-
-    title:{
+const getProductModel = (categoryName) => {
+    const schema = new mongoose.Schema({
+        title:{
         type: String,
         required:true
     }, 
@@ -47,10 +35,10 @@ let ProductSchema = new mongoose.Schema({
     amount: {
         type:Number
     }
-}); 
+    });
 
-const Product = mongoose.model('Product', ProductSchema);
+    // Use Mongoose's model function to either retrieve an existing model or create a new one
+    return mongoose.model(categoryName, schema);
+};
 
-// Export the model
-module.exports = { Product, Category };
-
+module.exports = getProductModel;
