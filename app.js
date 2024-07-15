@@ -1,28 +1,31 @@
-const express = require('express'); 
-const mongoose = require('mongoose'); 
-const bodyParser = require('body-parser'); 
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const productsRoute = require('./routes/products');
 
-const app = express()
+const app = express();
+const port = 3000;
 
-const port = 3000
-mongoose.connect('mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/'); 
-const db = mongoose.connection; 
-db.on('error', () => 
-{console.log('connection failed') 
-}); 
+// MongoDB connection
+const mongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
 
-db.once('open', () => {
-    console.log('the connection succedded'); 
-}); 
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Database connected successfully'))
+    .catch(err => console.log('Database connection error:', err));
 
+// Set view engine to EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-app.set('view engine', 'ejs'); 
-app.use(express.static('public')); 
+// Middleware
+app.use(express.urlencoded({ extended: true })); // To parse form data
+app.use(express.json());
 
+// Routes
+app.use('/', productsRoute);
 
-app.use(bodyParser.urlencoded({extended: false}))
+// Start server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
-app.use(bodyParser.json()); 
-
-
-app.listen(port, () => console.log(`listening to port ${port}`)) 
