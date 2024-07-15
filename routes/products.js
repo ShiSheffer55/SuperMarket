@@ -1,51 +1,57 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const { Category, Product } = require('../models/product'); 
+const Category = require('../models/category'); // Import the Category model
+const Product = require('../models/product'); // Import the Category model
+const getProductModel = require('../models/getProductModel'); // Import the generic model function
 
-// Route to display all products
+// Default route to handle the root URL
 router.get('/', async (req, res) => {
     try {
-        const docs = await Product.find().exec();
-        res.render('products', { Products: docs }); 
+        // Optionally, you can list all available collections or redirect to a specific collection
+        const collections = await Category.find().exec();
+        res.render('products', { collections });
     } catch (err) {
         console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');
     }
 });
 
+// Route to display all products from a specific collection
+router.get('/:collectionName', async (req, res) => {
+    const { collectionName } = req.params;
+    const ProductModel = getProductModel(collectionName);
+
+    try {
+        const docs = await ProductModel.find().exec();
+        res.render('products', { Products: docs, collectionName });
+    } catch (err) {
+        console.log('Something went wrong with MongoDB:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 // Route to add a product to a collection named after the product's category
 router.post('/add', async (req, res) => {
     const { title, img, name, price, category, description, supplier, amount } = req.body;
 
+    console.log('Received data:', title, img, name, price, category, description, supplier, amount);
+
     try {
-        // Check if all required fields are provided
-        if (!title || !img || !name || !price || !category || !description || !supplier) {
-            return res.status(400).json({ error: 'All fields (title, img, name, price, category, description, supplier) are required' });
-        }
+        // Check if the category exists in the Category collection
+        let existingCategory = await Category.findOne({ name: category });
+        console.log(category);
+        console.log(existingCategory);
 
-        // Validate that category is a valid ObjectId
-        if (!mongoose.Types.ObjectId.isValid(category)) {
-            return res.status(400).json({ error: 'Invalid category ID format' });
-        }
-
-        // Check if the category exists
-        const existingCategory = await Category.findById(category);
+        // If the category does not exist, create a new Category
         if (!existingCategory) {
-            return res.status(404).json({ error: 'Category not found' });
+            console.log('Category not found, creating new category:', category);
+            existingCategory = await Category.create({ name: category });
         }
 
-        // Dynamically create a model for the product collection named after the category
-        const ProductModel = mongoose.model(existingCategory.name, new mongoose.Schema({
-            title: { type: String, required: true },
-            img: { type: String, required: true },
-            name: { type: String, required: true },
-            price: { type: Number, required: true },
-            category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
-            description: { type: String, required: true },
-            supplier: { type: String, required: true },
-            amount: { type: Number }
-        }));
+        // Create a new product instance using the category name as the collection name
+        const ProductModel = getProductModel(category);
 
         // Create a new product instance
         const product = new ProductModel({
@@ -53,7 +59,7 @@ router.post('/add', async (req, res) => {
             img,
             name,
             price,
-            category,
+            category: existingCategory._id, // Use the ObjectId of the existing or new Category
             description,
             supplier,
             amount
@@ -69,19 +75,17 @@ router.post('/add', async (req, res) => {
     }
 });
 
-
 // Route to show a Product for editing
-router.get('/edit/:id', async (req, res) => {
-    try {
-        
-        const Product = await Product.findById(req.params.id).exec();
-        if (!Product) {
-            console.log('Product not found');
-        }
-        else{
-            res.render('productsEdit', { Product });
+router.get('/edit/:collectionName/:id', async (req, res) => {
+    const { collectionName, id } = req.params;
+    const ProductModel = getProductModel(collectionName);
 
+    try {
+        const product = await ProductModel.findById(id).exec();
+        if (!product) {
+            return res.status(404).send('Product not found');
         }
+        res.render('productsEdit', { Product: product });
     } catch (err) {
         console.log('Error retrieving data for editing:', err);
         res.status(500).send('Internal Server Error');
@@ -89,10 +93,13 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 // Route to update a Product
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:collectionName/:id', async (req, res) => {
+    const { collectionName, id } = req.params;
+    const ProductModel = getProductModel(collectionName);
+
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(
-            req.params.id,
+        const updatedProduct = await ProductModel.findByIdAndUpdate(
+            id,
             req.body,
             { new: true } // Returns the updated document
         ).exec();
@@ -102,7 +109,7 @@ router.post('/edit/:id', async (req, res) => {
         }
 
         console.log('Updated successfully');
-        res.redirect('/');
+        res.redirect(`/${collectionName}`);
     } catch (err) {
         console.log('Something went wrong updating the data:', err);
         res.status(500).send('Internal Server Error');
@@ -110,16 +117,19 @@ router.post('/edit/:id', async (req, res) => {
 });
 
 // Route to delete a Product
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:collectionName/:id', async (req, res) => {
+    const { collectionName, id } = req.params;
+    const ProductModel = getProductModel(collectionName);
+
     try {
-        const deletedProduct = await Product.findByIdAndDelete(req.params.id).exec();
+        const deletedProduct = await ProductModel.findByIdAndDelete(id).exec();
 
         if (!deletedProduct) {
             return res.status(404).send('Product not found');
         }
 
         console.log('Deleted successfully');
-        res.redirect('/');
+        res.redirect(`/${collectionName}`);
     } catch (err) {
         console.log('Something went wrong deleting the data:', err);
         res.status(500).send('Internal Server Error');
