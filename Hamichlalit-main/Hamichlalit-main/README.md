@@ -1,2 +1,0 @@
-# Hamichlalit
-E-commerce website
