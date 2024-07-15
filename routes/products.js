@@ -25,9 +25,9 @@ router.post('/add', async (req, res) => {
         }
 
         // Validate that category is a valid ObjectId
-        if (!mongoose.Types.ObjectId.isValid(category)) {
-            return res.status(400).json({ error: 'Invalid category ID format' });
-        }
+        // if (!mongoose.Types.ObjectId.isValid(category)) {
+        //     return res.status(400).json({ error: 'Invalid category ID format' });
+        // }
 
         // Check if the category exists
         const existingCategory = await Category.findById(category);
