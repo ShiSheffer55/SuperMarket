@@ -18,6 +18,8 @@ router.get('/', async (req, res) => {
 });
 
 
+
+
 // Route to display all products from a specific collection
 router.get('/:collectionName', async (req, res) => {
     const { collectionName } = req.params;
@@ -34,9 +36,9 @@ router.get('/:collectionName', async (req, res) => {
 
 // Route to add a product to a collection named after the product's category
 router.post('/add', async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount } = req.body;
+    const { title, img, name, price, category, description, supplier, amount, sub } = req.body; // Include 'sub' if necessary
 
-    console.log('Received data:', title, img, name, price, category, description, supplier, amount);
+    console.log('Received data:', title, img, name, price, category, description, supplier, amount, sub);
 
     try {
         // Check if the category exists in the Category collection
@@ -62,7 +64,8 @@ router.post('/add', async (req, res) => {
             category: existingCategory._id, // Use the ObjectId of the existing or new Category
             description,
             supplier,
-            amount
+            amount,
+            sub // Include 'sub' if necessary
         });
 
         // Save the product to the dynamically named collection
@@ -74,6 +77,7 @@ router.post('/add', async (req, res) => {
         res.status(500).json({ error: 'Error adding product', details: err.message });
     }
 });
+
 
 // Route to show a Product for editing
 router.get('/edit/:collectionName/:id', async (req, res) => {

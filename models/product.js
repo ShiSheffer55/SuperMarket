@@ -32,6 +32,11 @@ const ProductSchema = new mongoose.Schema({
     },
     amount: {
         type: Number
+    },
+     // Remove or make optional if not used
+     sub: { 
+        type: String, 
+        required: false 
     }
 });
 
