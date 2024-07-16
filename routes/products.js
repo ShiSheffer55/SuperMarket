@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Category = require('../models/category'); // Import the Category model
+const Product = require('../models/product'); // Import the Category model
 const getProductModel = require('../models/getProductModel'); // Import the generic model function
 
 // Default route to handle the root URL
@@ -9,7 +10,7 @@ router.get('/', async (req, res) => {
     try {
         // Optionally, you can list all available collections or redirect to a specific collection
         const collections = await Category.find().exec();
-        res.render('homePage', { collections });
+        res.render('products', { collections });
     } catch (err) {
         console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');
@@ -30,23 +31,27 @@ router.get('/:collectionName', async (req, res) => {
     }
 });
 
+
 // Route to add a product to a collection named after the product's category
 router.post('/add', async (req, res) => {
     const { title, img, name, price, category, description, supplier, amount } = req.body;
 
+    console.log('Received data:', title, img, name, price, category, description, supplier, amount);
+
     try {
-        // Validate that category is a valid ObjectId
-        if (!mongoose.Types.ObjectId.isValid(category)) {
-            return res.status(400).json({ error: 'Invalid category ID format' });
-        }
+        // Check if the category exists in the Category collection
+        let existingCategory = await Category.findOne({ name: category });
+        console.log(category);
+        console.log(existingCategory);
 
-        // Check if the category exists
-        const existingCategory = await Category.findById(category);
+        // If the category does not exist, create a new Category
         if (!existingCategory) {
-            return res.status(404).json({ error: 'Category not found' });
+            console.log('Category not found, creating new category:', category);
+            existingCategory = await Category.create({ name: category });
         }
 
-        const ProductModel = getProductModel(existingCategory.name);
+        // Create a new product instance using the category name as the collection name
+        const ProductModel = getProductModel(category);
 
         // Create a new product instance
         const product = new ProductModel({
@@ -54,7 +59,7 @@ router.post('/add', async (req, res) => {
             img,
             name,
             price,
-            category,
+            category: existingCategory._id, // Use the ObjectId of the existing or new Category
             description,
             supplier,
             amount
