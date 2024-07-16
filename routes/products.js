@@ -10,12 +10,13 @@ router.get('/', async (req, res) => {
     try {
         // Optionally, you can list all available collections or redirect to a specific collection
         const collections = await Category.find().exec();
-        res.render('products', { collections });
+        res.render('homePage', { collections });
     } catch (err) {
         console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 // Route to display all products from a specific collection
 router.get('/:collectionName', async (req, res) => {
@@ -24,13 +25,12 @@ router.get('/:collectionName', async (req, res) => {
 
     try {
         const docs = await ProductModel.find().exec();
-        res.render('products', { Products: docs, collectionName });
+        res.render('products', { Products: docs, collections: [], collectionName }); // Pass the fetched products and collection name
     } catch (err) {
         console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');
     }
 });
-
 
 // Route to add a product to a collection named after the product's category
 router.post('/add', async (req, res) => {
