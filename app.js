@@ -16,6 +16,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // Set view engine to EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use('/views', express.static(path.join(__dirname, '/views')));
 
 // Middleware
 app.use(express.urlencoded({ extended: true })); // To parse form data
