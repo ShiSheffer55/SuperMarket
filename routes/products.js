@@ -18,8 +18,6 @@ router.get('/', async (req, res) => {
 });
 
 
-
-
 // Route to display all products from a specific collection
 router.get('/:collectionName', async (req, res) => {
     const { collectionName } = req.params;
