@@ -18,8 +18,6 @@ router.get('/', async (req, res) => {
 });
 
 
-
-
 // Route to display all products from a specific collection
 router.get('/:collectionName', async (req, res) => {
     const { collectionName } = req.params;
@@ -33,6 +31,7 @@ router.get('/:collectionName', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 // Route to add a product to a collection named after the product's category
 router.post('/add', async (req, res) => {
@@ -78,7 +77,6 @@ router.post('/add', async (req, res) => {
     }
 });
 
-
 // Route to show a Product for editing
 router.get('/edit/:collectionName/:id', async (req, res) => {
     const { collectionName, id } = req.params;
@@ -89,12 +87,14 @@ router.get('/edit/:collectionName/:id', async (req, res) => {
         if (!product) {
             return res.status(404).send('Product not found');
         }
-        res.render('productsEdit', { Product: product });
+        res.render('productsEdit', { Product: product, collectionName: collectionName });
     } catch (err) {
         console.log('Error retrieving data for editing:', err);
         res.status(500).send('Internal Server Error');
     }
 });
+
+
 
 // Route to update a Product
 router.post('/edit/:collectionName/:id', async (req, res) => {
@@ -119,6 +119,7 @@ router.post('/edit/:collectionName/:id', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 // Route to delete a Product
 router.get('/delete/:collectionName/:id', async (req, res) => {

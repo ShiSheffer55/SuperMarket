@@ -6,8 +6,9 @@
     <title>Edit Product</title>
 </head>
 <body>
+    
     <h1>Edit Product</h1>
-    <form action="/edit/<%= Product._id %>" method="POST">
+    <form action="/edit/<%= collectionName %>/<%= Product._id %>" method="POST">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="<%= Product.title %>" required>
         <br>
@@ -20,7 +21,7 @@
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" step="0.01" value="<%= Product.price %>" required>
         <br>
-        <label for="category">Category:</label>
+        <label for="category">Category ID:</label>
         <input type="text" id="category" name="category" value="<%= Product.category %>" required>
         <br>
         <label for="description">Description:</label>
@@ -30,7 +31,7 @@
         <input type="text" id="supplier" name="supplier" value="<%= Product.supplier %>" required>
         <br>
         <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" step="1" value="<%= Product.amount %>" required>
+        <input type="number" id="amount" name="amount" value="<%= Product.amount %>" required>
         <br>
         <label for="sub">Sub:</label>
         <input type="text" id="sub" name="sub" value="<%= Product.sub %>" required>
