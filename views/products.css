@@ -1,0 +1,31 @@
+main{
+    text-align: center;
+    z-index: 3;
+}
+
+.card
+{
+    position: relative;
+    float:right;
+    margin-right:3%;
+    margin-top: 3%;
+    width: 17rem;
+    z-index: 3;
+}
+.card-body
+{
+    position: relative;
+    text-align: right;
+    z-index: 3;
+}
+#AddtoCart
+{
+    background-color: rgba(197, 231, 202, 0.822);
+    color: rgba(25, 134, 98, 0.986);
+    border:solid;
+    border-color:rgba(25, 134, 98, 0.986);
+    border-width: 0.3mm;
+}
+.card-body a{
+    color: rgba(25, 134, 98, 0.986);
+}
