@@ -24,10 +24,9 @@ router.get('/', async (req, res) => {
 });
 
 
-
-// Route to display all products from a specific collection
 router.get('/:collectionName', async (req, res) => {
     const { collectionName } = req.params;
+    console.log(`Fetching products for collection: ${collectionName}`); // Log this line
     const ProductModel = getProductModel(collectionName);
 
     try {
@@ -38,6 +37,7 @@ router.get('/:collectionName', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 
 // Route to add a product to a collection named after the product's category
