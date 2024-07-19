@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/views/location.css">
+    <link rel="stylesheet" href="/views/homePage.css">
+    <link rel="stylesheet" href="/views/header.css">
+    <link rel="stylesheet" href="/views/products.css">
+</head>
+<body>
+
+    <body onload="HideCatBar()">
+        <header>
+            <img id="SuperLogo" src="/public/img/clearLogo2.png">
+            
+            <!-- For big screen -->
+            <div>
+                <ul id="navbar">
+                    <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>
+                    <li id="hiddenCart"><a href="#" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
+                    <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                    <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
+                    <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
+                </ul>
+            </div>
+            <div class="categoryDiv">
+                <ul>
+                    <li id="X"><i onclick="HideCatBar()" class="bi bi-x-lg"></i></li>
+                    <li>
+                        <form action="" class="searchBar">
+                            <button type="submit"><i class="bi bi-search"></i></button>
+                            <input type="text" placeholder="...חפש">
+                        </form>
+                    </li>
+                    <br>
+                    <li><a href="/meat">בשר</a></li>
+                    <li><a href="/fish">דגים</a></li>
+                    <li><a href="/milk">מוצרי חלב</a></li>
+                    <li><a href="/fruits">פירות</a></li>
+                    <li><a href="/vegetables">ירקות</a></li>
+                    <li><a href="/cleanliness">ניקיון</a></li>
+                    <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
+                    <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
+                    <li><a href="/drinks">משקאות</a></li>
+                    <li><a href="/frozen">קפואים</a></li>
+                    <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
+                </ul>
+            </div>
+            <!-- for smaller screen -->
+            <div id="smallerScreen">
+                <a href="#" onclick="ShowCatBarSmall()"><h4><i class="bi bi-list"></i></h4></a>
+                <a href="#" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
+                <div class="categoryDivSmall">
+                    <ul>
+                        <li id="XforSmall"><i onclick="HideCatBarSmall()" class="bi bi-x-lg"></i></li>
+                        <li>
+                            <form action="" class="searchBar">
+                                <button type="submit"><i class="bi bi-search"></i></button>
+                                <input type="text" placeholder="...חפש">
+                            </form>
+                        </li>
+                        <br>
+                        <li><a href="/meat">בשר</a></li>
+                        <li><a href="/fish">דגים</a></li>
+                        <li><a href="/milk">מוצרי חלב</a></li>
+                        <li><a href="/fruits">פירות</a></li>
+                        <li><a href="/vegetables">ירקות</a></li>
+                        <li><a href="/cleanliness">ניקיון</a></li>
+                        <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
+                        <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
+                        <li><a href="/drinks">משקאות</a></li>
+                        <li><a href="/frozen">קפואים</a></li>
+                        <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
+                        <br><br>
+                        <hr>
+                        <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                        <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
+                        <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- for the smallest screens -->
+            <div id="VerysmallScreen">
+                <a href="#" onclick="ShowCatBarVerySmall()"><i class="bi bi-list"></i></a>
+                <a href="#" id="cartIconSmaller"><i class="bi bi-cart3"></i></a>
+                <div class="categoryDivVerySmall">
+                    <ul>
+                        <li id="XforVerySmall"><i onclick="HideCatBarVerySmall()" class="bi bi-x-lg"></i></li>
+                        <li>
+                            <form action="" class="searchBar">
+                                <button type="submit"><i class="bi bi-search"></i></button>
+                                <input type="text" placeholder="...חפש">
+                            </form>
+                        </li>
+                        <br>
+                        <li><a href="/meat">בשר</a></li>
+                        <li><a href="/fish">דגים</a></li>
+                        <li><a href="/milk">מוצרי חלב</a></li>
+                        <li><a href="/fruits">פירות</a></li>
+                        <li><a href="/vegetables">ירקות</a></li>
+                        <li><a href="/cleanliness">ניקיון</a></li>
+                        <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
+                        <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
+                        <li><a href="/drinks">משקאות</a></li>
+                        <li><a href="/frozen">קפואים</a></li>
+                        <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
+                        <br><br>
+                        <hr>
+                        <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                        <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
+                        <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    
+        
+    <!-- location -->
+    <div class="google-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.6723189437585!2d34.76844387660188!3d31.969785274011354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b30236ef5d51%3A0x6c10ba446a77cd0c!2z15TXnteb15zXnNeUINec157XoNeU15wg16jXkNep15XXnyDXnNem15nXldef!5e0!3m2!1sen!2sil!4v1721431400153!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/views/categoryBar.js"></script>
+
+
+</body>
+</html>

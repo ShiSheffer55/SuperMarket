@@ -6,6 +6,10 @@ const Product = require('../models/product'); // Import the Category model
 const getProductModel = require('../models/getProductModel'); // Import the generic model function
 
 
+router.get('/location', async (req, res) => {
+    res.render('location'); 
+}); 
+
 
 // Route to display recommended products on the homepage
 router.get('/', async (req, res) => {
@@ -147,5 +151,8 @@ router.get('/delete/:collectionName/:id', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+
+
 
 module.exports = router;
