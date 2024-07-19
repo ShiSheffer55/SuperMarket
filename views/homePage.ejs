@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/views/homePage.css">
 <link rel="stylesheet" href="/views/header.css">
+<link rel="stylesheet" href="/views/products.css">
+
 <title>המכללית-שפע המכללה</title>
 </head>
 <body onload="HideCatBar()">
@@ -102,7 +104,7 @@
                     <li><a href="#">ניקיון</a></li>
                     <li><a href="#">יבשים (קטניות, פסטות, שימורים)</a></li>
                     <li><a href="#"> ממתקים וחטיפים</a></li>
-                    <li><a href="#">משקאות</a></li>
+                    <li><a href="/drinks">משקאות</a></li>
                     <li><a href="#">קפואים</a></li>
                     <li><a href="#">לחמים ומאפים</a></li>
                     <br><br>
@@ -149,7 +151,21 @@
     <div id="recommended">
     <h1 id="recommended_title">&#9734;     המומלצים שלנו  &#9734;</h1>
    </div>
- 
+
+   <ul>
+    <% recommendedProducts.forEach(Product => { %>
+        <li>
+            <img src="<%= Product.img %>" alt="...">
+            <h2><%= Product.title %></h2>
+            <p><%= Product.description %></p>
+            <p>Price: $<%= Product.price %></p>
+            <p>Supplier: <%= Product.supplier %></p>
+            <p>Amount: <%= Product.amount %></p>
+
+        </li>
+    <% }) %>
+</ul>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/views/categoryBar.js"></script>
 </body>

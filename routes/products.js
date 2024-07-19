@@ -5,17 +5,24 @@ const Category = require('../models/category'); // Import the Category model
 const Product = require('../models/product'); // Import the Category model
 const getProductModel = require('../models/getProductModel'); // Import the generic model function
 
-// Default route to handle the root URL
+
+
+// Route to display recommended products on the homepage
 router.get('/', async (req, res) => {
     try {
-        // Optionally, you can list all available collections or redirect to a specific collection
-        const collections = await Category.find().exec();
-        res.render('homePage', { collections });
+        // Use the 'getProductModel' function to get the 'recommended' collection
+        const ProductModel = getProductModel('recommended');
+
+        // Fetch all products from the 'recommended' collection
+        const recommendedProducts = await ProductModel.find().exec();
+
+        res.render('homePage', { recommendedProducts });
     } catch (err) {
-        console.log('Something went wrong with MongoDB:', err);
+        console.log('Error fetching recommended products:', err);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 
 // Route to display all products from a specific collection
@@ -25,7 +32,7 @@ router.get('/:collectionName', async (req, res) => {
 
     try {
         const docs = await ProductModel.find().exec();
-        res.render('products', { Products: docs, collections: [], collectionName }); // Pass the fetched products and collection name
+        res.render('products', { Products: docs, collectionName });
     } catch (err) {
         console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');

@@ -25,6 +25,8 @@ app.use(express.json());
 // Routes
 app.use('/', productsRoute);
 
+
+
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
