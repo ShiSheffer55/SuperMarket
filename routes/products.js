@@ -10,6 +10,9 @@ router.get('/location', async (req, res) => {
     res.render('location'); 
 }); 
 
+router.get('/register', async (req, res) => {
+    res.render('register'); 
+}); 
 
 // Route to display recommended products on the homepage
 router.get('/', async (req, res) => {
