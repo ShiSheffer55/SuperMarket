@@ -79,7 +79,7 @@
                     <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
                     <br><br>
                     <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                    <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                     <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
                 </ul>
@@ -112,7 +112,7 @@
                     <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
                     <br><br>
                     <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                    <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                     <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
                 </ul>
@@ -157,7 +157,7 @@
 
 <main>
     <% recommendedProducts.forEach(Product => { %>
-      
+        <% if (Product.amount > 0) { %>
         <div class="card" >
             <img src="<%= Product.img %>" class="card-img-top" alt="...">
             <div class="card-body">
@@ -168,7 +168,7 @@
              
             </div>
           </div>
-       
+          <% } %>
     <% }) %>
 
 </main>

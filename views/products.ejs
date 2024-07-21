@@ -157,7 +157,7 @@
     <!-- Display the products -->
      <main>
         <% Products.forEach(Product => { %>
-          
+            <% if (Product.amount > 0) { %>
             <div class="card" >
                 <img src="<%= Product.img %>" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -170,7 +170,7 @@
                  
                 </div>
               </div>
-           
+              <% } %>
         <% }) %>
   
    </main>
