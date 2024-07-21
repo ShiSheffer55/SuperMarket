@@ -29,3 +29,7 @@ main{
 .card-body a{
     color: rgba(25, 134, 98, 0.986);
 }
+.card img{
+    width: 88%;
+    margin: 0 auto;
+}

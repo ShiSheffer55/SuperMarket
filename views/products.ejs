@@ -22,6 +22,8 @@
                 <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                 <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                 <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
+                <li><a href="/register">הירשמות <i class="bi bi-envelope"></i></a></li>
+
             </ul>
         </div>
         <div class="categoryDiv">
@@ -153,25 +155,25 @@
     <!-- for example -->
 
     <!-- Display the products -->
-   
+     <main>
         <% Products.forEach(Product => { %>
-            <main>
+          
             <div class="card" >
                 <img src="<%= Product.img %>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"><%= Product.title %></h5>
                   <p class="card-text"><%= Product.sub %></p>
+                  <p>₪ <%= Product.price%></p>
                    <a href="/edit/<%= collectionName %>/<%= Product._id %>">Edit</a>
                   <a href="/delete/<%= collectionName %>/<%= Product._id %>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                   <a href="#" id="AddtoCart" class="btn btn-primary">הוספה לסל</a>
                  
                 </div>
               </div>
-            </main>
-          
+           
         <% }) %>
   
-   
+   </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/views/categoryBar.js"></script>
 </body>
