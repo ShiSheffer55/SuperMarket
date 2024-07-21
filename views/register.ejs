@@ -124,25 +124,38 @@
     </header>
 
 
+    <h1>Register</h1>
+    <% if (error_msg) { %>
+        <div><%= error_msg %></div>
+    <% } %>
 
     <div class="wrapper">
-        <form action="">
-            <h1>התחברות</h1>
-            <div class="input-box">
-                <input id="username" type="text" placeholder="שם משתמש" required>
-                <i class="bi bi-person-fill"></i>
-                </div>
+       <form action="/users/register" method="POST">
+        <label for="userName">שם משתמש</label>
+        <input type="text" id="userName" name="userName" required>
+        <br>
+        <label for="fName">שם פרטי</label>
+        <input type="text" id="fName" name="fName" required>
+        <br>
+        <label for="lName">שם משפחה</label>
+        <input type="text" id="lName" name="lName" required>
+        <br>
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="gmail">שם משפחה</label>
+        <input type="text" id="gmail" name="gmail" required>
+        <br>
+        <label for="tel">שם משפחה</label>
+        <input type="text" id="tel" name="tel" required>
+        <br>
+        <label for="city">שם משפחה</label>
+        <input type="text" id="city" name="city" required>
+        <br>
+        
 
-            <div class="input-box">
-                <input id="password" type="text" placeholder="סיסמה" required>
-                <i class="bi bi-lock-fill"></i>           </div>
-
-            <div class="forgot">
-                <a href="">?שכחת סיסמה</a>
-
-            </div>
-            <button type="submit" class="btn" onclick="validate()">אישור</button>
-        </form>
+        <button type="submit">הירשמות</button>
+    </form>
     </div>
 </body>
 </html>
