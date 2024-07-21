@@ -1,37 +1,24 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user'); // Adjust the path as needed
+// scripts/promoteToAdmin.js
 
-passport.use(new LocalStrategy(
-    async (username, password, done) => {
-        try {
-            const user = await User.findOne({ username });
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            // Add your password validation logic here
-            // For example, if you're not using bcrypt, just do a plain comparison
-            if (user.password !== password) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, user);
-        } catch (err) {
-            return done(err);
+const mongoose = require('mongoose');
+const User = require('../models/user'); // Import the User model
+
+const mongoURI = 'mongodb://localhost:27017/users'; // Replace with your connection string
+
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async () => {
+        console.log('Database connected successfully');
+        // Find the user by userName or another unique field
+        const user = await User.findOne({ userName: 'someUserName' }); // Replace with the actual user identifier
+        if (user) {
+            user.role = 'admin'; // Update the role to admin
+            await user.save();
+            console.log('User promoted to admin successfully');
+        } else {
+            console.log('User not found');
         }
-    }
-));
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (err) {
-        done(err);
-    }
-});
-
-module.exports = passport;
+        mongoose.connection.close();
+    })
+    .catch(err => {
+        console.error('Database connection error:', err);
+    });
