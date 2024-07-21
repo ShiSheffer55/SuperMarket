@@ -14,7 +14,7 @@
 </head>
 <body onload="HideCatBar()">
     <header>
-        <img id="SuperLogo" src="/public/img/clearLogo2.png">
+        <img id="SuperLogo" src="/img/clearLogo2.png">
         
         <!-- For big screen -->
         <div>
@@ -25,11 +25,11 @@
                 <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                 <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
                 <li><a href="/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-                <li><a href="/login">התחברות <i class="bi bi-envelope"></i></a></li>
+                <li><a href="/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
 
             </ul>
         </div>
-        <div class="categoryDiv">
+        <nav class="categoryDiv">
             <ul>
                 <li id="X"><i onclick="HideCatBar()" class="bi bi-x-lg"></i></li>
                 <li>
@@ -51,9 +51,9 @@
                 <li><a href="/frozen">קפואים</a></li>
                 <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
             </ul>
-        </div>
+        </nav>
         <!-- for smaller screen -->
-        <div id="smallerScreen">
+        <nav id="smallerScreen">
             <a href="#" onclick="ShowCatBarSmall()"><h4><i class="bi bi-list"></i></h4></a>
             <a href="#" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
             <div class="categoryDivSmall">
@@ -84,9 +84,9 @@
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
                 </ul>
             </div>
-        </div>
+        </nav>
         <!-- for the smallest screens -->
-        <div id="VerysmallScreen">
+        <nav id="VerysmallScreen">
             <a href="#" onclick="ShowCatBarVerySmall()"><i class="bi bi-list"></i></a>
             <a href="#" id="cartIconSmaller"><i class="bi bi-cart3"></i></a>
             <div class="categoryDivVerySmall">
@@ -117,38 +117,38 @@
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
                 </ul>
             </div>
-        </div>
+        </nav>
     </header>
 
     
   
     <div class="logos">
         <div class="logos-slide">
-            <img src="/public/img/Awesome_logo.png" />
-            <img src="/public/img/badin_logo.png" />
-            <img src="/public/img/barilla_logo.png" />
-            <img src="/public/img/elit_logo.png" />
-            <img src="/public/img/iacin_logo.png" />
-            <img src="/public/img/prigat_logo.png" />
-            <img src="/public/img/sano_logo.png" />
-            <img src="/public/img/shtraus_logo.png" />
-            <img src="/public/img/tnuva_logo.png" />
-            <img src="/public/img/mei_eden_logo.png" />
-            <img src="/public/img/vilifood_logo.png" />
+            <img src="/img/Awesome_logo.png" />
+            <img src="/img/badin_logo.png" />
+            <img src="/img/barilla_logo.png" />
+            <img src="/img/elit_logo.png" />
+            <img src="/img/iacin_logo.png" />
+            <img src="/img/prigat_logo.png" />
+            <img src="/img/sano_logo.png" />
+            <img src="/img/shtraus_logo.png" />
+            <img src="/img/tnuva_logo.png" />
+            <img src="/img/mei_eden_logo.png" />
+            <img src="/img/vilifood_logo.png" />
         </div>
 
         <div class="logos-slide">
-            <img src="/public/img/Awesome_logo.png" />
-            <img src="/public/img/badin_logo.png" />
-            <img src="/public/img/barilla_logo.png" />
-            <img src="/public/img/elit_logo.png" />
-            <img src="/public/img/iacin_logo.png" />
-            <img src="/public/img/prigat_logo.png" />
-            <img src="/public/img/sano_logo.png" />
-            <img src="/public/img/shtraus_logo.png" />
-            <img src="/public/img/tnuva_logo.png" />
-            <img src="/public/img/mei_eden_logo.png" />
-            <img src="/public/img/vilifood_logo.png" />
+            <img src="/img/Awesome_logo.png" />
+            <img src="/img/badin_logo.png" />
+            <img src="/img/barilla_logo.png" />
+            <img src="/img/elit_logo.png" />
+            <img src="/img/iacin_logo.png" />
+            <img src="/img/prigat_logo.png" />
+            <img src="/img/sano_logo.png" />
+            <img src="/img/shtraus_logo.png" />
+            <img src="/img/tnuva_logo.png" />
+            <img src="/img/mei_eden_logo.png" />
+            <img src="/img/vilifood_logo.png" />
         </div>
     </div>
     <div id="recommended">
@@ -164,7 +164,7 @@
               <h5 class="card-title"><%= Product.title %></h5>
               <p class="card-text"><%= Product.sub %></p>
               <p>₪ <%= Product.price%></p>
-              <a href="#" id="AddtoCart" class="btn btn-primary">הוספה לסל</a>
+              <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
              
             </div>
           </div>
