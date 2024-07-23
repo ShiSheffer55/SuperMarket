@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>תוצאות חיפוש</h1>
+
+    <% if (searchproducts && searchproducts.length > 0) { %>
+        <ul>
+            <% searchproducts.forEach(product => { %>
+                <li><%= product.name %></li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>לא נמצאו תוצאות לחיפוש שלך.</p>
+    <% } %>
+</body>
+</html>
