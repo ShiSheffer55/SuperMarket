@@ -156,15 +156,15 @@
    </div>
 
    <ul>
-    <% recommendedProducts.forEach(Product => { %>
+    <% recommendedProducts.forEach(product => { %>
         <li>
-            <img src="<%= Product.img %>" alt="...">
-            <h2><%= Product.title %></h2>
-            <p><%= Product.description %></p>
-            <p>Price: $<%= Product.price %></p>
-            <p>Supplier: <%= Product.supplier %></p>
-            <p>Amount: <%= Product.amount %></p>
-
+            <h2><%= product.title %></h2>
+            <img src="<%= product.img %>" alt="<%= product.name %>">
+            <p>Price: <%= product.price %></p>
+            <p>Category: <%= product.category %></p>
+            <p>Sub: <%= product.sub %></p>
+            <p>Supplier: <%= product.supplier %></p>
+            <p>Amount: <%= product.amount %></p>
         </li>
     <% }) %>
 </ul>

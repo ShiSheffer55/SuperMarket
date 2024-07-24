@@ -154,7 +154,10 @@
     </form>
 
     <!-- Display the products -->
-   
+    <% if (user && user.role === 'admin') { %>
+        <a href="/products/add">Add New Product</a>
+    <% } %>
+
         <% Products.forEach(Product => { %>
             <main>
             <div class="card" >

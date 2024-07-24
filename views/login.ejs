@@ -124,6 +124,19 @@
     </header>
 
 
+    <% if (user) { %>
+        <p>Welcome, <%= user.fName %> <%= user.lName %>! (<%= user.role %>)</p>
+        <a href="/users/logout">Logout</a>
+    <% } else { %>
+        <a href="/users/login">Login</a>
+    <% } %>
+    <% if (success_msg) { %>
+        <p class="success"><%= success_msg %></p>
+    <% } %>
+    <% if (error_msg) { %>
+        <p class="error"><%= error_msg %></p>
+    <% } %>
+    
 
     <div class="wrapper">
         <form action="/users/register" method="POST">
