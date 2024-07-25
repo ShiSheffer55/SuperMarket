@@ -7,7 +7,9 @@ main{
 {
     position: relative;
     float:right;
-    margin-right:3%;
+    margin-right: 3.7%;
+    display: grid;
+    place-items: center;
     margin-top: 3%;
     width: 20rem;
     height: 35rem;
