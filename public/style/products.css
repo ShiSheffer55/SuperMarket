@@ -67,55 +67,64 @@ main{
 #simple
 {
     position: relative;
-    margin-left: 27%;
-    border: 3;
-    width: 43%;
+    margin-left: 37%;
+    border-style: solid;
+    border-color: rgb(219,253,224);
+    width: 22%;
 }
 #i1
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }
 #i2
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }
 #i3
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }#i4
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }#i5
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 
 }#i7
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }#i8
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }#i9
 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size:large;
+    text-align: center;
 }
-button[type="submit"] 
+#but
 {
     position: relative;
     margin-left: 45%;
