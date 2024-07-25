@@ -38,7 +38,10 @@ const ProductSchema = new mongoose.Schema({
      sub: { 
         type: String, 
         required: false 
-    }
+    },
+    recommended: { 
+        type: Boolean, 
+       default:false }
 });
 
 
