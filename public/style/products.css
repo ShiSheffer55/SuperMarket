@@ -56,3 +56,100 @@ main{
     justify-content:space-evenly;
     margin-top: auto ;
 }
+#T1
+{
+    position: relative;
+    margin-left: 38.5%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+#simple
+{
+    position: relative;
+    margin-left: 27%;
+    border: 3;
+    width: 43%;
+}
+#i1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}
+#i2
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}
+#i3
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}#i4
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}#i5
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+
+}#i7
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}#i8
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}#i9
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size:large;
+}
+button[type="submit"] 
+{
+    position: relative;
+    margin-left: 45%;
+}
+#d1
+{
+    box-align:center;
+}
+#d2
+{
+    box-align:center;
+}
+#d3
+{
+    box-align:center;
+}
+#d4
+{
+    box-align:center;
+}
+#d5
+{
+    box-align:center;
+}
+#d6
+{
+    box-align:center;
+}
+#d7
+{
+    box-align:center;
+}
+#d8
+{
+    box-align:center;
+}
+
