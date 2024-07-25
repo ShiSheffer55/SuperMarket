@@ -6,149 +6,42 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="/views/homePage.css">
-<link rel="stylesheet" href="/views/header.css">
-<link rel="stylesheet" href="/views/products.css">
+<link rel="stylesheet" href="style/homePage.css">
+<link rel="stylesheet" href="style/products.css">
 
 <title>המכללית-שפע המכללה</title>
 </head>
 <body onload="HideCatBar()">
-    <header>
-        <img id="SuperLogo" src="/public/img/clearLogo2.png">
-        
-        <!-- For big screen -->
-        <div>
-            <ul id="navbar">
-                <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>
-                <li id="hiddenCart"><a href="#" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
-                <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                <li><a href="/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-                <li><a href="/login">התחברות <i class="bi bi-envelope"></i></a></li>
 
-            </ul>
-        </div>
-        <div class="categoryDiv">
-            <ul>
-                <li id="X"><i onclick="HideCatBar()" class="bi bi-x-lg"></i></li>
-                <li>
-                    <form action="" class="searchBar">
-                        <button type="submit"><i class="bi bi-search"></i></button>
-                        <input type="text" placeholder="...חפש">
-                    </form>
-                </li>
-                <br>
-                <li><a href="/meat">בשר</a></li>
-                <li><a href="/fish">דגים</a></li>
-                <li><a href="/milk">מוצרי חלב</a></li>
-                <li><a href="/fruits">פירות</a></li>
-                <li><a href="/vegetables">ירקות</a></li>
-                <li><a href="/cleanliness">ניקיון</a></li>
-                <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                <li><a href="/drinks">משקאות</a></li>
-                <li><a href="/frozen">קפואים</a></li>
-                <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-            </ul>
-        </div>
-        <!-- for smaller screen -->
-        <div id="smallerScreen">
-            <a href="#" onclick="ShowCatBarSmall()"><h4><i class="bi bi-list"></i></h4></a>
-            <a href="#" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
-            <div class="categoryDivSmall">
-                <ul>
-                    <li id="XforSmall"><i onclick="HideCatBarSmall()" class="bi bi-x-lg"></i></li>
-                    <li>
-                        <form action="" class="searchBar">
-                            <button type="submit"><i class="bi bi-search"></i></button>
-                            <input type="text" placeholder="...חפש">
-                        </form>
-                    </li>
-                    <br>
-                    <li><a href="/meat">בשר</a></li>
-                    <li><a href="/fish">דגים</a></li>
-                    <li><a href="/milk">מוצרי חלב</a></li>
-                    <li><a href="/fruits">פירות</a></li>
-                    <li><a href="/vegetables">ירקות</a></li>
-                    <li><a href="/cleanliness">ניקיון</a></li>
-                    <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                    <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                    <li><a href="/drinks">משקאות</a></li>
-                    <li><a href="/frozen">קפואים</a></li>
-                    <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-                    <br><br>
-                    <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                    <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                    <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- for the smallest screens -->
-        <div id="VerysmallScreen">
-            <a href="#" onclick="ShowCatBarVerySmall()"><i class="bi bi-list"></i></a>
-            <a href="#" id="cartIconSmaller"><i class="bi bi-cart3"></i></a>
-            <div class="categoryDivVerySmall">
-                <ul>
-                    <li id="XforVerySmall"><i onclick="HideCatBarVerySmall()" class="bi bi-x-lg"></i></li>
-                    <li>
-                        <form action="" class="searchBar">
-                            <button type="submit"><i class="bi bi-search"></i></button>
-                            <input type="text" placeholder="...חפש">
-                        </form>
-                    </li>
-                    <br>
-                    <li><a href="/meat">בשר</a></li>
-                    <li><a href="/fish">דגים</a></li>
-                    <li><a href="/milk">מוצרי חלב</a></li>
-                    <li><a href="/fruits">פירות</a></li>
-                    <li><a href="/vegetables">ירקות</a></li>
-                    <li><a href="/cleanliness">ניקיון</a></li>
-                    <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                    <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                    <li><a href="/drinks">משקאות</a></li>
-                    <li><a href="/frozen">קפואים</a></li>
-                    <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-                    <br><br>
-                    <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                    <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                    <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    
+    <%- include('partials/header') %>
   
     <div class="logos">
         <div class="logos-slide">
-            <img src="/public/img/Awesome_logo.png" />
-            <img src="/public/img/badin_logo.png" />
-            <img src="/public/img/barilla_logo.png" />
-            <img src="/public/img/elit_logo.png" />
-            <img src="/public/img/iacin_logo.png" />
-            <img src="/public/img/prigat_logo.png" />
-            <img src="/public/img/sano_logo.png" />
-            <img src="/public/img/shtraus_logo.png" />
-            <img src="/public/img/tnuva_logo.png" />
-            <img src="/public/img/mei_eden_logo.png" />
-            <img src="/public/img/vilifood_logo.png" />
+            <img src="/img/Awesome_logo.png" />
+            <img src="/img/badin_logo.png" />
+            <img src="/img/barilla_logo.png" />
+            <img src="/img/elit_logo.png" />
+            <img src="/img/iacin_logo.png" />
+            <img src="/img/prigat_logo.png" />
+            <img src="/img/sano_logo.png" />
+            <img src="/img/shtraus_logo.png" />
+            <img src="/img/tnuva_logo.png" />
+            <img src="/img/mei_eden_logo.png" />
+            <img src="/img/vilifood_logo.png" />
         </div>
 
         <div class="logos-slide">
-            <img src="/public/img/Awesome_logo.png" />
-            <img src="/public/img/badin_logo.png" />
-            <img src="/public/img/barilla_logo.png" />
-            <img src="/public/img/elit_logo.png" />
-            <img src="/public/img/iacin_logo.png" />
-            <img src="/public/img/prigat_logo.png" />
-            <img src="/public/img/sano_logo.png" />
-            <img src="/public/img/shtraus_logo.png" />
-            <img src="/public/img/tnuva_logo.png" />
-            <img src="/public/img/mei_eden_logo.png" />
-            <img src="/public/img/vilifood_logo.png" />
+            <img src="/img/Awesome_logo.png" />
+            <img src="/img/badin_logo.png" />
+            <img src="/img/barilla_logo.png" />
+            <img src="/img/elit_logo.png" />
+            <img src="/img/iacin_logo.png" />
+            <img src="/img/prigat_logo.png" />
+            <img src="/img/sano_logo.png" />
+            <img src="/img/shtraus_logo.png" />
+            <img src="/img/tnuva_logo.png" />
+            <img src="/img/mei_eden_logo.png" />
+            <img src="/img/vilifood_logo.png" />
         </div>
     </div>
     <div id="recommended">
@@ -156,18 +49,19 @@
    </div>
 
    <ul>
-    <% recommendedProducts.forEach(product => { %>
+    <% recommendedProducts.forEach(Product => { %>
         <li>
-            <h2><%= product.title %></h2>
-            <img src="<%= product.img %>" alt="<%= product.name %>">
-            <p>Price: <%= product.price %></p>
-            <p>Category: <%= product.category %></p>
-            <p>Sub: <%= product.sub %></p>
-            <p>Supplier: <%= product.supplier %></p>
-            <p>Amount: <%= product.amount %></p>
+            <img src="<%= Product.img %>" alt="...">
+            <h2><%= Product.title %></h2>
+            <p><%= Product.description %></p>
+            <p>Price: $<%= Product.price %></p>
+            <p>Supplier: <%= Product.supplier %></p>
+            <p>Amount: <%= Product.amount %></p>
+
         </li>
     <% }) %>
-</ul>
+
+</main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/views/categoryBar.js"></script>

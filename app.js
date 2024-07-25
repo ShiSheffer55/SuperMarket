@@ -5,13 +5,19 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-
+const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 106f8511862ada9a6db6c68c43a2df62cddd5a44
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 // MongoDB connection URIs
 const productsMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
@@ -68,11 +74,24 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.use('/search', searchRoute);
 app.use('/', productsRoute);
 app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
 
 // Start server
+<<<<<<< HEAD
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+=======
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
+
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+>>>>>>> 106f8511862ada9a6db6c68c43a2df62cddd5a44
