@@ -1,0 +1,17 @@
+h1{
+    text-align: right;
+    font-family: 'Rubik';
+    margin-right: 2%;
+}
+#numOfProducts
+{
+    text-align: right;
+    margin-right: 2%;
+}
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+}
