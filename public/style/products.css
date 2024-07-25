@@ -5,8 +5,8 @@ main{
      text-align: center;
      z-index: 3;
      padding: 2%;
- 
- }
+} 
+
 .card
 {
     position: relative;
@@ -70,115 +70,41 @@ main{
   font-style: normal ;
   font-weight: 100;
 }
-#T1
-{
+#T1 {
     position: relative;
     margin-left: 36.5%;
-    font-family:'Rubik';
+    font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
 }
-#simple
-{
+
+#simple {
     position: relative;
     margin-left: 37%;
     border-style: solid;
-    border-color: rgb(219,253,224);
+    border-color: rgb(219, 253, 224);
     width: 22%;
 }
-#i1
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
-}
-#i2
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
-}
-#i3
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
-}#i4
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
-}#i5
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
 
-}#i7
-{
+#i1, #i2, #i3, #i4, #i5, #i7, #i8, #i9 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
-    font-size:large;
-    text-align: center;
-}#i8
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
-    text-align: center;
-}#i9
-{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size:large;
+    font-size: large;
     text-align: center;
 }
-#but
-{
+
+#but {
     position: relative;
     margin-left: 45%;
     border-radius: 8px;
     background-color: rgba(197, 231, 202, 0.822);
     color: rgba(25, 134, 98, 0.986);
-    border:solid;
-    border-color:rgba(25, 134, 98, 0.986);
+    border: solid;
+    border-color: rgba(25, 134, 98, 0.986);
     border-width: 0.3mm;
 }
-#d1
-{
-    box-align:center;
-}
-#d2
-{
-    box-align:center;
-}
-#d3
-{
-    box-align:center;
-}
-#d4
-{
-    box-align:center;
-}
-#d5
-{
-    box-align:center;
-}
-#d6
-{
-    box-align:center;
-}
-#d7
-{
-    box-align:center;
-}
-#d8
-{
-    box-align:center;
+
+#d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 {
+    box-align: center;
 }
 
