@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { productsConnection } = require('../databases');
 
 const ProductSchema = new mongoose.Schema({
     title: {
@@ -40,5 +41,9 @@ const ProductSchema = new mongoose.Schema({
     }
 });
 
-const Product = mongoose.model('Product', ProductSchema);
-module.exports = Product;
+
+function getProductModel(collectionName) {
+    return productsConnection.model('Product', ProductSchema, collectionName);
+}
+
+module.exports = getProductModel;

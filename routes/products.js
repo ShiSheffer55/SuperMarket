@@ -3,6 +3,8 @@ const router = express.Router();
 const Category = require('../models/category');
 const getProductModel = require('../models/getProductModel');
 const { isAdmin } = require('../controllers/passController');
+const productController = require('../controllers/productsController');
+
 
 // Route to show the location page
 router.get('/location', (req, res) => {
@@ -20,22 +22,9 @@ router.get('/login', (req, res) => {
 });
 
 
+router.get('/', productController.getRecommendedProducts); 
 
-// Route to display recommended products on the homepage
-router.get('/', async (req, res) => {
-    try {
-        const ProductModel = getProductModel('recommended');
-        if (!ProductModel) {
-            throw new Error('Product model is not defined');
-        }
-        const recommendedProducts = await ProductModel.find().exec();
-        res.render('homePage', { recommendedProducts });
-    } catch (err) {
-        console.error('Error fetching recommended products:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
+router.get('/:collectionName', productController.getProductsFromCollection); 
 
 // Route to show a form for adding a new product (admin only)
 router.get('/add', isAdmin, (req, res) => {
