@@ -13,48 +13,47 @@
     <%- include('partials/header') %>
 
     <br>
-    <h1 id="T1">Add New Product</h1>
+    <h1 id="T1">&#9734; הוסף מוצר חדש &#9734;</h1>
     <form action="/add" method="POST">
       <br>
       <table id="simple">
         <tbody>
             <tr id="d1">
-
-                <td id="i1">Title</td>
                 <td><input type="text" id="title" name="title" required></td>
+                <td id="i1">כותרת</td>
             </tr>
             <tr id="d2">
-                <td id="i2">Image URL</td>
                 <td> <input type="text" id="img" name="img" required></td>
+                <td id="i2">כתובת תמונה</td>
             </tr>
             <tr id="d3">
-                <td id="i3">Name</td>
                 <td> <input type="text" id="name" name="name" required></td>
+                <td id="i3">שם</td>
             </tr>
             <tr id="d4">
-                <td id="i4">Price</td>
                 <td> <input type="number" id="price" name="price" step="0.01" required></td>
+                <td id="i4">מחיר</td>
             </tr>
             <tr id="d5">
-               <td id="i5">Category ID</td>
                <td><input type="text" id="category" name="category" required></td>
+               <td id="i5">קטגוריה</td>
             </tr>
            <tr id="d6">
-               <td id="i7">Supplier</td>
                <td> <input type="text" id="supplier" name="supplier" required></td>
+               <td id="i7">ספק</td>
             </tr>
             <tr id="d7">
-               <td id="i8">Amount</td>
                <td><input type="number" id="amount" name="amount" required></td>
+               <td id="i8">כמות</td>
             </tr>
             <tr id="d8">
-               <td id="i9">Sub</td>
                <td><input type="text" id="sub" name="sub" required></td>
+               <td id="i9">תיאור</td>
            </tr>
         </tbody>
     </table>
     <br>
-    <button id="but" type="submit">Add Product</button>
+    <button id="but" type="submit">הוסף מוצר</button>
     </form>
     <!-- for example2 -->
 

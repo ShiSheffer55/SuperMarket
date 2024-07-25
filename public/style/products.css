@@ -58,13 +58,20 @@ main{
     justify-content:space-evenly;
     margin-top: auto ;
 }
+@font-face 
+  {
+  font-family:'Rubik' ;
+  src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
 #T1
 {
     position: relative;
-    margin-left: 38.5%;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bold;
+    margin-left: 36.5%;
+    font-family:'Rubik';
     font-style: italic;
+    text-shadow: 60%;
 }
 #simple
 {
@@ -130,6 +137,12 @@ main{
 {
     position: relative;
     margin-left: 45%;
+    border-radius: 8px;
+    background-color: rgba(197, 231, 202, 0.822);
+    color: rgba(25, 134, 98, 0.986);
+    border:solid;
+    border-color:rgba(25, 134, 98, 0.986);
+    border-width: 0.3mm;
 }
 #d1
 {
