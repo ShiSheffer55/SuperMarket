@@ -9,15 +9,19 @@ const searchProductsAcrossCollections = async (query) => {
     let results = [];
 
     for (const collectionName of collections) {
-        const collection = await getProductModel(collectionName);
-        const foundProducts = await collection.find({}).exec();
-        results = results.concat(foundProducts);
+        const ProductModel = getProductModel(collectionName);
+        try {
+            const foundProducts = await ProductModel.find({}).exec();
+            results = results.concat(foundProducts);
+        } catch (err) {
+            console.error(`Error fetching products from ${collectionName}:`, err);
+        }
     }
 
     const options = {
-        keys: ['name', 'title'], // השדות לחיפוש בהם
-        threshold: 0.3, // מדרגת דיוק לחיפוש (0.0 עד 1.0)
-        distance: 100 // מקסימום מרחק לחיפוש 
+        keys: ['name', 'title'],
+        threshold: 0.3,
+        distance: 100
     };
 
     const fuse = new Fuse(results, options);
@@ -25,18 +29,32 @@ const searchProductsAcrossCollections = async (query) => {
 
     return searchResults.map(result => result.item);
 };
+  
 
 // פונקציה לדוגמה ב-controller
 const searchProducts = async (req, res) => {
-    console.log('im in');
-    const query = req.query.q; // המילה שהמשתמש חיפש
-    try {
-        const searchproducts = await searchProductsAcrossCollections(query);
-        res.render('searchResult.ejs', { searchproducts});
-    } catch (err) {
-        console.log('Error searching products:', err);
-        res.status(500).send('Internal Server Error');
+    console.log('Search function called');
+    const query = req.query.q; // The search term
+  
+    console.log('Search query:', query);
+  
+    if (!query) {
+      return res.render('searchResult', { searchproducts: [], message: 'No search query provided.' });
     }
-};
+  
+    try {
+      const searchproducts = await searchProductsAcrossCollections(query);
+      console.log('Search results:', searchproducts);
+  
+      if (searchproducts.length > 0) {
+        res.render('searchResult', { searchproducts });
+      } else {
+        res.render('searchResult', { searchproducts: [], message: 'No products found matching your search.' });
+      }
+    } catch (err) {
+      console.error('Error searching products:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  };
 
 module.exports = { searchProducts };
