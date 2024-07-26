@@ -49,17 +49,26 @@
    </div>
 
    <ul>
-    <% recommendedProducts.forEach(Product => { %>
-        <li>
-            <img src="<%= Product.img %>" alt="...">
-            <h2><%= Product.title %></h2>
-            <p><%= Product.description %></p>
-            <p>Price: $<%= Product.price %></p>
-            <p>Supplier: <%= Product.supplier %></p>
-            <p>Amount: <%= Product.amount %></p>
+    <% if (recommendedProducts.length) { %>
+        <% recommendedProducts.forEach(product => { %>
+            <li>
+                <h3><%= product.title %></h3>
+                <img src="<%= product.img %>" class="card-img-top" alt="<%= product.name %>">
+                <div class="card-body">
+                <h5 class="card-title"><%= product.title %></h5>
+                <p class="card-text"><%= product.sub %></p>
+                <p>₪ <%= product.price %></p>
+                <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
+                <div class="actions">
+               
+                </div>
 
-        </li>
-    <% }) %>
+            </li>
+        <% }) %>
+    <% } else { %>
+        <p>No recommended products found.</p>
+    <% } %>
+</ul>
 
 </main>
 

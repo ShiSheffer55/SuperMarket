@@ -5,43 +5,16 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
+
+
 const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
+const { usersConnection, productsConnection } = require('./databases'); // Import connections
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 106f8511862ada9a6db6c68c43a2df62cddd5a44
 const app = express();
-// const port = 3000;
-
-// MongoDB connection URIs
-const productsMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
-const usersMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority';
-
-// Connect to the users database
-mongoose.connect(usersMongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log('MongoDB connected to users database');
-    })
-    .catch(err => {
-        console.error('MongoDB connection error to users database:', err);
-    });
-
-// Connect to the products database
-const productsDb = mongoose.createConnection(productsMongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-productsDb.on('connected', () => {
-    console.log('MongoDB connected to products database');
-});
-
-productsDb.on('error', (err) => {
-    console.error('MongoDB connection error to products database:', err);
-});
+const port = 3000;
 
 // Set view engine to EJS
 app.set('view engine', 'ejs');
@@ -56,8 +29,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: usersMongoURI }),
-    cookie: { secure: false } // Set to true if using HTTPS
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority' })
 }));
 app.use(flash());
 
@@ -80,18 +52,8 @@ app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
 
 // Start server
-<<<<<<< HEAD
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-=======
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// });
 
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
->>>>>>> 106f8511862ada9a6db6c68c43a2df62cddd5a44
