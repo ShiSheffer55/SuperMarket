@@ -6,12 +6,19 @@ main {
     z-index: 3;
     padding: 2%;
 }
+@font-face 
+  {
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
 
 .card {
     position: relative;
     margin: 2%;
     width: 20rem;
-    height: 35rem;
+    height: 32rem;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -31,6 +38,7 @@ main {
     display: flex;
     flex-direction: column;
     font-size: large;
+    font-family: 'Medium';
     width: 100%; /* Ensure card-body takes full width */
     padding: 1rem;
     box-sizing: border-box;
