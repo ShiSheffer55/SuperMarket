@@ -3,9 +3,18 @@ const Product = getProductModel('products');
 
 const getRecommendedProducts = async (req, res) => {
     try {
-        const ProductModel = getProductModel('recommended');
-        const recommendedProducts = await ProductModel.find().exec();
-        res.render('homePage', { recommendedProducts });
+        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables', 'drinks','Breads and pastries', 'dry','cleanliness',  'meat', 'fish']; // Replace with your actual collection names
+        let recommendedProducts = [];
+
+        for (const collectionName of collections) {
+            const collection = await getProductModel(collectionName);
+            const foundProducts = await collection.find({ recommended: true }).exec();
+            console.log(`Found ${foundProducts.length} products in ${collectionName}`);
+            recommendedProducts = recommendedProducts.concat(foundProducts);
+        }
+
+        console.log(recommendedProducts.length);
+        res.render('homePage.ejs', { recommendedProducts });
     } catch (err) {
         console.log('Error fetching recommended products:', err);
         res.status(500).send('Internal Server Error');
@@ -45,7 +54,7 @@ const addProduct = async (req, res) => {
             description,
             supplier,
             amount,
-            recommended: recommended === 'on'
+            recommended
         });
         await newProduct.save();
         req.flash('success_msg', 'Product added successfully');
