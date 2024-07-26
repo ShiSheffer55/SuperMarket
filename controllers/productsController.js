@@ -24,12 +24,27 @@ const getRecommendedProducts = async (req, res) => {
 // Get products from a specific collection
 const getProductsFromCollection = async (req, res) => {
     const { collectionName } = req.params;
+    const categoryNames = {
+        meat: 'בשר',
+        fish: 'דגים',
+        milk: 'מוצרי חלב',
+        fruits: 'פירות',
+        vegetables: 'ירקות',
+        cleanliness: 'ניקיון',
+        dry: ' יבשים',
+        'sweets and snacks': 'ממתקים וחטיפים',
+        drinks: 'משקאות',
+        frozen: 'קפואים',
+        'Breads and pastries': 'לחמים ומאפים'
+    };
     try {
         const ProductModel = getProductModel(collectionName);
         console.log(`Fetching products from ${collectionName} collection...`);
         const products = await ProductModel.find().exec();
         console.log(`${collectionName} products fetched successfully.`);
-        res.render('products', { Products: products, collectionName });
+        const collectionNameHebrew = categoryNames[collectionName] || collectionName;
+
+        res.render('products', { Products: products, collectionName: collectionNameHebrew });
     } catch (err) {
         console.error(`Error retrieving products from ${collectionName} collection:`, err);
         res.status(500).send('Internal Server Error');

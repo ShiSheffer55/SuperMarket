@@ -19,7 +19,8 @@
     <% if (user && user.role === 'admin') { %>
         <a href="/products/add">Add New Product</a>
     <% } %>
-
+    <br><br>
+<h1 id="collectionName"><%=collectionName%></h1>
      <main>
         <% Products.forEach(Product => { %>
             <% if (Product.amount > 0) { %>
