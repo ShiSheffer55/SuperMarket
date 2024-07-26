@@ -20,7 +20,7 @@ const Product = getProductModel('products'); // Default model for products
 // };
 exports.getRecommendedProducts = async (req, res) => {
     try {
-        const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Breads and pastries']; // Replace with your actual collection names
+        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables',  'drinks', 'Breads and pastries','cleanliness', 'dry','meat', 'fish']; // Replace with your actual collection names
         let recommendedProducts = [];
 
         for (const collectionName of collections) {
@@ -62,7 +62,7 @@ exports.renderAddProductForm = (req, res) => {
 
 // Add a new product (admin only)
 exports.addProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount } = req.body;
+    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
     try {
         const newProduct = new Product({
             title,
@@ -73,7 +73,7 @@ exports.addProduct = async (req, res) => {
             description,
             supplier,
             amount,
-            recommended: recommended === 'on'
+            recommended //
         });
         await newProduct.save();
         req.flash('success_msg', 'Product added successfully');
@@ -98,7 +98,7 @@ exports.renderEditProductForm = async (req, res) => {
 
 // Update a product (admin only)
 exports.updateProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount } = req.body;
+    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
     try {
         await Product.findByIdAndUpdate(req.params.id, {
             title,
@@ -108,7 +108,8 @@ exports.updateProduct = async (req, res) => {
             category,
             description,
             supplier,
-            amount
+            amount,
+            recommended //
         });
         req.flash('success_msg', 'Product updated successfully');
         res.redirect('/products');
