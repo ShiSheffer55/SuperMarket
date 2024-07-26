@@ -57,6 +57,8 @@ const registerUser = async (req, res) => {
     }
 };
 
+
+
 // Handle user login
 const loginUser = async (req, res) => {
     const { userName, password } = req.body;
