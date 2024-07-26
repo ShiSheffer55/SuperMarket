@@ -1,53 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Import the User model
-const { isAdmin } = require('../controllers/passController'); // Import the admin check middleware
+const { isAdmin } = require('../controllers/passController');
+const adminController = require('../controllers/adminController');
+const userController = require('../controllers/usersController');
+const productsController = require('../controllers/productsController');
 
-// Route to show admin dashboard
-router.get('/adminDashboard', isAdmin, (req, res) => {
-    res.render('adminDashboard');
-});
+// Admin Dashboard
+router.get('/adminDashboard', isAdmin, adminController.showAdminDashboard);
 
+// Products Routes
+router.get('/products/add', isAdmin, productsController.renderAddProductForm);
+router.post('/products/add', isAdmin, productsController.addProduct);
+router.get('/products/edit/:id', isAdmin, productsController.renderEditProductForm);
+router.post('/products/edit/:id', isAdmin, productsController.updateProduct);
+router.post('/products/delete/:id', isAdmin, productsController.deleteProduct);
+router.get('/products/search', isAdmin, productsController.searchProducts);
 
-// Route to view all users (admin only)
-router.get('/users', isAdmin, async (req, res) => {
-    try {
-        const users = await User.find().exec();
-        res.render('adminUsers', { users });
-    } catch (err) {
-        console.error('Error fetching users:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
+// Users Routes
+router.get('/users/add', isAdmin, userController.renderAddUserForm);
+router.post('/users/add', isAdmin, userController.addUser);
+router.get('/users/edit/:id', isAdmin, userController.renderEditUserForm);
+router.post('/users/edit/:id', isAdmin, userController.updateUser);
+router.post('/users/delete/:id', isAdmin, userController.deleteUser);
+router.get('/users/search', isAdmin, userController.searchUsers);
 
-// Route to view a specific user (admin only)
-router.get('/users/:id', isAdmin, async (req, res) => {
-    const { id } = req.params;
-    try {
-        const user = await User.findById(id).exec();
-        if (!user) {
-            return res.status(404).send('User not found');
-        }
-        res.render('adminUserDetail', { user });
-    } catch (err) {
-        console.error('Error fetching user:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-// Route to delete a user (admin only)
-router.get('/users/delete/:id', isAdmin, async (req, res) => {
-    const { id } = req.params;
-    try {
-        const deletedUser = await User.findByIdAndDelete(id).exec();
-        if (!deletedUser) {
-            return res.status(404).send('User not found');
-        }
-        res.redirect('/admin/users');
-    } catch (err) {
-        console.error('Error deleting user:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
+// Orders Routes (Admin only)
+// Uncomment and adjust if needed
+// router.get('/orders', isAdmin, adminController.renderAdminOrders); 
+// router.get('/orders/add', isAdmin, orderController.renderAddOrderForm);
+// router.post('/orders/add', isAdmin, orderController.addOrder); 
+// router.get('/orders/edit/:id', isAdmin, orderController.renderEditOrderForm); 
+// router.post('/orders/edit/:id', isAdmin, orderController.updateOrder);
+// router.post('/orders/delete/:id', isAdmin, orderController.deleteOrder); 
+// router.get('/orders/search', isAdmin, orderController.searchOrders); 
 
 module.exports = router;

@@ -5,6 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
+
 const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
@@ -12,7 +13,7 @@ const usersRoute = require('./routes/users');
 const { usersConnection, productsConnection } = require('./databases'); // Import connections
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Set view engine to EJS
 app.set('view engine', 'ejs');
@@ -27,7 +28,8 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority' })
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority' }),
+    cookie: { secure: false } // Set to true if using HTTPS
 }));
 app.use(flash());
 

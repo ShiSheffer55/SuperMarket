@@ -7,7 +7,12 @@ const userController = require('../controllers/usersController');
 
 
 // Show login form
-router.get('/login', userController.renderLoginForm); 
+router.get('/login', (req, res, next) => {
+    console.log('Login route accessed');
+    userController.renderLoginForm(req, res, next);
+});
+
+
 // Handle login
 router.post('/login', userController.loginUser); 
 
@@ -16,32 +21,6 @@ router.get('/logout', userController.logoutUser);
 
 router.get('/register', userController.renderRegisterForm); 
 
-router.post('/register', async (req, res) => {
-    const { userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role } = req.body;
-
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({
-            userName,
-            fName,
-            lName,
-            password: hashedPassword,
-            gmail,
-            tel,
-            city,
-            isLivesInCenter,
-            role
-        });
-
-        await newUser.save();
-        req.flash('success_msg', 'You are now registered and can log in');
-        res.redirect('/'); // Redirect to the homepage after registration
-    } catch (err) {
-        console.error('Error registering user:', err);
-        req.flash('error_msg', 'Error registering user');
-        res.redirect('/users/register'); // Redirect back to the registration page if there's an error
-    }
-});
-
+router.post('/register', userController.registerUser); 
 
 module.exports = router;
