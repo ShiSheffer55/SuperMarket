@@ -56,30 +56,28 @@
     <h1 id="recommended_title">&#9734;     המומלצים שלנו  &#9734;</h1>
    </div>
 
-   <ul>
-    <% if (recommendedProducts.length) { %>
-        <% recommendedProducts.forEach(product => { %>
-            <li>
-                <h3><%= product.title %></h3>
-                <img src="<%= product.img %>" class="card-img-top" alt="<%= product.name %>">
-                <div class="card-body">
-                <h5 class="card-title"><%= product.title %></h5>
-                <p class="card-text"><%= product.sub %></p>
-                <p>₪ <%= product.price %></p>
-                <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
-                <div class="actions">
-               
-                </div>
 
-            </li>
-        <% }) %>
+<main>
+    <% if (recommendedProducts.length > 0) { %>
+        <% recommendedProducts.forEach(product => { %>
+            <% if (product.amount > 0) { %>
+                <div class="card">
+                    <img src="<%= product.img %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.title %></h5>
+                        <p class="card-text"><%= product.sub %></p>
+                        <p>₪ <%= product.price %></p>
+                        <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
+                    </div>
+                </div>
+            <% } %>
+        <% }); %>
     <% } else { %>
         <p>No recommended products found.</p>
     <% } %>
-</ul>
+  
 
 </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/views/categoryBar.js"></script>
 </body>
