@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt'); // Assuming you are using bcrypt for password hashing
+const userController = require('../controllers/usersController'); 
 
 router.post('/register', async (req, res) => {
     const { userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role } = req.body;
@@ -38,40 +39,9 @@ router.get('/login', (req, res) => {
 });
 
 // Handle login
-router.post('/login', async (req, res) => {
-    const { userName, password } = req.body;
-    try {
-        const user = await User.findOne({ userName });
-        if (!user) {
-            req.flash('error_msg', 'Invalid username or password');
-            return res.redirect('/users/login');
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            req.flash('error_msg', 'Invalid username or password');
-            return res.redirect('/users/login');
-        }
-
-        req.session.user = user;
-        res.redirect('/');
-    } catch (err) {
-        console.error(err);
-        req.flash('error_msg', 'An error occurred during login');
-        res.redirect('/users/login');
-    }
-});
+router.post('/login', userController.loginUser); 
 
 // Handle logout
-router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error(err);
-            req.flash('error_msg', 'An error occurred during logout');
-            return res.redirect('/');
-        }
-        res.redirect('/users/login');
-    });
-});
+router.get('/logout', userController.logoutUser); 
 
 module.exports = router;

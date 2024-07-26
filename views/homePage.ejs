@@ -44,6 +44,14 @@
             <img src="/img/vilifood_logo.png" />
         </div>
     </div>
+
+    <% if (user) { %>
+        <p>Welcome, <%= user.userName %>! (<%= user.role %>)</p>
+        <a href="/users/logout">Logout</a>
+    <% } else { %>
+        <a href="/users/login">Login</a>
+    <% } %>
+    
     <div id="recommended">
     <h1 id="recommended_title">&#9734;     המומלצים שלנו  &#9734;</h1>
    </div>
