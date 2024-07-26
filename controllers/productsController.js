@@ -42,7 +42,7 @@ const getProductsFromCollection = async (req, res) => {
         console.log(`Fetching products from ${collectionName} collection...`);
         const products = await ProductModel.find().exec();
         console.log(`${collectionName} products fetched successfully.`);
-        const collectionNameHebrew = categoryNames[collectionName] || collectionName;
+        const collectionNameHebrew = categoryNames[collectionName];
 
         res.render('products', { Products: products, collectionName: collectionNameHebrew });
     } catch (err) {
