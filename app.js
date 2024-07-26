@@ -5,8 +5,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-
-
 const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
@@ -55,5 +53,3 @@ app.use('/users', usersRoute);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-
