@@ -3,7 +3,7 @@ const Product = getProductModel('products');
 
 const getRecommendedProducts = async (req, res) => {
     try {
-        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables', 'drinks','Breads and pastries', 'dry','cleanliness',  'meat', 'fish']; // Replace with your actual collection names
+        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables', 'drinks','Bread and pastries', 'dry','cleanliness',  'meat', 'fish']; // Replace with your actual collection names
         let recommendedProducts = [];
 
         for (const collectionName of collections) {
@@ -35,7 +35,7 @@ const getProductsFromCollection = async (req, res) => {
         'sweets and snacks': 'ממתקים וחטיפים',
         drinks: 'משקאות',
         frozen: 'קפואים',
-        'Breads and pastries': 'לחמים ומאפים'
+        'Bread and pastries': 'לחמים ומאפים'
     };
     try {
         const ProductModel = getProductModel(collectionName);

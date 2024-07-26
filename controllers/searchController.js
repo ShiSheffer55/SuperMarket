@@ -5,7 +5,7 @@ const getProductModel = require('../models/getProductModel');
 const Fuse = require('fuse.js');
 
 const searchProductsAcrossCollections = async (query) => {
-    const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Breads and pastries'];
+    const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Bread and pastries'];
     let results = [];
 
     for (const collectionName of collections) {
@@ -16,7 +16,7 @@ const searchProductsAcrossCollections = async (query) => {
 
     const options = {
         keys: ['name', 'title', 'sub'], // השדות לחיפוש בהם
-        threshold: 0.3, // מדרגת דיוק לחיפוש (0.0 עד 1.0)
+        threshold: 0.35, // מדרגת דיוק לחיפוש (0.0 עד 1.0)
         distance: 100 // מקסימום מרחק לחיפוש 
     };
 
