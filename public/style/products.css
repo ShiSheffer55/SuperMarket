@@ -13,7 +13,20 @@ main {
   font-style: normal ;
   font-weight: 100;
 }
-
+@font-face 
+  {
+  font-family:'Regular' ;
+  src: url("/fonts/IBMPlexSansHebrew-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Rubik' ;
+  src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
 .card {
     position: relative;
     margin: 2%;
@@ -43,7 +56,10 @@ main {
     padding: 1rem;
     box-sizing: border-box;
 }
-
+.card-text
+{
+   font-family: 'Regular';
+}
 #AddtoCart {
     background-color: rgba(197, 231, 202, 0.822);
     color: rgba(25, 134, 98, 0.986);
@@ -76,13 +92,7 @@ main {
     justify-content:space-evenly;
     margin-top: auto ;
 }
-@font-face 
-  {
-  font-family:'Rubik' ;
-  src: url("/fonts/RubikDoodleShadow-Regular.ttf");
-  font-style: normal ;
-  font-weight: 100;
-}
+
 #T1 {
     position: relative;
     margin-left: 36.5%;

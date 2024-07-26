@@ -1,3 +1,19 @@
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+
+
 h1{
     text-align: right;
     font-family: 'Rubik';
@@ -6,12 +22,7 @@ h1{
 #numOfProducts
 {
     text-align: right;
+     font-family: 'Medium';
     margin-right: 2%;
-}
-@font-face 
-{
-font-family:'Rubik' ;
-src: url("/fonts/RubikDoodleShadow-Regular.ttf");
-font-style: normal ;
-font-weight: 100;
+   
 }
