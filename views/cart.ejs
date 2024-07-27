@@ -1,0 +1,22 @@
+<!-- views/cart.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <ul>
+        <% cart.forEach(item => { %>
+            <li>
+                <%= item.product.name %> - Quantity: <%= item.quantity %>
+                <form action="/cart/remove" method="POST" style="display:inline;">
+                    <input type="hidden" name="productId" value="<%= item.product._id %>">
+                    <button type="submit">הסר</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/">המשך לקנות</a>
+</body>
+</html>
