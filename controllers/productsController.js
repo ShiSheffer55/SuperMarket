@@ -3,18 +3,9 @@ const Product = getProductModel('products');
 
 const getRecommendedProducts = async (req, res) => {
     try {
-        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables', 'drinks','Breads and pastries', 'dry','cleanliness',  'meat', 'fish']; // Replace with your actual collection names
-        let recommendedProducts = [];
-
-        for (const collectionName of collections) {
-            const collection = await getProductModel(collectionName);
-            const foundProducts = await collection.find({ recommended: true }).exec();
-            console.log(`Found ${foundProducts.length} products in ${collectionName}`);
-            recommendedProducts = recommendedProducts.concat(foundProducts);
-        }
-
-        console.log(recommendedProducts.length);
-        res.render('homePage.ejs', { recommendedProducts });
+        const ProductModel = getProductModel('recommended');
+        const recommendedProducts = await ProductModel.find().exec();
+        res.render('homePage', { recommendedProducts });
     } catch (err) {
         console.log('Error fetching recommended products:', err);
         res.status(500).send('Internal Server Error');
@@ -24,14 +15,13 @@ const getRecommendedProducts = async (req, res) => {
 // Get products from a specific collection
 const getProductsFromCollection = async (req, res) => {
     const { collectionName } = req.params;
+    const ProductModel = getProductModel(collectionName);
+
     try {
-        const ProductModel = getProductModel(collectionName);
-        console.log(`Fetching products from ${collectionName} collection...`);
-        const products = await ProductModel.find().exec();
-        console.log(`${collectionName} products fetched successfully.`);
-        res.render('products', { Products: products, collectionName });
+        const docs = await ProductModel.find().exec();
+        res.render('products', { Products: docs, collectionName });
     } catch (err) {
-        console.error(`Error retrieving products from ${collectionName} collection:`, err);
+        console.log('Something went wrong with MongoDB:', err);
         res.status(500).send('Internal Server Error');
     }
 };
