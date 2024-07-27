@@ -9,7 +9,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./homePage.css">
-    <link rel="stylesheet" href="./header.css">
+    <link rel="stylesheet" href="/style/header.css">
     <link rel="stylesheet" href="./products.css">
 </head>
 
@@ -17,111 +17,7 @@
 <body>
 
 
-    <header>
-        <img id="SuperLogo" src="/public/img/clearLogo2.png">
-        
-        <!-- For big screen -->
-        <div>
-            <ul id="navbar">
-                <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>
-                <li id="hiddenCart"><a href="#" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
-                <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                <li><a href="/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-
-            </ul>
-        </div>
-        <div class="categoryDiv">
-            <ul>
-                <li id="X"><i onclick="HideCatBar()" class="bi bi-x-lg"></i></li>
-                <li>
-                    <form action="" class="searchBar">
-                        <button type="submit"><i class="bi bi-search"></i></button>
-                        <input type="text" placeholder="...חפש">
-                    </form>
-                </li>
-                <br>
-                <li><a href="/meat">בשר</a></li>
-                <li><a href="/fish">דגים</a></li>
-                <li><a href="/milk">מוצרי חלב</a></li>
-                <li><a href="/fruits">פירות</a></li>
-                <li><a href="/vegetables">ירקות</a></li>
-                <li><a href="/cleanliness">ניקיון</a></li>
-                <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                <li><a href="/drinks">משקאות</a></li>
-                <li><a href="/frozen">קפואים</a></li>
-                <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-            </ul>
-        </div>
-        <!-- for smaller screen -->
-        <div id="smallerScreen">
-            <a href="#" onclick="ShowCatBarSmall()"><h4><i class="bi bi-list"></i></h4></a>
-            <a href="#" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
-            <div class="categoryDivSmall">
-                <ul>
-                    <li id="XforSmall"><i onclick="HideCatBarSmall()" class="bi bi-x-lg"></i></li>
-                    <li>
-                        <form action="" class="searchBar">
-                            <button type="submit"><i class="bi bi-search"></i></button>
-                            <input type="text" placeholder="...חפש">
-                        </form>
-                    </li>
-                    <br>
-                    <li><a href="/meat">בשר</a></li>
-                    <li><a href="/fish">דגים</a></li>
-                    <li><a href="/milk">מוצרי חלב</a></li>
-                    <li><a href="/fruits">פירות</a></li>
-                    <li><a href="/vegetables">ירקות</a></li>
-                    <li><a href="/cleanliness">ניקיון</a></li>
-                    <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                    <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                    <li><a href="/drinks">משקאות</a></li>
-                    <li><a href="/frozen">קפואים</a></li>
-                    <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-                    <br><br>
-                    <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                    <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                    <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- for the smallest screens -->
-        <div id="VerysmallScreen">
-            <a href="#" onclick="ShowCatBarVerySmall()"><i class="bi bi-list"></i></a>
-            <a href="#" id="cartIconSmaller"><i class="bi bi-cart3"></i></a>
-            <div class="categoryDivVerySmall">
-                <ul>
-                    <li id="XforVerySmall"><i onclick="HideCatBarVerySmall()" class="bi bi-x-lg"></i></li>
-                    <li>
-                        <form action="" class="searchBar">
-                            <button type="submit"><i class="bi bi-search"></i></button>
-                            <input type="text" placeholder="...חפש">
-                        </form>
-                    </li>
-                    <br>
-                    <li><a href="/meat">בשר</a></li>
-                    <li><a href="/fish">דגים</a></li>
-                    <li><a href="/milk">מוצרי חלב</a></li>
-                    <li><a href="/fruits">פירות</a></li>
-                    <li><a href="/vegetables">ירקות</a></li>
-                    <li><a href="/cleanliness">ניקיון</a></li>
-                    <li><a href="/dry">יבשים (קטניות, פסטות, שימורים)</a></li>
-                    <li><a href="/sweets and snacks"> ממתקים וחטיפים</a></li>
-                    <li><a href="/drinks">משקאות</a></li>
-                    <li><a href="/frozen">קפואים</a></li>
-                    <li><a href="/Breads and pastries">לחמים ומאפים</a></li>
-                    <br><br>
-                    <hr>
-                    <li><a href="#">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
-                    <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
-                    <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <%- include('partials/header') %>
 
 
     <h1>Register</h1>
@@ -158,5 +54,6 @@
     </form>
     </div>
     <script src="/views/script.js"> </script>
+    <script src="/JavaScript/categoryBar.js"></script>
 </body>
 </html>
