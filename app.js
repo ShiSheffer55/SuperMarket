@@ -28,8 +28,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority' }),
-    cookie: { secure: false } // Set to true if using HTTPS
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority' })
 }));
 app.use(flash());
 
