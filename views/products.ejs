@@ -11,7 +11,7 @@
 </head>
 <body>
     <%- include('partials/header') %>
-    <%- include('partials/filters') %>
+   
 
     <!-- Display the products -->
     <% if (user && user.role === 'admin') { %>
@@ -19,7 +19,7 @@
     <% } %>
 
     <br><br>
-    <h1 id="collectionName">&#10044 <%= collectionName %> &#10044</h1>
+    <h1 id="collectionName">&#10044 <%= collectionName %> &#10044</h1> <%- include('partials/filters') %>
     <main>
         <% Products.forEach(Product => { %>
             <% if (Product.amount > 0) { %>

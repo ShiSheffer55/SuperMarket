@@ -15,6 +15,8 @@
 <br>
    <h1>  " תוצאות חיפוש עבור : " <%=query%> </h1>
    <h5 id="numOfProducts">   נמצאו <%=searchproducts.length%> מוצרים  </h5>
+   <%- include('partials/filters') %>
+   <main>
 <main>
     <% if (searchproducts && searchproducts.length > 0) { %>
         <% searchproducts.forEach(product => { %>
