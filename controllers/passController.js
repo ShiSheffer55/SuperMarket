@@ -1,9 +1,11 @@
 const isAdmin = (req, res, next) => {
+    console.log('Checking if user is admin:', req.session.user);
     if (req.session.user && req.session.user.role === 'admin') {
-        return next(); // User is an admin, proceed to the next middleware or route handler
+        return next();
     } else {
-        req.flash('error_msg', 'You are not authorized to perform this action.');
-        return res.redirect('/login'); // User is not an admin, redirect to login page
+        console.log('User is not authorized');
+        req.flash('error_msg', 'You are not authorized to view this page');
+        res.redirect('/users/login');
     }
 };
 

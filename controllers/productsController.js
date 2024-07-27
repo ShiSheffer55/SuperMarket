@@ -89,7 +89,7 @@ const renderEditProductForm = async (req, res) => {
             req.flash('error_msg', 'Product not found');
             return res.redirect('/admin/products');
         }
-        res.render('admin/editProduct', { product, user: req.session.user });
+        res.render('admin/productsEdit', { product, user: req.session.user });
     } catch (err) {
         console.error('Error fetching product:', err);
         req.flash('error_msg', 'Failed to fetch product');
@@ -133,8 +133,6 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-// Handle searching products
-
 
 // Export all functions at the end
 module.exports = {
@@ -144,5 +142,5 @@ module.exports = {
     addProduct,
     renderEditProductForm,
     updateProduct,
-    deleteProduct
+    deleteProduct,
 };
