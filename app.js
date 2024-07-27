@@ -10,6 +10,7 @@ const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
+const cartRoute = require('./routes/cart');
 const { usersConnection, productsConnection } = require('./databases'); // Import connections
 
 const app = express();
@@ -49,6 +50,8 @@ app.use('/search', searchRoute);
 app.use('/', productsRoute);
 app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
+app.use('/cart', cartRoute);
+
 
 // Start server
 app.listen(port, () => {
