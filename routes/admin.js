@@ -14,7 +14,7 @@ router.post('/products/add', isAdmin, productsController.addProduct);
 router.get('/products/edit/:id', isAdmin, productsController.renderEditProductForm);
 router.post('/products/edit/:id', isAdmin, productsController.updateProduct);
 router.post('/products/delete/:id', isAdmin, productsController.deleteProduct);
-router.get('/products/search', isAdmin, productsController.searchProducts);
+
 
 // Users Routes
 router.get('/users/add', isAdmin, userController.renderAddUserForm);

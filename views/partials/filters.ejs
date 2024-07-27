@@ -1,0 +1,52 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="views/filters.css">
+</head>
+<body>
+    <nav>
+        <ul id="navbar">
+            <li id="filters">
+                <a onclick="toggleFilters()" href="javascript:void(0);">
+                    <h4>סינונים<i class="bi bi-funnel"></i></h4>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="categoryFilter" id="filterBar">
+        <ul>
+            <li>
+                <label>
+                    <input type="checkbox" name="under30" id="under30">
+                  מוצרים מתחת ל-30 שח
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox" name="vegan" id="vegan">
+                    מוצרים אורגניים
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox" name="parve" id="parve">
+                    מוצרים פרווה
+                </label>
+            </li>
+        </ul>
+        <button onclick="applyFilters()">הצגת תוצאות</button>
+    </div>
+    <script src="views/filters.js"></script>
+</body>
+</html>
+
+
+
+
+
+
