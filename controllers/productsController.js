@@ -134,22 +134,7 @@ const deleteProduct = async (req, res) => {
 };
 
 // Handle searching products
-const searchProducts = async (req, res) => {
-    const query = req.query.q;
-    try {
-        const products = await Product.find({
-            $or: [
-                { title: { $regex: query, $options: 'i' } },
-                { description: { $regex: query, $options: 'i' } }
-            ]
-        });
-        res.render('admin/adminProducts', { products, user: req.session.user });
-    } catch (err) {
-        console.error('Error searching products:', err);
-        req.flash('error_msg', 'Failed to search products');
-        res.redirect('/admin/products');
-    }
-};
+
 
 // Export all functions at the end
 module.exports = {
@@ -159,6 +144,5 @@ module.exports = {
     addProduct,
     renderEditProductForm,
     updateProduct,
-    deleteProduct,
-    searchProducts
+    deleteProduct
 };
