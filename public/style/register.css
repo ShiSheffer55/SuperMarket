@@ -142,6 +142,7 @@ h2 {
 }
 
 .textbox input {
+    text-align: right;
     width: 100%;
     padding: 3%;
     border: 1px solid #ddd;
