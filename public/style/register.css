@@ -105,3 +105,21 @@ transition: transform .2s;
     transform: scale(1.05);
 }
 
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+}
+
+ #register title
+ {
+    position: relative;
+    margin-left: 20%;
+    font-size: 300%;
+    font-family: 'Rubik';
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    
+ }

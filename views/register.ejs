@@ -11,19 +11,21 @@
     <link rel="stylesheet" href="./homePage.css">
     <link rel="stylesheet" href="/style/header.css">
     <link rel="stylesheet" href="./products.css">
-</head>
 
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="/style/register.css">
+
+</head>
 
 <body>
 
-
     <%- include('partials/header') %>
-
-
-    <h1>Register</h1>
+<br>
+    <h1 id="register title">Register</h1>
     <% if (error_msg) { %>
         <div><%= error_msg %></div>
     <% } %>
+
 
     <div class="wrapper">
         <form action="/users/register" method="POST">
