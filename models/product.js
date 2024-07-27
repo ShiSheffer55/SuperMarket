@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { productsConnection } = require('../databases');
 
 const ProductSchema = new mongoose.Schema({
     title: {
@@ -37,8 +38,15 @@ const ProductSchema = new mongoose.Schema({
      sub: { 
         type: String, 
         required: false 
-    }
+    },
+    recommended: { 
+        type: Boolean, 
+       default:false }
 });
-ProductSchema.index({ name: 'text', title: 'text', sub: 'text' });
-const Product = mongoose.model('Product', ProductSchema);
-module.exports = Product;
+
+
+function getProductModel(collectionName) {
+    return productsConnection.model('Product', ProductSchema, collectionName);
+}
+
+module.exports = getProductModel;

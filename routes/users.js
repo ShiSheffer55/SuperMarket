@@ -1,30 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Import User model
-const { isAdmin } = require('../controllers/passController'); // Admin check middleware
+const User = require('../models/user');
+const bcrypt = require('bcrypt'); // Assuming you are using bcrypt for password hashing
+const userController = require('../controllers/usersController');
 
-// User registration
-router.get('/register', (req, res) => {
-    res.render('register');
+
+
+// Show login form
+router.get('/login', (req, res, next) => {
+    console.log('Login route accessed');
+    userController.renderLoginForm(req, res, next);
 });
 
-router.post('/register', async (req, res) => {
-    const { userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role } = req.body;
-    try {
-        const user = new User({ userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role });
-        await user.save();
-        res.redirect('/login');
-    } catch (err) {
-        console.log('Error registering user:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
 
-// User login
-router.get('/login', (req, res) => {
-    res.render('login');
-});
+// Handle login
+router.post('/login', userController.loginUser); 
 
-// Additional user routes for profile management, login handling, etc.
+// Handle logout
+router.get('/logout', userController.logoutUser); 
+
+router.get('/register', userController.renderRegisterForm); 
+
+router.post('/register', userController.registerUser); 
 
 module.exports = router;

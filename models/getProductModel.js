@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+// Singleton connection
+const mongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
+const connection = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+connection.on('connected', () => {
+    console.log('Connected to MongoDB');
+});
+
+connection.on('error', (err) => {
+    console.error('Error connecting to MongoDB:', err);
+});
+
 const productSchema = new mongoose.Schema({
     title: { type: String, required: true },
     img: { type: String, required: true },
@@ -11,6 +23,8 @@ const productSchema = new mongoose.Schema({
     amount: { type: Number }
 });
 
-module.exports = (collectionName) => {
-    return mongoose.model(collectionName, productSchema, collectionName);
-};
+function getProductModel(collectionName) {
+    return connection.model(collectionName, productSchema, collectionName);
+}
+
+module.exports = getProductModel;

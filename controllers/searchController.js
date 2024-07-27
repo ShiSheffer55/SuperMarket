@@ -2,32 +2,41 @@ const mongoose = require('mongoose');
 const Product = require('../models/product');
 const Category = require('../models/category');
 const getProductModel = require('../models/getProductModel');
+const Fuse = require('fuse.js');
 
 const searchProductsAcrossCollections = async (query) => {
-    const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Breads and pastries'];
+    const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Bread and pastries'];
     let results = [];
 
     for (const collectionName of collections) {
         const collection = await getProductModel(collectionName);
-        const foundProducts = await collection.find({ name: { $regex: query, $options: 'i' } }).exec();
+        const foundProducts = await collection.find({}).exec();
         results = results.concat(foundProducts);
     }
 
-    return results;
+    const options = {
+        keys: ['name', 'title', 'sub'], // השדות לחיפוש בהם
+        threshold: 0.35, // מדרגת דיוק לחיפוש (0.0 עד 1.0)
+        distance: 100 // מקסימום מרחק לחיפוש 
+    };
+
+    const fuse = new Fuse(results, options);
+    const searchResults = fuse.search(query);
+
+    return searchResults.map(result => result.item);
 };
 
-// דוגמה לפעולה ב-controller
+// פונקציה לדוגמה ב-controller
 const searchProducts = async (req, res) => {
     console.log('im in');
     const query = req.query.q; // המילה שהמשתמש חיפש
     try {
         const searchproducts = await searchProductsAcrossCollections(query);
-        res.render('searchResult.ejs', { searchproducts });
+        res.render('searchResult.ejs', { searchproducts, query});
     } catch (err) {
         console.log('Error searching products:', err);
         res.status(500).send('Internal Server Error');
     }
 };
-
 
 module.exports = { searchProducts };

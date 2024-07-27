@@ -7,12 +7,14 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style/products.css">
+    <link rel="stylesheet" href="style/searchResult.css">
 </head>
 <body>
     
     <%- include('partials/header') %>
-
-    <h1>תוצאות חיפוש</h1>
+<br>
+   <h1>  " תוצאות חיפוש עבור : " <%=query%> </h1>
+   <h5 id="numOfProducts">   נמצאו <%=searchproducts.length%> מוצרים  </h5>
 <main>
     <% if (searchproducts && searchproducts.length > 0) { %>
         <% searchproducts.forEach(product => { %>
