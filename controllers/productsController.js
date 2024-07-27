@@ -1,36 +1,11 @@
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
 
-// Get recommended products
-// exports.getRecommendedProducts = async (req, res) => {
-//     const Recommended = getProductModel('recommended'); // Use the 'recommended' collection
-
-//     try {
-//         const recommendedProducts = await Recommended.find({});
-//         if (recommendedProducts.length > 0) {
-//             res.render('homePage', { recommendedProducts });
-//         } else {
-//             res.render('homePage', { message: 'No recommended products found.' });
-//         }
-//     } catch (err) {
-//         console.error('Error fetching recommended products:', err);
-//         res.status(500).send('Internal Server Error');
-//     }
-// };
-exports.getRecommendedProducts = async (req, res) => {
+const getRecommendedProducts = async (req, res) => {
     try {
-        const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Breads and pastries']; // Replace with your actual collection names
-        let recommendedProducts = [];
-
-        for (const collectionName of collections) {
-            const collection = await getProductModel(collectionName);
-            const foundProducts = await collection.find({recommended: true}).exec();
-            console.log(`Found ${foundProducts.length} products in ${collectionName}`);
-            recommendedProducts  = recommendedProducts .concat(foundProducts);
-        }
-
-console.log(recommendedProducts.length);
-        res.render('homePage.ejs', { recommendedProducts });
+        const ProductModel = getProductModel('recommended');
+        const recommendedProducts = await ProductModel.find().exec();
+        res.render('homePage', { recommendedProducts });
     } catch (err) {
         console.log('Error fetching recommended products:', err);
         res.status(500).send('Internal Server Error');
@@ -58,7 +33,7 @@ const renderAddProductForm = (req, res) => {
 };
 
 // Add a new product (admin only)
-exports.addProduct = async (req, res) => {
+const addProduct = async (req, res) => {
     const { title, img, name, price, category, description, supplier, amount } = req.body;
     try {
         const newProduct = new Product({
@@ -99,7 +74,7 @@ const renderEditProductForm = async (req, res) => {
 };
 
 // Update a product (admin only)
-exports.updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
     const { title, img, name, price, category, description, supplier, amount } = req.body;
     try {
         await Product.findByIdAndUpdate(req.params.id, {

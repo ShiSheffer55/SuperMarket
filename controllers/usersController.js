@@ -106,11 +106,10 @@ const logoutUser = (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.error('Error logging out:', err);
-            req.flash('error_msg', 'Something went wrong');
+            return res.status(500).json({ message: 'Something went wrong' });
         } else {
-            req.flash('success_msg', 'You have been logged out');
+            res.redirect('/');
         }
-        res.redirect('/');
     });
 };
 
