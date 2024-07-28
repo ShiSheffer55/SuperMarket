@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    
     direction: ltr; 
     padding-top: 50px;
 }
@@ -45,9 +45,27 @@ button {
     font-size: 1em;
 }
 
+
+
 button:hover {
     background-color: #0056b3;
 }
+
+
+.slider-container {
+    text-align: left;
+    width: 300px;
+    /* margin: 10px auto; */
+}
+
+#slider-range,#price-range {
+    text-align: left;
+} 
+
+
+
+
+
 
 
 
