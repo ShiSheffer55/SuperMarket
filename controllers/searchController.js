@@ -46,8 +46,9 @@ const searchProductsAcrossCollections = async (query) => {
         const collection = await getProductModel(category);
         const foundProducts = await collection.find({}).exec();
 
-        // הוספת מוצרים למפה למניעת כפילויות
+        // הוספת מוצרים למפה למניעת כפילויות עם שם הקטגוריה
         foundProducts.forEach(product => {
+            product.collectionName = category; // הוספת שם הקטגוריה למוצר
             productsMap[product._id] = product;
         });
     }
@@ -58,8 +59,9 @@ const searchProductsAcrossCollections = async (query) => {
             const collection = await getProductModel(collectionName);
             const foundProducts = await collection.find({}).exec();
 
-            // הוספת מוצרים למפה למניעת כפילויות
+            // הוספת מוצרים למפה למניעת כפילויות עם שם הקטגוריה
             foundProducts.forEach(product => {
+                product.collectionName = collectionName; // הוספת שם הקטגוריה למוצר
                 productsMap[product._id] = product;
             });
         }
@@ -86,6 +88,7 @@ const searchProductsAcrossCollections = async (query) => {
 
     return results; // החזרת מוצרים מהקטגוריות שנמצאו
 };
+
 
 
 const searchProducts = async (req, res) => {
