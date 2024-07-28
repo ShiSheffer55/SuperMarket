@@ -25,14 +25,13 @@
                 <tr>
                     <td><%= order._id %></td>
                     <td>
-                        <p>Name: <%= order.userId.userName %></p>
-                        <p>Email: <%= order.userId.gmail %></p>
-                        <!-- Add any other user details you want to display here -->
+                        <p>Name: <%= order.user.name %></p>
+                        <p>Email: <%= order.user.email %></p>
                     </td>
                     <td>
                         <ul>
                             <% order.products.forEach(product => { %>
-                                <li><%= product.productId.name %> (x<%= product.amount %>) - ₪<%= product.price %></li>
+                                <li><%= product.title %> (x<%= product.quantity %>) - ₪<%= product.price %></li>
                             <% }); %>
                         </ul>
                     </td>

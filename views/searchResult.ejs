@@ -21,19 +21,36 @@
     <% if (searchproducts && searchproducts.length > 0) { %>
         <% searchproducts.forEach(product => { %>
             <div class="card">
-                <img src="<%= product.img %>" class="card-img-top" alt="...">
+                <img src="<%= product.img %>" class="card-img-top" alt="Product image">
                 <div class="card-body">
                     <h5 class="card-title"><%= product.title %></h5>
                     <p class="card-text"><%= product.sub %></p>
                     <p>₪ <%= product.price %></p>
-                    <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
+                    <form class="add-to-cart-form" action="/cart/add" method="POST">
+                        <input type="hidden" name="productId" value="<%= product._id %>">
+                        <input type="hidden" name="category" value="<%= product.collectionName %>">
+                        <label for="quantity">:בחר כמות</label>
+                        <br>
+                        <input id="quantity" type="number" name="quantity" value="1" min="1" max="<%= parseInt(product.amount) %>">
+                        <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
+                    </form>
+                    <% if (user && user.role === 'admin') { %>
+                        <div class="actions">
+                            <a href="/admin/products/edit/<%= product.collectionName %>/<%= product._id %>">Edit</a>
+                            <!-- במקום זה יכול להיות שינוי נוסף לפונקציה למחיקת מוצר -->
+                            <a href="#" onclick="deleteProduct('<%= product.collectionName %>', '<%= product._id %>'); return false;">Delete</a>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         <% }); %>
     <% } else { %>
         <p>לא נמצאו תוצאות לחיפוש שלך.</p>
     <% } %>
+    
+  
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="JavaScript/deleteProduct.js"></script>
 </body>
 </html>
