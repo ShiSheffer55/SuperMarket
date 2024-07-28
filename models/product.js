@@ -18,15 +18,6 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
-    }, // Reference to Category
-    description: {
-        type: String,
-        required: true
-    },
     supplier: {
         type: String,
         required: true
@@ -35,7 +26,7 @@ const ProductSchema = new mongoose.Schema({
         type: Number
     },
      // Remove or make optional if not used
-     sub: { 
+    sub: { 
         type: String, 
         required: false 
     },

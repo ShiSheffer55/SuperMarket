@@ -1,5 +1,7 @@
+const mongoose = require('mongoose');
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
+
 
 const getRecommendedProducts = async (req, res) => {
     try {
@@ -65,28 +67,50 @@ const renderAddProductForm = (req, res) => {
     res.render('admin/addProduct', { user: req.session.user });
 };
 
+
+const categoryMap = {
+    'בשר': 'meat',
+    'דגים': 'fish',
+    'מוצרי חלב': 'milk',
+    'פירות': 'fruits',
+    'ירקות': 'vegetables',
+    'ניקיון': 'cleanliness',
+    'יבשים': 'dry',
+    'ממתקים וחטיפים': 'sweets and snacks',
+    'משקאות': 'drinks',
+    'קפואים': 'frozen',
+    'לחמים ומאפים': 'bread and pastries'
+};
 const addProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
-    const Product = getProductModel(category); // Adjusted to get the correct model
+    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
+
+    if (!collectionName) {
+        return res.status(400).send('Invalid category');
+    }
+
+    const isRecommended = recommended === 'כן'; // Convert "כן" to true and "לא" to false
+
     try {
+        const Product = getProductModel(collectionName); // Get the correct model based on the collection name
         const newProduct = new Product({
             title,
             img,
             name,
             price,
-            category,
-            description,
+            sub,
             supplier,
             amount,
-            recommended
+            recommended: isRecommended
         });
         await newProduct.save();
-        res.redirect(`/admin/${category}`); // Redirect back to the collection page
+        res.redirect(`/admin/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error adding product:', err);
-        res.redirect(`/admin/${category}?error=Failed to add product`);
+        res.redirect(`/admin/${collectionName}?error=Failed to add product`);
     }
 };
+
 
 const renderEditProductForm = async (req, res) => {
     const { collectionName, id } = req.params;
