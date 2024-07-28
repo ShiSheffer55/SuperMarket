@@ -71,10 +71,14 @@
                         <form class="add-to-cart-form" action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= product._id %>">
                             <input type="hidden" name="category" value="<%= product.collectionName %>">
+<<<<<<< HEAD
                                 <label for="quantity">:בחר כמות</label>
                                 <br>
                                 <input id="quantity" type="number" name="quantity" value="1" min="1">
                     
+=======
+                            <input type="number" name="quantity" value="1" min="1" max="<%= parseInt(Product.amount) %>">
+>>>>>>> bb47897c388184f53805a9ebb25b3498de1b7b67
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
