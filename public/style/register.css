@@ -1,7 +1,4 @@
-/* *{
-
-    
-}
+ 
 body{
 
     
@@ -9,7 +6,7 @@ body{
     background: url(e1924646c99584b62845a6ae30647e06.jpg) no-repeat;
     background-position: center;
 
-} */
+} 
 
 
 .wrapper{
@@ -147,6 +144,6 @@ h2 {
 {
     position:absolute;
     float:left;
-    top:37%;
+    top:44%;
 }
 
