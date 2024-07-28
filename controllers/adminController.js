@@ -13,7 +13,7 @@ const showAdminDashboard = (req, res) => {
 const renderAdminProducts = async (req, res) => {
     try {
         const products = await Product.find({});
-        res.render('admin/products', { products, user: req.session.user });
+        res.render('products', { products, user: req.session.user });
     } catch (err) {
         console.error('Error fetching products:', err);
         req.flash('error_msg', 'Failed to fetch products');
@@ -25,7 +25,7 @@ const renderAdminProducts = async (req, res) => {
 const renderAdminUsers = async (req, res) => {
     try {
         const users = await User.find({});
-        res.render('admin/adminUsers', { users, user: req.session.user });
+        res.render('adminUsers', { users, user: req.session.user });
     } catch (err) {
         console.error('Error fetching users:', err);
         req.flash('error_msg', 'Failed to fetch users');
@@ -37,7 +37,7 @@ const renderAdminUsers = async (req, res) => {
 const renderAdminOrders = async (req, res) => {
     try {
         const orders = await Order.find({});
-        res.render('admin/adminOrders', { orders, user: req.session.user });
+        res.render('adminOrders', { orders, user: req.session.user });
     } catch (err) {
         console.error('Error fetching orders:', err);
         req.flash('error_msg', 'Failed to fetch orders');

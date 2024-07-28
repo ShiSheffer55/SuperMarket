@@ -118,64 +118,102 @@ const renderAddUserForm = (req, res) => {
     res.render('admin/addUser', { user: req.session.user });
 };
 
-// Handle adding a new user
+
+
 const addUser = async (req, res) => {
-    const newUser = new User(req.body);
+    const { userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role } = req.body;
 
     try {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create a new user
+        const newUser = new User({
+            userName,
+            fName,
+            lName,
+            password: hashedPassword,
+            gmail,
+            tel,
+            city,
+            isLivesInCenter,
+            role
+        });
+
+        // Save the new user to the database
         await newUser.save();
-        req.flash('success_msg', 'User added successfully');
-        res.redirect('/admin/users');
-    } catch (err) {
-        console.error('Error adding user:', err);
-        req.flash('error_msg', 'Failed to add user');
-        res.redirect('/admin/users/add');
+        
+        // Redirect to the user management page with a success message in the query parameter
+        res.redirect('/admin/users?success=User added successfully!');
+    } catch (error) {
+        console.error('Error adding user:', error);
+        // Redirect to the user management page with an error message in the query parameter
+        res.redirect('/admin/users?error=Failed to add user');
     }
 };
 
-// Render the form to edit a user
+// Render form to edit user
 const renderEditUserForm = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        if (!user) {
-            req.flash('error_msg', 'User not found');
-            return res.redirect('/admin/users');
-        }
-        res.render('admin/editUser', { user, user: req.session.user });
-    } catch (err) {
-        console.error('Error fetching user:', err);
+        res.render('editUser', { user });
+    } catch (error) {
+        console.error('Error fetching user for edit:', error);
         req.flash('error_msg', 'Failed to fetch user');
         res.redirect('/admin/users');
     }
 };
 
-// Handle updating a user
+
+
 const updateUser = async (req, res) => {
+    const { userName, fName, lName, email, password, tel, city } = req.body;
+
     try {
-        await User.findByIdAndUpdate(req.params.id, req.body);
-        req.flash('success_msg', 'User updated successfully');
-        res.redirect('/admin/users');
-    } catch (err) {
-        console.error('Error updating user:', err);
-        req.flash('error_msg', 'Failed to update user');
-        res.redirect(`/admin/users/edit/${req.params.id}`);
+        // Hash the password if it's provided
+        const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
+
+        // Prepare update object
+        const updateData = {
+            userName,
+            fName,
+            lName,
+            email,
+            tel,
+            city
+        };
+        
+        // Include password in the update if it's hashed
+        if (hashedPassword) {
+            updateData.password = hashedPassword;
+        }
+
+        // Update the user
+        await User.findByIdAndUpdate(req.params.id, updateData);
+
+        // Redirect with a success message in the query parameters
+        res.redirect('/admin/users?success=User updated successfully!');
+    } catch (error) {
+        console.error('Error updating user:', error);
+        // Redirect with an error message in the query parameters
+        res.redirect('/admin/users?error=Failed to update user');
     }
 };
 
-// Handle deleting a user
+
 const deleteUser = async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
-        req.flash('success_msg', 'User deleted successfully');
-        res.redirect('/admin/users');
-    } catch (err) {
-        console.error('Error deleting user:', err);
-        req.flash('error_msg', 'Failed to delete user');
-        res.redirect('/admin/users');
+        // Redirect with a success message in the query parameters
+        res.redirect('/admin/users?success=User deleted successfully!');
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        // Redirect with an error message in the query parameters
+        res.redirect('/admin/users?error=Failed to delete user');
     }
 };
 
-// Handle searching users
+
 const searchUsers = async (req, res) => {
     const query = req.query.q;
     try {
@@ -188,10 +226,11 @@ const searchUsers = async (req, res) => {
         res.render('admin/adminUsers', { users, user: req.session.user });
     } catch (err) {
         console.error('Error searching users:', err);
-        req.flash('error_msg', 'Failed to search users');
-        res.redirect('/admin/users');
+        // Redirect with an error message in the query parameters
+        res.redirect('/admin/users?error=Failed to search users');
     }
 };
+
 
 // Export all functions at the end
 module.exports = {
