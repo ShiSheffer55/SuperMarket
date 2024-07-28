@@ -1,6 +1,25 @@
 body{
     width:100%; 
 }
+.logos {
+  overflow: hidden;
+  padding: 55px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+
+  z-index: 1;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 20s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 55px;
+  margin: 0 30px;
+}
 #SuperLogo
 {
     position: relative;
@@ -219,7 +238,6 @@ header{
 
 
 }
-
 
 }
 

@@ -15,12 +15,16 @@
             <ul id="navbar">
                 <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>
                 <li id="hiddenCart"><a href="/cart" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
-                <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
+                <li><a href="/location/map">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                 <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                 <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-                <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
-
+                <% if (!user) { %>
+                    <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
+                    <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
+                <% } %>
+                <% if (user) { %>
+                    <li><a href="/users/logout">התנתקות</a></li>
+                <% } %>
             </ul>
         </nav>
         <nav class="categoryDiv">
@@ -76,8 +80,13 @@
                     <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                     <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                    <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-                <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
+                    <% if (!user) { %>
+                        <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
+                        <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
+                    <% } %>
+                <% if (user) { %>
+                    <li><a href="/users/logout">התנתקות</a></li>
+                <% } %>
                 </ul>
             </div>
         </nav>
@@ -111,17 +120,24 @@
                     <li><a href="/location">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                     <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                     <li><a href="#">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
-                    <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
-                <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
+                    <% if (!user) { %>
+                        <li><a href="/users/register">הירשמות <i class="bi bi-envelope"></i></a></li>
+                        <li><a href="/users/login">התחברות <i class="bi bi-box-arrow-in-left"></i></a></li>
+                    <% } %>
+
+                <% if (user) { %>
+                    <li><a href="/users/logout">התנתקות</a></li>
+                <% } %>
                 </ul>
             </div>
         </nav>
-         
+       
         <ul>
-            <% if (user) { %>
-                <li><a href="/users/logout">Logout</a></li>
+            <% if (user && user.role === 'admin') { %>
+                <li><a href="/admin/dashboard">Admin Dashboard</a></li>              
             <% } %>
         </ul>
+      
         
     </header>
     <script src="JavaScript/categoryBar.js"></script>
