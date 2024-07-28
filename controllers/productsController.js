@@ -1,7 +1,19 @@
 const mongoose = require('mongoose');
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
-
+const categoryMap = {
+    'בשר': 'meat',
+    'דגים': 'fish',
+    'מוצרי חלב': 'milk',
+    'פירות': 'fruits',
+    'ירקות': 'vegetables',
+    'ניקיון': 'cleanliness',
+    'יבשים': 'dry',
+    'ממתקים וחטיפים': 'sweets and snacks',
+    'משקאות': 'drinks',
+    'קפואים': 'frozen',
+    'לחמים ומאפים': 'Bread and pastries'
+};
 
 const getRecommendedProducts = async (req, res) => {
     try {
@@ -68,19 +80,7 @@ const renderAddProductForm = (req, res) => {
 };
 
 
-const categoryMap = {
-    'בשר': 'meat',
-    'דגים': 'fish',
-    'מוצרי חלב': 'milk',
-    'פירות': 'fruits',
-    'ירקות': 'vegetables',
-    'ניקיון': 'cleanliness',
-    'יבשים': 'dry',
-    'ממתקים וחטיפים': 'sweets and snacks',
-    'משקאות': 'drinks',
-    'קפואים': 'frozen',
-    'לחמים ומאפים': 'bread and pastries'
-};
+
 const addProduct = async (req, res) => {
     const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
     const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
@@ -101,7 +101,7 @@ const addProduct = async (req, res) => {
             sub,
             supplier,
             amount,
-            recommended: isRecommended
+            recommended: isRecommended 
         });
         await newProduct.save();
         res.redirect(`/admin/${collectionName}`); // Redirect back to the collection page
@@ -114,35 +114,60 @@ const addProduct = async (req, res) => {
 
 const renderEditProductForm = async (req, res) => {
     const { collectionName, id } = req.params;
-    const Product = getProductModel(collectionName);
+    const category = categoryMap[collectionName];
+    const Product = getProductModel(category);
+    console.log(Product);
+    console.log(collectionName);
+    console.log(category);
+    console.log(id);
     try {
         const product = await Product.findById(id);
+        console.log(product);
         if (!product) {
             return res.redirect('/admin/products?error=Product not found');
         }
-        res.render('admin/productsEdit', { product, user: req.session.user });
+        res.render('productsEdit', {
+            product,
+            user: req.session.user,
+            categoryMap, collectionName // העברת categoryMap לתצוגה
+        });
     } catch (err) {
         console.error('Error fetching product:', err);
         res.redirect('/admin/products?error=Failed to fetch product');
     }
 };
 
+
 const updateProduct = async (req, res) => {
     const { collectionName, id } = req.params;
-    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
-    const Product = getProductModel(collectionName);
+    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const isRecommended = recommended === 'כן';
+
+    // קבל את המודל הנוכחי
+    const currentCategory = categoryMap[collectionName];
+    const Product = getProductModel(currentCategory);
+    console.log('categoryMap:', categoryMap);
+console.log('collectionName:', collectionName);
+console.log('Model name:', categoryMap[collectionName]);
     try {
-        await Product.findByIdAndUpdate(id, {
+        // מחק את המוצר מהקטגוריה הנוכחית
+        await Product.findByIdAndRemove(id);
+
+        // עדכן את המידע בקטגוריה החדשה
+        const NewProductModel = getProductModel(categoryMap[category]);
+        const newProduct = new NewProductModel({
             title,
             img,
             name,
             price,
             category,
-            description,
+            sub,
             supplier,
             amount,
-            recommended
+            recommended: isRecommended
         });
+
+        await newProduct.save();
         res.redirect('/admin/products?success=Product updated successfully');
     } catch (err) {
         console.error('Error updating product:', err);

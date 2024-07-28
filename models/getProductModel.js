@@ -19,7 +19,8 @@ const productSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     sub: { type: String, required: true },
     supplier: { type: String, required: true },
-    amount: { type: Number }
+    amount: { type: Number },
+    recommended:{type: Boolean}
 });
 
 function getProductModel(collectionName) {
