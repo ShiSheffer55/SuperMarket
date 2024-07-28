@@ -137,11 +137,14 @@ const updateProduct = async (req, res) => {
     const { collectionName, id } = req.params;
     const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
     const isRecommended = recommended === 'כן';
+
     console.log('collectionName:', collectionName);
     console.log('category:', category);
     const Category = categoryMap[category];
     const Product = getProductModel(collectionName);
     console.log('Product:', Product);
+
+    // קבל את המודל הנוכחי
     try {
         // מחק את המוצר מהקטגוריה הנוכחית
         await Product.findByIdAndDelete(id);
