@@ -19,10 +19,15 @@
 
     <%- include('partials/header') %>
 <br><br>
-    <% if (error_msg) { %>
-        <div><%= error_msg %></div>
+    
+
+    <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
     <% } %>
 
+    
     <div class="container">
         <div class="login-box">
             <h2> &#9734;  הרשמה &#9734;</h2>
@@ -31,22 +36,22 @@
                     <input type="text" name="username" placeholder="שם משתמש" required>
                 </div>
                 <div class="textbox">
+                    <input type="text" name="firstName" placeholder="שם פרטי" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" name="lastName" placeholder="שם משפחה" required>
+                </div>
+                <div class="textbox">
                     <input type="password" name="password" placeholder="סיסמה" required>
-                </div>
-                <div class="textbox">
-                    <input type="firstName" name="firstName" placeholder="שם פרטי" required>
-                </div>
-                <div class="textbox">
-                    <input type="lastName" name="lastName" placeholder="שם משפחה" required>
                 </div>
                 <div class="textbox">
                     <input type="email" name="email" placeholder="דואר אלקטרוני" required>
                 </div>
                 <div class="textbox">
-                    <input type="phone" name="phone" placeholder="טלפון" required>
+                    <input type="text" name="phone" placeholder="טלפון" required>
                 </div>
                 <div class="textbox">
-                    <input type="city" name="city" placeholder="עיר" required>
+                    <input type="text" name="city" placeholder="עיר" required>
                 </div>
                 <button type="submit" class="btn">הרשמה</button>
             </form>

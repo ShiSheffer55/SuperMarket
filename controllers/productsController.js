@@ -51,14 +51,14 @@ const getProductsFromCollection = async (req, res) => {
     }
 };
 
-// Render the form to add a product
+//only admin: 
 const renderAddProductForm = (req, res) => {
     res.render('admin/addProduct', { user: req.session.user });
 };
 
-// Add a new product (admin only)
 const addProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount } = req.body;
+    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
+    const Product = getProductModel(category); // Adjusted to get the correct model
     try {
         const newProduct = new Product({
             title,
@@ -72,36 +72,34 @@ const addProduct = async (req, res) => {
             recommended
         });
         await newProduct.save();
-        req.flash('success_msg', 'Product added successfully');
-        res.redirect('/admin/products');
+        res.redirect(`/admin/${category}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error adding product:', err);
-        req.flash('error_msg', 'Failed to add product');
-        res.redirect('/admin/products/add');
+        res.redirect(`/admin/${category}?error=Failed to add product`);
     }
 };
 
-// Render the form to edit a product
 const renderEditProductForm = async (req, res) => {
+    const { collectionName, id } = req.params;
+    const Product = getProductModel(collectionName);
     try {
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findById(id);
         if (!product) {
-            req.flash('error_msg', 'Product not found');
-            return res.redirect('/admin/products');
+            return res.redirect('/admin/products?error=Product not found');
         }
         res.render('admin/productsEdit', { product, user: req.session.user });
     } catch (err) {
         console.error('Error fetching product:', err);
-        req.flash('error_msg', 'Failed to fetch product');
-        res.redirect('/admin/products');
+        res.redirect('/admin/products?error=Failed to fetch product');
     }
 };
 
-// Update a product (admin only)
 const updateProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount } = req.body;
+    const { collectionName, id } = req.params;
+    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
+    const Product = getProductModel(collectionName);
     try {
-        await Product.findByIdAndUpdate(req.params.id, {
+        await Product.findByIdAndUpdate(id, {
             title,
             img,
             name,
@@ -109,29 +107,28 @@ const updateProduct = async (req, res) => {
             category,
             description,
             supplier,
-            amount
+            amount,
+            recommended
         });
-        req.flash('success_msg', 'Product updated successfully');
-        res.redirect('/admin/products');
+        res.redirect('/admin/products?success=Product updated successfully');
     } catch (err) {
         console.error('Error updating product:', err);
-        req.flash('error_msg', 'Failed to update product');
-        res.redirect(`/admin/products/edit/${req.params.id}`);
+        res.redirect(`/admin/products/edit/${collectionName}/${id}?error=Failed to update product`);
     }
 };
 
-// Handle deleting a product
 const deleteProduct = async (req, res) => {
+    const { collectionName, id } = req.params;
+    const Product = getProductModel(collectionName);
     try {
-        await Product.findByIdAndDelete(req.params.id);
-        req.flash('success_msg', 'Product deleted successfully');
-        res.redirect('/admin/products');
+        await Product.findByIdAndDelete(id);
+        res.redirect('/admin/products?success=Product deleted successfully');
     } catch (err) {
         console.error('Error deleting product:', err);
-        req.flash('error_msg', 'Failed to delete product');
-        res.redirect('/admin/products');
+        res.redirect('/admin/products?error=Failed to delete product');
     }
 };
+
 
 
 // Export all functions at the end

@@ -22,7 +22,14 @@ const registerUser = async (req, res) => {
         const existingUser = await User.findOne({ userName });
         if (existingUser) {
             return res.render('register', {
-                error_msg: 'Username already exists'
+                error: 'Username already exists'
+            });
+        }
+
+        // Validate required fields
+        if (!userName || !fName || !lName || !password || !gmail || !tel || !city) {
+            return res.render('register', {
+                error: 'All required fields must be filled'
             });
         }
 
@@ -47,12 +54,12 @@ const registerUser = async (req, res) => {
 
         // Redirect to the login page with a success message
         res.render('login', {
-            success_msg: 'You are now registered and can log in'
+            success: 'You are now registered and can log in'
         });
     } catch (err) {
-        console.error('Error registering user:', err);
+        // Render the registration page with a generic error message
         res.render('register', {
-            error_msg: 'Error registering user'
+            error: 'Error registering user: ' + err.message
         });
     }
 };
@@ -214,23 +221,27 @@ const deleteUser = async (req, res) => {
 };
 
 
+// Search Users
 const searchUsers = async (req, res) => {
     const query = req.query.q;
     try {
         const users = await User.find({
             $or: [
                 { userName: { $regex: query, $options: 'i' } },
-                { email: { $regex: query, $options: 'i' } }
+                { fName: { $regex: query, $options: 'i' } },
+                { lName: { $regex: query, $options: 'i' } },
+                { gmail: { $regex: query, $options: 'i' } }
             ]
         });
-        res.render('admin/adminUsers', { users, user: req.session.user });
+        res.render('adminUsers', { users, user: req.session.user });
     } catch (err) {
-        console.error('Error searching users:', err);
-        // Redirect with an error message in the query parameters
-        res.redirect('/admin/users?error=Failed to search users');
+        res.render('adminUsers', {
+            users: [],
+            user: req.session.user,
+            error: 'Failed to search users: ' + err.message
+        });
     }
 };
-
 
 // Export all functions at the end
 module.exports = {
