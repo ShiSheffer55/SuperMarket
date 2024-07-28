@@ -141,4 +141,36 @@ main {
 #d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 , #d9{
     box-align: center;
 }
-
+.custom-input-container {
+    display: flex;
+    align-items: center;
+  }
+  .custom-input {
+    width: 30%;
+    padding: 3%;
+    font-size: large;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s ease;
+    margin-left: 18.5%;
+    margin-top: 4%;
+  }
+  .custom-input:focus {
+    border-color: rgb(219, 253, 224);
+    outline: none;
+  }
+  .custom-input-button {
+    color: black;
+    font-size: large;
+    position: relative;
+    margin-left: 0%;
+    background-color: rgb(219, 253, 224);
+    border: solid;
+    width: 3%;
+    border-color: rgba(25, 134, 98, 0.986);
+    border-width: 0.3mm;
+  
+  }
+  .custom-input-button:hover {
+    background-color: rgb(219, 253, 224);
+  }

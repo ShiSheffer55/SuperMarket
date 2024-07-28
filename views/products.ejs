@@ -40,6 +40,11 @@
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
                             <label for="quantity">:בחר כמות</label>
                             <br>
+                            <div class="custom-input-container">
+                                <button class="custom-input-button" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" class="custom-input">
+                                <button class="custom-input-button" onclick="changeQuantity(1)">+</button>
+                            </div>
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
