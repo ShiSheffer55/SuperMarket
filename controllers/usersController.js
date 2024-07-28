@@ -70,12 +70,18 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { userName, password } = req.body;
 
+    // Debugging: Log the entire req.body
+    console.log('req.body:', req.body);
+
     try {
         // Find user by username
         const user = await User.findOne({ userName });
 
         if (!user) {
             console.log('User not found');
+            console.log('userName:', username);
+            console.log('password:', password);
+
             return res.render('login', {
                 error_msg: 'Invalid username or password'
             });
@@ -107,6 +113,7 @@ const loginUser = async (req, res) => {
         });
     }
 };
+
 
 // Handle user logout
 const logoutUser = (req, res) => {

@@ -39,13 +39,7 @@ const addToCart = async (req, res) => {
 };
 
 const viewCart = (req, res) => {
-    try{
-        res.render('cart', { cart: req.session.cart });
-
-    }catch(err){
-        console.error('Error:', err);
-        res.redirect('/');  
-    }
+    res.render('cart', { cart: req.session.cart || [] });
 };
 
 const checkout = (req, res) => {
