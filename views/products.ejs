@@ -40,7 +40,6 @@
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
                             <label for="quantity">:בחר כמות</label>
                             <br>
-                            <input id="quantity" type="number" name="quantity" value="1" min="1" max="<%= parseInt(Product.amount) %>">
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
