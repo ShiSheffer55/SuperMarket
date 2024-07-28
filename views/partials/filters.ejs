@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="views/filters.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <nav>
@@ -21,10 +20,11 @@
     <div class="categoryFilter" id="filterBar">
         <ul>
             <li>
-                <label>
-                    <input type="checkbox" name="under30" id="under30">
-                  מוצרים מתחת ל-30 שח
-                </label>
+                <div class="slider-container">
+                    <label>:טווח מחירים</label>
+                    <div id="slider-range"></div>
+                    <p id="price-range"></p>
+                </div>
             </li>
             <li>
                 <label>
@@ -41,9 +41,23 @@
         </ul>
         <button onclick="applyFilters()">הצגת תוצאות</button>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="views/filters.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
