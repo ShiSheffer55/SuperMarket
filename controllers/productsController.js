@@ -65,7 +65,7 @@ const getProductsFromCollection = async (req, res) => {
         });
 
         const cart = req.session.cart || []; // Or fetch cart from a different source if not using session
-        res.render('products', { Products: products, collectionName: collectionNameHebrew, cart, user: req.session.user });
+        res.render('products', { Products: products, collectionName: collectionName,collectionNameHebrew: collectionNameHebrew, cart, user: req.session.user });
     } catch (err) {
         console.error(`Error retrieving products from ${collectionName} collection:`, err);
         res.status(500).send('Internal Server Error');
@@ -79,12 +79,13 @@ const renderAddProductForm = (req, res) => {
     res.render('admin/addProduct', { user: req.session.user });
 };
 
-
-
+//working
 const addProduct = async (req, res) => {
     const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
     const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
-
+    console.log('category:', category);
+console.log(collectionName);
+console.log(category);
     if (!collectionName) {
         return res.status(400).send('Invalid category');
     }
@@ -111,25 +112,19 @@ const addProduct = async (req, res) => {
     }
 };
 
-
 const renderEditProductForm = async (req, res) => {
     const { collectionName, id } = req.params;
-    const category = categoryMap[collectionName];
-    const Product = getProductModel(category);
-    console.log(Product);
-    console.log(collectionName);
-    console.log(category);
-    console.log(id);
+    const Product = getProductModel(collectionName);
     try {
         const product = await Product.findById(id);
-        console.log(product);
         if (!product) {
             return res.redirect('/admin/products?error=Product not found');
         }
         res.render('productsEdit', {
             product,
             user: req.session.user,
-            categoryMap, collectionName // העברת categoryMap לתצוגה
+            categoryMap, // העברת categoryMap לתצוגה
+            collectionName // הוסף את collectionName להצגה
         });
     } catch (err) {
         console.error('Error fetching product:', err);
@@ -137,30 +132,30 @@ const renderEditProductForm = async (req, res) => {
     }
 };
 
-
+//working
 const updateProduct = async (req, res) => {
     const { collectionName, id } = req.params;
     const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
     const isRecommended = recommended === 'כן';
 
-    // קבל את המודל הנוכחי
-    const currentCategory = categoryMap[collectionName];
-    const Product = getProductModel(currentCategory);
-    console.log('categoryMap:', categoryMap);
     console.log('collectionName:', collectionName);
-    console.log('Model name:', categoryMap[collectionName]);
+    console.log('category:', category);
+    const Category = categoryMap[category];
+    const Product = getProductModel(collectionName);
+    console.log('Product:', Product);
+
+    // קבל את המודל הנוכחי
     try {
         // מחק את המוצר מהקטגוריה הנוכחית
-        await Product.findByIdAndRemove(id);
+        await Product.findByIdAndDelete(id);
 
         // עדכן את המידע בקטגוריה החדשה
-        const NewProductModel = getProductModel(categoryMap[category]);
+        const NewProductModel = getProductModel(Category);
         const newProduct = new NewProductModel({
             title,
             img,
             name,
             price,
-            category,
             sub,
             supplier,
             amount,
@@ -175,8 +170,11 @@ const updateProduct = async (req, res) => {
     }
 };
 
+
+
 const deleteProduct = async (req, res) => {
     const { collectionName, id } = req.params;
+    console.log(collectionName)
     const Product = getProductModel(collectionName);
     try {
         await Product.findByIdAndDelete(id);
@@ -197,5 +195,5 @@ module.exports = {
     addProduct,
     renderEditProductForm,
     updateProduct,
-    deleteProduct,
+    deleteProduct
 };
