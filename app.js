@@ -11,7 +11,8 @@ const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
-const { usersConnection, productsConnection } = require('./databases'); // Import connections
+const locationsRoute = require('./routes/location'); // Import locations route
+const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
 
 const app = express();
 const port = 3001;
@@ -51,6 +52,7 @@ app.use('/', productsRoute);
 app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
 app.use('/cart', cartRoute);
+app.use('/location', locationsRoute);
 
 
 // Start server
