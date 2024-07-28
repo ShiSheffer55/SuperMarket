@@ -70,7 +70,7 @@
                         <p>₪ <%= product.price %></p>
                         <form action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= product._id %>">
-                            <input type="hidden" name="category" value="frozen">
+                            <input type="hidden" name="category" value="<%= product.collectionName %>">
                             <input type="number" name="quantity" value="1" min="1">
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>

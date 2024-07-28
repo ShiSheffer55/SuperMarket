@@ -4,10 +4,8 @@ const Order = require('../models/order');
 const addToCart = async (req, res) => {
     const { productId, quantity, category } = req.body;
     const productModel = getProductModel(category);
-    console.log(productId); 
-    console.log(category); 
-    console.log(quantity); 
 
+    console.log(req.body);
     try {
         const product = await productModel.findById(productId);
         if (!product) {

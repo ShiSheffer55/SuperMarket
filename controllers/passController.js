@@ -10,8 +10,8 @@ const isAdmin = (req, res, next) => {
 };
 
 const ensureAuthenticated = (req, res, next) => {
-    if (req.session.user) {
-        return next(); // User is authenticated, proceed to the next middleware or route handler
+    if (req.session && req.session.user) {
+        return next();
     } else {
         return res.redirect('/users/login'); // User is not authenticated, redirect to login page
     }

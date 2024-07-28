@@ -10,6 +10,10 @@ const getRecommendedProducts = async (req, res) => {
             const collection = await getProductModel(collectionName);
             const foundProducts = await collection.find({ recommended: true }).exec();
             console.log(`Found ${foundProducts.length} products in ${collectionName}`);
+
+            // Attach the collection name to each product
+            foundProducts.forEach(product => product.collectionName = collectionName);
+
             recommendedProducts = recommendedProducts.concat(foundProducts);
         }
 
@@ -21,7 +25,6 @@ const getRecommendedProducts = async (req, res) => {
     }
 };
 
-// Get products from a specific collection
 const getProductsFromCollection = async (req, res) => {
     const { collectionName } = req.params;
     const categoryNames = {
@@ -41,6 +44,12 @@ const getProductsFromCollection = async (req, res) => {
         const ProductModel = getProductModel(collectionName);
         const products = await ProductModel.find().exec();
         const collectionNameHebrew = categoryNames[collectionName];
+
+        // Attach the collection name to each product
+        products.forEach(product => {
+            product.collectionName = collectionName;
+        });
+
         const cart = req.session.cart || []; // Or fetch cart from a different source if not using session
         res.render('products', { Products: products, collectionName: collectionNameHebrew, cart, user: req.session.user });
     } catch (err) {

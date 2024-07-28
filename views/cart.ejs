@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>סל קניות</title>
 </head>
 <body>
-    <h1>Your Shopping Cart</h1>
+    <h1>סל הקניות שלך</h1>
     <% if (cart.length === 0) { %>
-        <p>Your cart is empty.</p>
+        <p>סל הקניות ריק</p>
     <% } else { %>
         <table>
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
+                    <th>מוצר</th>
+                    <th>מחיר</th>
+                    <th>כמות</th>
+                    <th>סה"כ</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,8 @@
                 <% }) %>
             </tbody>
         </table>
-        <a href="/cart/checkout">Proceed to Checkout</a>
+        <a href="/cart/checkout">המשך לחשבון</a>
+        <a href="/">המשך קנייה</a>
     <% } %>
 </body>
 </html>
