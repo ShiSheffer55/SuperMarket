@@ -13,8 +13,14 @@
         <!-- For big screen -->
         <nav>
             <ul id="navbar">
-                <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>
-                <li id="hiddenCart"><a href="/cart" id="cartIcon">הסל שלי <i class="bi bi-cart3"></i></a></li>
+                <li id="threeLines"><a onclick="ShowCatBar()" href="#"><h4><i class="bi bi-list"></i></h4></a></li>               
+                <li>
+                    <a id="cartIcon" href="/cart">
+                        <i class="bi bi-cart3"></i> סל קניות
+                        <span class="badge bg-primary"><%= cart.length %></span>
+                    </a>
+                </li>
+                
                 <li><a href="/location/map">!חפשו אותנו <i class="bi bi-geo-alt"></i></a></li>
                 <li><a href="#">משתמש  <i class="bi bi-person-circle"></i></a></li>
                 <li><a href="/">עמוד הבית <i class="bi bi-house-heart-fill"></i></a></li>
@@ -53,7 +59,12 @@
         <!-- for smaller screen -->
         <nav id="smallerScreen">
             <a href="#" onclick="ShowCatBarSmall()"><h4><i class="bi bi-list"></i></h4></a>
-            <a href="/cart" id="cartIconSmaller">עגלת הקניות <i class="bi bi-cart3"></i></a>
+
+            <a id="cartIconSmaller" href="/cart">
+                 <i class="bi bi-cart3"></i> סל קניות
+                 <span class="badge bg-primary"><%= cart.length %></span>
+            </a>
+           
             <div class="categoryDivSmall">
                 <ul>
                     <li id="XforSmall"><i onclick="HideCatBarSmall()" class="bi bi-x-lg"></i></li>
@@ -93,7 +104,12 @@
         <!-- for the smallest screens -->
         <nav id="VerysmallScreen">
             <a href="#" onclick="ShowCatBarVerySmall()"><i class="bi bi-list"></i></a>
-            <a href="#" id="cartIconSmaller"><i class="bi bi-cart3"></i></a>
+            
+            <a id="cartIconSmaller" href="/cart">
+                <i class="bi bi-cart3"></i> סל קניות
+                <span class="badge bg-primary"><%= cart.length %></span>
+           </a>
+
             <div class="categoryDivVerySmall">
                 <ul>
                     <li id="XforVerySmall"><i onclick="HideCatBarVerySmall()" class="bi bi-x-lg"></i></li>

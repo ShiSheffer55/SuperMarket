@@ -13,14 +13,21 @@ const ensureAuthenticated = (req, res, next) => {
     if (req.session.user) {
         return next(); // User is authenticated, proceed to the next middleware or route handler
     } else {
-        // req.flash('error_msg', 'Please log in to view this resource');
         return res.redirect('/users/login'); // User is not authenticated, redirect to login page
     }
 };
 
 
+const isUser = (req, res, next) => {
+    if (req.session && req.session.user) {
+        return next();
+    } else {
+        res.redirect('/users/login');
+    }
+};
 
 module.exports = { 
     isAdmin,
-    ensureAuthenticated
+    ensureAuthenticated,
+    isUser
  }; 

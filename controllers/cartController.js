@@ -1,82 +1,79 @@
-const Cart = require('../models/cart');
-const getProductModel = require('../models/product'); // Import the function
+const getProductModel = require('../models/getProductModel');
+const Order = require('../models/order');
 
-// Add item to cart
 const addToCart = async (req, res) => {
-    const { productId, quantity } = req.body;
-    const userId = req.session.user._id;
-    const collectionName = req.session.params;
+    const { productId, quantity, category } = req.body;
+    const productModel = getProductModel(category);
+    console.log(productId); 
+    console.log(category); 
+    console.log(quantity); 
 
-    console.log(collectionName);
     try {
-        const Product = getProductModel(collectionName); // Instantiate the Product model
-        let cart = await Cart.findOne({ user: userId });
-        const product = await Product.findById(productId); // Use the instantiated model
-        const total = product.price * quantity;
+        const product = await productModel.findById(productId);
+        if (!product) {
+            return res.status(404).send('Product not found');
+        }
 
-        if (!cart) {
-            cart = new Cart({
-                user: userId,
-                items: [{ productId, quantity, price: product.price, total }],
-                subTotal: total
-            });
+        if (!req.session.cart) {
+            req.session.cart = [];
+        }
+
+        const cartItemIndex = req.session.cart.findIndex(item => item.productId === productId);
+        if (cartItemIndex > -1) {
+            req.session.cart[cartItemIndex].quantity += parseInt(quantity);
         } else {
-            const itemIndex = cart.items.findIndex(item => item.productId.equals(productId));
-            if (itemIndex > -1) {
-                let item = cart.items[itemIndex];
-                item.quantity += parseInt(quantity);
-                item.total = item.quantity * product.price;
-            } else {
-                cart.items.push({ productId, quantity, price: product.price, total });
-            }
-            cart.subTotal += total;
+            req.session.cart.push({
+                productId: product._id,
+                title: product.title,
+                price: product.price,
+                quantity: parseInt(quantity),
+                img: product.img
+            });
         }
 
-        await cart.save();
         res.redirect('/cart');
     } catch (err) {
-        console.error('Error adding to cart:', err);
+        console.error('Error adding product to cart:', err);
         res.status(500).send('Internal Server Error');
     }
 };
 
-// View cart
-const viewCart = async (req, res) => {
-    const collectionName = req.session.params;
-    const Product = getProductModel(collectionName); // Instantiate the Product model
+const viewCart = (req, res) => {
+    try{
+        res.render('cart', { cart: req.session.cart });
+
+    }catch(err){
+        console.error('Error:', err);
+        res.redirect('/');  
+    }
+};
+
+const checkout = (req, res) => {
+    const cart = req.session.cart || [];
+    if (cart.length === 0) {
+        return res.redirect('/cart');
+    }
+    res.render('checkout', { cart, user: req.session.user });
+};
+
+const placeOrder = async (req, res) => {
+    const cart = req.session.cart || [];
+    if (cart.length === 0) {
+        return res.redirect('/cart');
+    }
 
     try {
-        const cart = await Cart.findOne({ user: req.session.user._id }).populate({
-            path: 'items.productId',
-            model: Product // Use the instantiated model
+        const order = new Order({
+            user: req.session.user._id,
+            products: cart,
+            total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
         });
-        res.render('cart', { cart });
+
+        await order.save();
+        req.session.cart = []; // Clear the cart after placing the order
+        res.redirect('/order/success');
     } catch (err) {
-        console.error('Error fetching cart:', err);
-        res.status(500).send('Internal Server Error');
-    }
-};
-
-// Remove item from cart
-const removeFromCart = async (req, res) => {
-    const { productId } = req.body;
-    const userId = req.session.user._id;
-    const collectionName = req.session.params;
-
-    try {
-        let cart = await Cart.findOne({ user: userId });
-        const itemIndex = cart.items.findIndex(item => item.productId.equals(productId));
-
-        if (itemIndex > -1) {
-            let item = cart.items[itemIndex];
-            cart.subTotal -= item.total;
-            cart.items.splice(itemIndex, 1);
-            await cart.save();
-        }
-
-        res.redirect('/cart');
-    } catch (err) {
-        console.error('Error removing from cart:', err);
+        console.error('Error placing order:', err);
         res.status(500).send('Internal Server Error');
     }
 };
@@ -84,5 +81,6 @@ const removeFromCart = async (req, res) => {
 module.exports = {
     addToCart,
     viewCart,
-    removeFromCart
+    checkout,
+    placeOrder
 };

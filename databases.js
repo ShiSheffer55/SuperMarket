@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const usersMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/users?retryWrites=true&w=majority';
 const productsMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
 const locationsMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/locations?retryWrites=true&w=majority';
+const ordersMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/orders?retryWrites=true&w=majority';
 
 // Create connections
 const usersConnection = mongoose.createConnection(usersMongoURI, {
@@ -17,6 +18,11 @@ const productsConnection = mongoose.createConnection(productsMongoURI, {
 });
 
 const locationsConnection = mongoose.createConnection(locationsMongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+const ordersConnection = mongoose.createConnection(ordersMongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -40,6 +46,10 @@ locationsConnection.on('connected', () => {
     console.log('Locations database connected');
 });
 
+ordersConnection.on('connected', () => {
+    console.log('Orders database connected');
+});
+
 usersConnection.on('error', (err) => {
     console.error('Users database connection error:', err);
 });
@@ -52,8 +62,13 @@ locationsConnection.on('error', (err) => {
     console.error('Locations database connection error:', err);
 });
 
+ordersConnection.on('error', (err) => {
+    console.error('Orders database connection error:', err);
+});
+
 module.exports = {
     usersConnection,
     productsConnection,
-    locationsConnection
+    locationsConnection,
+    ordersConnection
 };

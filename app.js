@@ -40,6 +40,7 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.user = req.session.user || null;
+    res.locals.cart = req.session.cart || [];
     next();
 });
 
@@ -53,7 +54,6 @@ app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
 app.use('/cart', cartRoute);
 app.use('/location', locationsRoute);
-
 
 // Start server
 app.listen(port, () => {

@@ -39,17 +39,17 @@ const getProductsFromCollection = async (req, res) => {
     };
     try {
         const ProductModel = getProductModel(collectionName);
-        console.log(`Fetching products from ${collectionName} collection...`);
         const products = await ProductModel.find().exec();
-        console.log(`${collectionName} products fetched successfully.`);
         const collectionNameHebrew = categoryNames[collectionName];
-
-        res.render('products', { Products: products, collectionName: collectionNameHebrew });
+        const cart = req.session.cart || []; // Or fetch cart from a different source if not using session
+        res.render('products', { Products: products, collectionName: collectionNameHebrew, cart, user: req.session.user });
     } catch (err) {
         console.error(`Error retrieving products from ${collectionName} collection:`, err);
         res.status(500).send('Internal Server Error');
     }
 };
+
+
 
 //only admin: 
 const renderAddProductForm = (req, res) => {

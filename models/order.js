@@ -1,27 +1,35 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { ordersConnection } = require('../databases');
 
-const OrderSchema = new Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+const orderSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
     },
-    cart: { // הפניה למודל ה-Cart
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cart',
-        required: true
+    products: [
+        {
+            productId: { 
+                type: mongoose.Schema.Types.ObjectId, 
+                ref: 'Product', 
+                required: true 
+            },
+
+            title: String,
+            price: Number,
+            quantity: Number,
+            img: String
+        }
+    ],
+    total: { 
+        type: Number, 
+        required: true 
     },
-    subTotal: {
-        type: Number,
-        default: 0
-    },
-    address: {
-        type: String,
-        required: true
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
     }
-}, {
-    timestamps: true
 });
 
-module.exports = mongoose.model('Order', OrderSchema);
+const Order = ordersConnection.model('Order', orderSchema);
+
+module.exports = Order;
