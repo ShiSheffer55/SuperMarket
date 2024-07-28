@@ -76,7 +76,21 @@
                     <td id="i4">מחיר</td>
                 </tr>
                 <tr id="d5">
-                    <td><input type="text" id="category" name="category" class="form-control" required></td>
+                    <td>
+                        <select id="category" name="category" class="form-control" required>
+                            <option value="בשר">בשר</option>
+                            <option value="דגים">דגים</option>
+                            <option value="מוצרי חלב">מוצרי חלב</option>
+                            <option value="פירות">פירות</option>
+                            <option value="ירקות">ירקות</option>
+                            <option value="ניקיון">ניקיון</option>
+                            <option value="יבשים">יבשים</option>
+                            <option value="ממתקים וחטיפים">ממתקים וחטיפים</option>
+                            <option value="משקאות">משקאות</option>
+                            <option value="קפואים">קפואים</option>
+                            <option value="לחמים ומאפים">לחמים ומאפים</option>
+                        </select>
+                    </td>
                     <td id="i5">קטגוריה</td>
                 </tr>
                 <tr id="d6">
@@ -88,8 +102,17 @@
                     <td id="i7">כמות</td>
                 </tr>
                 <tr id="d8">
-                    <td><input type="text" id="sub" name="sub" class="form-control" required></td>
+                    <td><input type="text" id="description" name="sub" class="form-control" ></td>
                     <td id="i8">תיאור</td>
+                </tr>
+                <tr id="d9">
+                    <td>
+                        <select id="recommended" name="recommended" class="form-control" required>
+                            <option value="כן">כן</option>
+                            <option value="לא">לא</option>
+                        </select>
+                    </td>
+                    <td id="i9">האם מומלץ</td>
                 </tr>
             </tbody>
         </table>
