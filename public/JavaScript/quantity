@@ -6,3 +6,4 @@
         if (value < parseInt(input.min, 10)) value = input.min;
         if (value > parseInt(input.max, 10)) value = input.max;
         input.value = value;
+    }

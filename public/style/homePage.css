@@ -52,29 +52,32 @@
   align-items: center;
 }
 .custom-input {
-  width: 80px;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  width: 30%;
+  padding: 3%;
+  font-size: large;
   text-align: center;
   position: relative;
   transition: border-color 0.3s ease;
+  margin-left: 18.5%;
+  margin-top: 4%;
 }
 .custom-input:focus {
-  border-color: #007bff;
+  border-color: rgb(219, 253, 224);
   outline: none;
 }
 .custom-input-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 18px;
-  cursor: pointer;
+  color: black;
+  font-size: large;
+  position: relative;
+  margin-left: 0%;
+  background-color: rgb(219, 253, 224);
+  border: solid;
+  width: 3%;
+  border-color: rgba(25, 134, 98, 0.986);
+  border-width: 0.3mm;
+
 }
 .custom-input-button:hover {
-  background-color: #0056b3;
+  background-color: rgb(219, 253, 224);
 }
 
