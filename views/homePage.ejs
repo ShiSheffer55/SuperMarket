@@ -77,8 +77,8 @@
                                     <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
                                 </div>        
                                 <div class="reset-container">
-                                    <a href="#" class="reset-link" onclick="resetQuantity(); return false;">איפוס כמות</a>
-                                </div>                        
+                                    <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
+                                </div>                  
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
