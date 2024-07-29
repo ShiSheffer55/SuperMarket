@@ -163,10 +163,10 @@ const updateProduct = async (req, res) => {
         });
 
         await newProduct.save();
-        res.redirect('/admin/products?success=Product updated successfully');
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error updating product:', err);
-        res.redirect(`/admin/products/edit/${collectionName}/${id}?error=Failed to update product`);
+        res.redirect(`/${collectionName}/${id}?error=Failed to update product`);
     }
 };
 
