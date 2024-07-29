@@ -11,7 +11,7 @@ const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
-const locationsRoute = require('./routes/location'); // Import locations route
+const locationsRoute = require('./routes/location'); 
 const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
 
 const app = express();

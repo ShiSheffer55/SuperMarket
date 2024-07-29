@@ -178,10 +178,10 @@ const deleteProduct = async (req, res) => {
     const Product = getProductModel(collectionName);
     try {
         await Product.findByIdAndDelete(id);
-        res.redirect('/admin/products?success=Product deleted successfully');
+        res.redirect('/admin?success=Product deleted successfully');
     } catch (err) {
         console.error('Error deleting product:', err);
-        res.redirect('/admin/products?error=Failed to delete product');
+        res.redirect('/admin?error=Failed to delete product');
     }
 };
 
