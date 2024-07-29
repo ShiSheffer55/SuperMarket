@@ -10,22 +10,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/style/header.css">
     <link rel="stylesheet" href="/style/register.css">
-
 </head>
 
 <body>
 
     <%- include('partials/header') %>
 <br><br>
-    
+<% if (error) { %>
+    <div class="alert alert-danger hidden">
+        <%= error %>
+    </div>
+<% } %>
 
-    <% if (error) { %>
-        <div class="alert alert-danger">
-            <%= error %>
-        </div>
-    <% } %>
-
-    
     <div class="container">
         <div class="login-box">
             <h2> &#9734;  הרשמה &#9734;</h2>
@@ -64,6 +60,7 @@
         </div>
       
     </div>
+
      <img id="register-image" src="/img/register.png"/> 
     <script src="/views/script.js"> </script>
     <script src="/JavaScript/categoryBar.js"></script>
