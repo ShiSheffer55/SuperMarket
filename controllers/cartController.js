@@ -63,7 +63,7 @@ const placeOrder = async (req, res) => {
 
         await order.save();
         req.session.cart = []; // Clear the cart after placing the order
-        res.redirect('/order/success');
+        res.render('orderSuccess');
     } catch (err) {
         console.error('Error placing order:', err);
         res.status(500).send('Internal Server Error');
