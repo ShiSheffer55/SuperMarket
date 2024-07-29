@@ -38,7 +38,8 @@
                         <form class="add-to-cart-form" action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= Product._id %>">
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
-                            <input type="number" name="quantity" value="1" min="1">
+                            <label for="quantity">:בחר כמות</label>
+                            <br>
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
