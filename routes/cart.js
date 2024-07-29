@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const cartController = require('../controllers/cartController');
-const passController = require('../controllers/passController');
+const { isUser } = require('../controllers/passController');
+const { isAdmin } = require('../controllers/passController');
 
-// Add item to cart
-router.post('/add', passController.ensureAuthenticated, cartController.addToCart);
 
-// View cart
-router.get('/', passController.ensureAuthenticated, cartController.viewCart);
-
-// Remove item from cart
-router.post('/remove', passController.ensureAuthenticated, cartController.removeFromCart);
+// Ensure these routes match what you expect for the cart functionality
+router.post('/add', isUser, cartController.addToCart);
+router.get('/', isUser, cartController.viewCart);
+router.get('/checkout', isUser, cartController.checkout);
+router.post('/place-order', isUser, cartController.placeOrder);
 
 module.exports = router;

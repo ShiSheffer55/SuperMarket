@@ -27,7 +27,7 @@
                     <td>
                         <ul>
                             <% order.products.forEach(product => { %>
-                                <li><%= product.title %> x <%=product.quantity %> - ₪<%= product.price * product.quantity%></li>
+                                <li><%= product.title %> - ₪<%= product.price %></li>
                             <% }) %>
                         </ul>
                     </td>

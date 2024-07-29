@@ -1,5 +1,19 @@
+const mongoose = require('mongoose');
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
+const categoryMap = {
+    'בשר': 'meat',
+    'דגים': 'fish',
+    'מוצרי חלב': 'milk',
+    'פירות': 'fruits',
+    'ירקות': 'vegetables',
+    'ניקיון': 'cleanliness',
+    'יבשים': 'dry',
+    'ממתקים וחטיפים': 'sweets and snacks',
+    'משקאות': 'drinks',
+    'קפואים': 'frozen',
+    'לחמים ומאפים': 'Bread and pastries'
+};
 
 const getRecommendedProducts = async (req, res) => {
     try {
@@ -10,6 +24,10 @@ const getRecommendedProducts = async (req, res) => {
             const collection = await getProductModel(collectionName);
             const foundProducts = await collection.find({ recommended: true }).exec();
             console.log(`Found ${foundProducts.length} products in ${collectionName}`);
+
+            // Attach the collection name to each product
+            foundProducts.forEach(product => product.collectionName = collectionName);
+
             recommendedProducts = recommendedProducts.concat(foundProducts);
         }
 
@@ -21,7 +39,6 @@ const getRecommendedProducts = async (req, res) => {
     }
 };
 
-// Get products from a specific collection
 const getProductsFromCollection = async (req, res) => {
     const { collectionName } = req.params;
     const categoryNames = {
@@ -39,43 +56,59 @@ const getProductsFromCollection = async (req, res) => {
     };
     try {
         const ProductModel = getProductModel(collectionName);
-        console.log(`Fetching products from ${collectionName} collection...`);
         const products = await ProductModel.find().exec();
-        console.log(`${collectionName} products fetched successfully.`);
         const collectionNameHebrew = categoryNames[collectionName];
 
-        res.render('products', { Products: products, collectionName: collectionNameHebrew });
+        // Attach the collection name to each product
+        products.forEach(product => {
+            product.collectionName = collectionName;
+        });
+
+        const cart = req.session.cart || []; // Or fetch cart from a different source if not using session
+        res.render('products', { Products: products, collectionName: collectionName,collectionNameHebrew: collectionNameHebrew, cart, user: req.session.user });
     } catch (err) {
         console.error(`Error retrieving products from ${collectionName} collection:`, err);
         res.status(500).send('Internal Server Error');
     }
 };
 
+
+
 //only admin: 
 const renderAddProductForm = (req, res) => {
     res.render('admin/addProduct', { user: req.session.user });
 };
 
+//working
 const addProduct = async (req, res) => {
-    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
-    const Product = getProductModel(category); // Adjusted to get the correct model
+    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
+    console.log('category:', category);
+console.log(collectionName);
+console.log(category);
+    if (!collectionName) {
+        return res.status(400).send('Invalid category');
+    }
+
+    const isRecommended = recommended === 'כן'; // Convert "כן" to true and "לא" to false
+
     try {
+        const Product = getProductModel(collectionName); // Get the correct model based on the collection name
         const newProduct = new Product({
             title,
             img,
             name,
             price,
-            category,
-            description,
+            sub,
             supplier,
             amount,
-            recommended
+            recommended: isRecommended 
         });
         await newProduct.save();
-        res.redirect(`/admin/${category}`); // Redirect back to the collection page
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error adding product:', err);
-        res.redirect(`/admin/${category}?error=Failed to add product`);
+        res.redirect(`/${collectionName}?error=Failed to add product`);
     }
 };
 
@@ -87,45 +120,68 @@ const renderEditProductForm = async (req, res) => {
         if (!product) {
             return res.redirect('/admin/products?error=Product not found');
         }
-        res.render('admin/productsEdit', { product, user: req.session.user });
+        res.render('productsEdit', {
+            product,
+            user: req.session.user,
+            categoryMap, // העברת categoryMap לתצוגה
+            collectionName // הוסף את collectionName להצגה
+        });
     } catch (err) {
         console.error('Error fetching product:', err);
         res.redirect('/admin/products?error=Failed to fetch product');
     }
 };
 
+//working
 const updateProduct = async (req, res) => {
     const { collectionName, id } = req.params;
-    const { title, img, name, price, category, description, supplier, amount, recommended } = req.body;
+    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const isRecommended = recommended === 'כן';
+
+    console.log('collectionName:', collectionName);
+    console.log('category:', category);
+    const Category = categoryMap[category];
     const Product = getProductModel(collectionName);
+    console.log('Product:', Product);
+
+    // קבל את המודל הנוכחי
     try {
-        await Product.findByIdAndUpdate(id, {
+        // מחק את המוצר מהקטגוריה הנוכחית
+        await Product.findByIdAndDelete(id);
+
+        // עדכן את המידע בקטגוריה החדשה
+        const NewProductModel = getProductModel(Category);
+        const newProduct = new NewProductModel({
             title,
             img,
             name,
             price,
-            category,
-            description,
+            sub,
             supplier,
             amount,
-            recommended
+            recommended: isRecommended
         });
-        res.redirect('/admin/products?success=Product updated successfully');
+
+        await newProduct.save();
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error updating product:', err);
-        res.redirect(`/admin/products/edit/${collectionName}/${id}?error=Failed to update product`);
+        res.redirect(`/${collectionName}/${id}?error=Failed to update product`);
     }
 };
 
+
+
 const deleteProduct = async (req, res) => {
     const { collectionName, id } = req.params;
+    console.log(collectionName)
     const Product = getProductModel(collectionName);
     try {
         await Product.findByIdAndDelete(id);
-        res.redirect('/admin/products?success=Product deleted successfully');
+        res.redirect('/admin?success=Product deleted successfully');
     } catch (err) {
         console.error('Error deleting product:', err);
-        res.redirect('/admin/products?error=Failed to delete product');
+        res.redirect('/admin?error=Failed to delete product');
     }
 };
 
@@ -139,5 +195,5 @@ module.exports = {
     addProduct,
     renderEditProductForm,
     updateProduct,
-    deleteProduct,
+    deleteProduct
 };

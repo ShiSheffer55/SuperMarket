@@ -1,4 +1,4 @@
-const Location = require('../models/location'); // Assuming you have a Location model
+const Location = require('../models/location'); 
 
 // Fetch all locations
 const getLocations = async (req, res) => {

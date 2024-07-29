@@ -11,7 +11,7 @@ const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
-const locationsRoute = require('./routes/location'); // Import locations route
+const locationsRoute = require('./routes/location'); 
 const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
 
 const app = express();
@@ -40,6 +40,7 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.user = req.session.user || null;
+    res.locals.cart = req.session.cart || [];
     next();
 });
 
@@ -47,13 +48,12 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.use('/admin', adminRoute);
+app.use('/cart', cartRoute);
 app.use('/search', searchRoute);
 app.use('/', productsRoute);
-app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
-app.use('/cart', cartRoute);
 app.use('/location', locationsRoute);
-
 
 // Start server
 app.listen(port, () => {

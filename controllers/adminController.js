@@ -41,9 +41,13 @@ const renderAdminOrders = async (req, res) => {
     } catch (err) {
         console.error('Error fetching orders:', err);
         req.flash('error_msg', 'Failed to fetch orders');
-        res.redirect('/admin/dashboard');  // Ensure the redirection path is correct
+        res.redirect('/admin/dashboard');
     }
 };
+
+
+
+
 
 module.exports = {
     showAdminDashboard,

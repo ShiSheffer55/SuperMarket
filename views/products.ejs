@@ -18,8 +18,14 @@
         <a href="/admin/products/add">Add New Product</a>
     <% } %>
 
+    
     <br><br>
-    <h1 id="collectionName">&#10044 <%= collectionName %> &#10044</h1> <%- include('partials/filters') %>
+    <h1 id="collectionName">&#10044 <%= collectionNameHebrew %> &#10044</h1> <%- include('partials/filters') %>
+    
+      
+    
+    
+    
     <main>
         <% Products.forEach(Product => { %>
             <% if (Product.amount > 0) { %>
@@ -29,15 +35,27 @@
                         <h5 class="card-title"><%= Product.title %></h5>
                         <p class="card-text"><%= Product.sub %></p>
                         <p>₪ <%= Product.price %></p>
-                        <form action="/cart/add" method="POST">
+                        <form class="add-to-cart-form" action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= Product._id %>">
-                            <input type="number" name="quantity" value="1" min="1">
+                            <input type="hidden" name="category" value="<%= Product.collectionName %>">
+                            <label for="quantity">:בחר כמות</label>
+                            <br>
+                            <div class="custom-input-container">
+                                <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" value="1" class="custominput">
+                                <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
+                            </div> 
+                            <div class="reset-container">
+                                <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
+                            </div>
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>
                             <div class="actions">
                                 <a href="/admin/products/edit/<%= collectionName %>/<%= Product._id %>">Edit</a>
-                                <a href="/admin/products/delete/<%= collectionName %>/<%= Product._id %>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                <!-- <a href="/admin/products/delete/<%= collectionName %>/<%= Product._id %>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a> -->
+                                <a href="#" onclick="deleteProduct('<%= collectionName %>', '<%= Product._id %>'); return false;">Delete</a>
+
                             </div>
                         <% } %>
                     </div>
@@ -69,7 +87,21 @@
                     <td id="i4">מחיר</td>
                 </tr>
                 <tr id="d5">
-                    <td><input type="text" id="category" name="category" class="form-control" required></td>
+                    <td>
+                        <select id="category" name="category" class="form-control" required>
+                            <option value="בשר">בשר</option>
+                            <option value="דגים">דגים</option>
+                            <option value="מוצרי חלב">מוצרי חלב</option>
+                            <option value="פירות">פירות</option>
+                            <option value="ירקות">ירקות</option>
+                            <option value="ניקיון">ניקיון</option>
+                            <option value="יבשים">יבשים</option>
+                            <option value="ממתקים וחטיפים">ממתקים וחטיפים</option>
+                            <option value="משקאות">משקאות</option>
+                            <option value="קפואים">קפואים</option>
+                            <option value="לחמים ומאפים">לחמים ומאפים</option>
+                        </select>
+                    </td>
                     <td id="i5">קטגוריה</td>
                 </tr>
                 <tr id="d6">
@@ -81,8 +113,17 @@
                     <td id="i7">כמות</td>
                 </tr>
                 <tr id="d8">
-                    <td><input type="text" id="sub" name="sub" class="form-control" required></td>
+                    <td><input type="text" id="description" name="sub" class="form-control" ></td>
                     <td id="i8">תיאור</td>
+                </tr>
+                <tr id="d9">
+                    <td>
+                        <select id="recommended" name="recommended" class="form-control" required>
+                            <option value="כן">כן</option>
+                            <option value="לא">לא</option>
+                        </select>
+                    </td>
+                    <td id="i9">האם מומלץ</td>
                 </tr>
             </tbody>
         </table>
@@ -94,5 +135,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="JavaScript/categoryBar.js"></script>
+    <script src="JavaScript/products.js"></script>
+    <script src="JavaScript/deleteProduct.js"></script>
+    <script src="JavaScript/quantity.js"></script>
 </body>
 </html>

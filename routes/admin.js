@@ -28,7 +28,7 @@ router.get('/products/add', isAdmin, productsController.renderAddProductForm);
 router.post('/products/add', isAdmin, productsController.addProduct);
 router.get('/products/edit/:collectionName/:id', isAdmin, productsController.renderEditProductForm);
 router.post('/products/edit/:collectionName/:id', isAdmin, productsController.updateProduct);
-router.post('/products/delete/:collectionName/:id', isAdmin, productsController.deleteProduct);
+router.delete('/products/delete/:collectionName/:id', isAdmin, productsController.deleteProduct);
 router.get('/:collectionName', isAdmin, productsController.getProductsFromCollection);
 
 
