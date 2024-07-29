@@ -10,7 +10,8 @@ function changeQuantity(button, increment) {
     }
   }
 
-  function resetQuantity() {
-    console.log("Reset Quantity function called");
-    document.getElementById('quantity').value = 1;
-  }
+  function resetQuantity(reset) {
+        const container = span.closest('.card-body').querySelector('.custom-input-container');
+        const input = container.querySelector('.custom-input');
+        input.value = 1;
+    }
