@@ -9,4 +9,8 @@ function changeQuantity(button, increment) {
       input.value = newValue;
     }
   }
-  
+
+  function resetQuantity() {
+    console.log("Reset Quantity function called"); 
+    document.getElementById('quantity').value = 1;
+    }
