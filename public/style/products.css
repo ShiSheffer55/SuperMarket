@@ -42,7 +42,7 @@ main {
     position: relative;
     margin: 2%;
     width: 20rem;
-    height: 40em;
+    height: 42em;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -106,7 +106,7 @@ main {
 
 #T1 {
     position: relative;
-    margin-left: 36.5%;
+    margin-left: 38%;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -114,13 +114,16 @@ main {
 
 #simple {
     position: relative;
-    margin-left: 37%;
+    margin-left: 34%;
     border-style: solid;
     border-color: rgb(219, 253, 224);
-    width: 22%;
+    width: 30%;
 }
+#but:hover{
+    background-color: rgba(163, 223, 172, 0.863); 
+  }
 
-#i1, #i2, #i3, #i4, #i5, #i7, #i8, #i9, #i10 {
+#i1, #i2, #i3, #i4, #i5, #i7, #i6, #i8, #i9, #i10 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size: large;
@@ -129,7 +132,7 @@ main {
 
 #but {
     position: relative;
-    margin-left: 45%;
+    margin-left: 46%;
     border-radius: 8px;
     background-color: rgba(197, 231, 202, 0.822);
     color: rgba(25, 134, 98, 0.986);
@@ -140,6 +143,11 @@ main {
 
 #d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 , #d9{
     box-align: center;
+    
+}
+#title,#img,#name,#price,#category,#supplier,#amount,#description,#recommended
+{
+  text-align: right;
 }
 .custom-input-container {
     display: flex;
