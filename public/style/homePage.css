@@ -46,6 +46,7 @@
     font-family: 'Rubik';
     font-weight: 100;
     color: rgb(0, 0, 0);
+    text-align: center;
 }
 .custom-input-container {
   display: flex;
