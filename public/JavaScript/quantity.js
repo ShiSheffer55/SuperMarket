@@ -13,4 +13,4 @@ function changeQuantity(button, increment) {
   function resetQuantity() {
     console.log("Reset Quantity function called");
     document.getElementById('quantity').value = 1;
-  }
+    }
