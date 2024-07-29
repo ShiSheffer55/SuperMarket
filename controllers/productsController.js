@@ -105,10 +105,10 @@ console.log(category);
             recommended: isRecommended 
         });
         await newProduct.save();
-        res.redirect(`/admin/${collectionName}`); // Redirect back to the collection page
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error adding product:', err);
-        res.redirect(`/admin/${collectionName}?error=Failed to add product`);
+        res.redirect(`/${collectionName}?error=Failed to add product`);
     }
 };
 
