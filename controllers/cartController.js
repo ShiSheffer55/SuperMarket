@@ -70,9 +70,21 @@ const placeOrder = async (req, res) => {
     }
 };
 
+
+const getOrderHistory = async (req, res) => {
+    try {
+        const orders = await Order.find().populate('userId').populate('products.productId').exec();
+        res.render('orderHistory', { orders });
+    } catch (err) {
+        console.error('Error fetching order history:', err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports = {
     addToCart,
     viewCart,
     checkout,
-    placeOrder
+    placeOrder,
+    getOrderHistory
 };

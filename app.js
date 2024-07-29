@@ -48,10 +48,10 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.use('/admin', adminRoute);
 app.use('/cart', cartRoute);
 app.use('/search', searchRoute);
 app.use('/', productsRoute);
-app.use('/admin', adminRoute);
 app.use('/users', usersRoute);
 app.use('/location', locationsRoute);
 

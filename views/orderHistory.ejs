@@ -1,0 +1,43 @@
+<!-- views/orderHistory.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Order History</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Products</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orders.forEach(order => { %>
+                <tr>
+                    <td><%= order._id %></td>
+                    <td><%= order.userId.username %></td>
+                    <td>
+                        <ul>
+                            <% order.products.forEach(product => { %>
+                                <li><%= product.productId.name %> (x<%= product.quantity %>) - ₪<%= product.price %></li>
+                            <% }); %>
+                        </ul>
+                    </td>
+                    <td>₪<%= order.total %></td>
+                    <td><%= order.status %></td>
+                    <td><%= order.createdAt.toDateString() %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

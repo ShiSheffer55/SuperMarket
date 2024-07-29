@@ -18,8 +18,14 @@
         <a href="/admin/products/add">Add New Product</a>
     <% } %>
 
+    
     <br><br>
     <h1 id="collectionName">&#10044 <%= collectionName %> &#10044</h1> <%- include('partials/filters') %>
+    
+      
+    
+    
+    
     <main>
         <% Products.forEach(Product => { %>
             <% if (Product.amount > 0) { %>
@@ -29,7 +35,7 @@
                         <h5 class="card-title"><%= Product.title %></h5>
                         <p class="card-text"><%= Product.sub %></p>
                         <p>₪ <%= Product.price %></p>
-                        <form action="/cart/add" method="POST">
+                        <form class="add-to-cart-form" action="/cart/add" method="POST">
                             <input type="hidden" name="productId" value="<%= Product._id %>">
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
                             <input type="number" name="quantity" value="1" min="1">
@@ -95,5 +101,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="JavaScript/categoryBar.js"></script>
+    <script src="JavaScript/products.js"></script>
 </body>
 </html>

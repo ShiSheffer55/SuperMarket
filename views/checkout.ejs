@@ -14,12 +14,13 @@
             <% cart.forEach(item => { %>
                 <li>
                     <img src="<%= item.img %>" alt="<%= item.title %>" width="50">
-                    <strong><%= item.title %></strong> - $<%= item.price %> x <%= item.quantity %>
+                    <strong><%= item.title %></strong> - <%= item.price %>₪ x <%= item.quantity %>
                 </li>
             <% }); %>
         </ul>
-        <p>Total: $<%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0) %></p>
-        <form action="/cart/checkout" method="POST">
+        <p>Total: <%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0) %>₪</p>
+        
+        <form action="/cart//place-order" method="POST">
             <button type="submit">Place Order</button>
         </form>
     <% } %>

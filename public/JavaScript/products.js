@@ -1,25 +1,29 @@
-document.getElementById('AddtoCart').addEventListener('click', function() {
-    const productId = this.getAttribute('data-product-id');
+//  document.addEventListener('DOMContentLoaded', function() {
+//         const forms = document.querySelectorAll('.add-to-cart-form');
 
-    fetch('/cart/add', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ productId })
-    })
-    .then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-        } else {
-            return response.json();
-        }
-    })
-    .then(data => {
-        console.log(data);
-        // Handle success or error messages
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+//         forms.forEach(form => {
+//             form.addEventListener('submit', function(event) {
+//                 event.preventDefault();
+                
+//                 const formData = new FormData(this);
+                
+//                 fetch(this.action, {
+//                     method: 'POST',
+//                     body: formData,
+//                 })
+//                 .then(response => response.json())
+//                 .then(data => {
+//                     if (data.success) {
+//                         // Update cart UI dynamically here
+//                         alert('Product added to cart successfully!');
+//                     } else {
+//                         alert('Failed to add product to cart.');
+//                     }
+//                 })
+//                 .catch(error => {
+//                     console.error('Error:', error);
+//                 });
+//             });
+//         });
+//     });
+
