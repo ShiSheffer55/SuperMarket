@@ -21,7 +21,6 @@ router.get('/users/search', isAdmin, usersController.searchUsers);
 
 // Manage Orders
 router.get('/orders', isAdmin, adminController.renderAdminOrders);
-router.get('/order-history',isAdmin, adminController.getOrderHistory);
 
 
 // Manage Products

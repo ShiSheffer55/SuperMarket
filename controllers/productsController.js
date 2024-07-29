@@ -105,10 +105,10 @@ console.log(category);
             recommended: isRecommended 
         });
         await newProduct.save();
-        res.redirect(`/admin/${collectionName}`); // Redirect back to the collection page
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error adding product:', err);
-        res.redirect(`/admin/${collectionName}?error=Failed to add product`);
+        res.redirect(`/${collectionName}?error=Failed to add product`);
     }
 };
 
@@ -163,10 +163,10 @@ const updateProduct = async (req, res) => {
         });
 
         await newProduct.save();
-        res.redirect('/admin/products?success=Product updated successfully');
+        res.redirect(`/${collectionName}`); // Redirect back to the collection page
     } catch (err) {
         console.error('Error updating product:', err);
-        res.redirect(`/admin/products/edit/${collectionName}/${id}?error=Failed to update product`);
+        res.redirect(`/${collectionName}/${id}?error=Failed to update product`);
     }
 };
 
@@ -178,10 +178,10 @@ const deleteProduct = async (req, res) => {
     const Product = getProductModel(collectionName);
     try {
         await Product.findByIdAndDelete(id);
-        res.redirect('/admin/products?success=Product deleted successfully');
+        res.redirect('/admin?success=Product deleted successfully');
     } catch (err) {
         console.error('Error deleting product:', err);
-        res.redirect('/admin/products?error=Failed to delete product');
+        res.redirect('/admin?error=Failed to delete product');
     }
 };
 

@@ -17,6 +17,7 @@
             </li>
         </ul>
     </nav>
+    <form action="/products/filter" method="get">
     <div class="categoryFilter" id="filterBar">
         <ul>
             <li>
@@ -28,7 +29,7 @@
             </li>
             <li>
                 <label>
-                    <input type="checkbox" name="vegan" id="vegan">
+                    <input type="checkbox" name="organic" id="organic">
                     מוצרים אורגניים
                 </label>
             </li>
@@ -41,6 +42,7 @@
         </ul>
         <button onclick="applyFilters()">הצגת תוצאות</button>
     </div>
+</form>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const { ordersConnection } = require('../databases');
 
 const orderSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, 
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true 
     },
@@ -13,7 +14,6 @@ const orderSchema = new mongoose.Schema({
                 ref: 'Product', 
                 required: true 
             },
-
             title: String,
             price: Number,
             quantity: Number,

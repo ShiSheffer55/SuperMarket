@@ -1,11 +1,10 @@
-<!-- views/orderHistory.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/style/orderHistory.css">
 </head>
 <body>
     <h1>Order History</h1>
@@ -24,22 +23,19 @@
             <% orders.forEach(order => { %>
                 <tr>
                     <td><%= order._id %></td>
-                    <td>
-                        <p>Name: <%= order.user.name %></p>
-                        <p>Email: <%= order.user.email %></p>
-                    </td>
+                    <td>Name: <%= order.user.fName %> <%= order.user.lName %><br>Email: <%= order.user.gmail %></td>
                     <td>
                         <ul>
                             <% order.products.forEach(product => { %>
-                                <li><%= product.title %> (x<%= product.quantity %>) - ₪<%= product.price %></li>
-                            <% }); %>
+                                <li><%= product.title %> - ₪<%= product.price %></li>
+                            <% }) %>
                         </ul>
                     </td>
                     <td>₪<%= order.total %></td>
-                    <td><%= order.status %></td>
+                    <td><%= order.status || 'N/A' %></td>
                     <td><%= order.createdAt.toDateString() %></td>
                 </tr>
-            <% }); %>
+            <% }) %>
         </tbody>
     </table>
 </body>

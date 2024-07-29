@@ -12,4 +12,8 @@ router.get('/', getRecommendedProducts);
 router.get('/:collectionName', getProductsFromCollection);
 
 
+const filtersController = require('../controllers/filtersController');
+router.get('/filter', filtersController.filterProducts);
+
+
 module.exports = router;

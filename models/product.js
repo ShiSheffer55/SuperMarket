@@ -32,7 +32,15 @@ const ProductSchema = new mongoose.Schema({
     },
     recommended: { 
         type: Boolean, 
-       default:false }
+       default:false },
+
+       
+    organic: {
+        type: Boolean
+    },
+    parve: {
+        type: Boolean
+    }
 });
 
 
