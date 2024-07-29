@@ -73,7 +73,7 @@
                                 <br>
                                 <div class="custom-input-container">
                                     <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
-                                    <input type="number" id="quantity" name="quantity" min="1" max="100" value="1" class="custominput">
+                                    <input type="number" id="quantity" name="quantity" min="1"  max="<%=parseInt(product.amount%>)" value="1" class="custominput">
                                     <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
                                 </div>        
                                 <div class="reset-container">
