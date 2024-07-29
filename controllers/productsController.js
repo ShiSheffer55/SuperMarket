@@ -147,8 +147,8 @@ const updateProduct = async (req, res) => {
     const currentCategory = categoryMap[collectionName];
     const Product = getProductModel(currentCategory);
     console.log('categoryMap:', categoryMap);
-console.log('collectionName:', collectionName);
-console.log('Model name:', categoryMap[collectionName]);
+    console.log('collectionName:', collectionName);
+    console.log('Model name:', categoryMap[collectionName]);
     try {
         // מחק את המוצר מהקטגוריה הנוכחית
         await Product.findByIdAndRemove(id);

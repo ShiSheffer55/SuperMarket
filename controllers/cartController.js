@@ -72,13 +72,23 @@ const placeOrder = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const orders = await Order.find().populate('userId').populate('products.productId').exec();
-        res.render('orderHistory', { orders });
+        let orders;
+        
+        if (req.session.user && req.session.user.role === 'admin') {
+            orders = await Order.find().populate('user').populate('products.productId').exec();
+        } else {
+            orders = await Order.find({ user: req.session.user._id }).populate('user').populate('products.productId').exec();
+        }
+        
+        res.render('orderHistory', { orders, user: req.session.user });
     } catch (err) {
         console.error('Error fetching order history:', err);
         res.status(500).send('Internal Server Error');
     }
 };
+
+
+
 
 module.exports = {
     addToCart,
