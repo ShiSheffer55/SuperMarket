@@ -39,16 +39,25 @@ const getProductModel = require('../models/product');
 const Product = require('../models/product');
 
 exports.filterProducts = async (req, res) => {
-    const { minPrice, maxPrice } = req.query;
+    const { minPrice, maxPrice, organic, parve } = req.query;
+
+    let filter = {
+        price: {
+            $gte: parseFloat(minPrice),
+            $lte: parseFloat(maxPrice)
+        }
+    };
+
+    // if (organic === 'true') {
+    //     filter.organic = true;
+    // }
+
+    // if (parve === 'true') {
+    //     filter.parve = true;
+    // }
 
     try {
-        const products = await Product.find({
-            price: {
-                $gte: parseFloat(minPrice),
-                $lte: parseFloat(maxPrice)
-            }
-        });
-
+        const products = await Product.find(filter);
         res.json({ products });
     } catch (err) {
         console.error('Error fetching products:', err);
