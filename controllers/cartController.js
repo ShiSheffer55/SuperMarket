@@ -70,7 +70,6 @@ const placeOrder = async (req, res) => {
     }
 };
 
-
 const getOrderHistory = async (req, res) => {
     try {
         const orders = await Order.find().populate('userId').populate('products.productId').exec();

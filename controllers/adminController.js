@@ -45,9 +45,14 @@ const renderAdminOrders = async (req, res) => {
     }
 };
 
+const getOrderHistory = async (req, res) => {
+    res.render('orderHistory', { orders, user: req.session.user });
+};
+
 module.exports = {
     showAdminDashboard,
     renderAdminProducts,
     renderAdminUsers,
-    renderAdminOrders
+    renderAdminOrders, 
+    getOrderHistory
 };

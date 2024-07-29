@@ -10,6 +10,5 @@ router.post('/add', isUser, cartController.addToCart);
 router.get('/', isUser, cartController.viewCart);
 router.get('/checkout', isUser, cartController.checkout);
 router.post('/place-order', isUser, cartController.placeOrder);
-router.get('/order-history', isAdmin, cartController.getOrderHistory);
 
 module.exports = router;
