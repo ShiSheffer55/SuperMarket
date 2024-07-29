@@ -52,10 +52,15 @@ const registerUser = async (req, res) => {
         // Save the new user to the database
         await newUser.save();
 
-        // Redirect to the login page with a success message
-        res.render('login', {
-            success: 'You are now registered and can log in'
-        });
+        // Set session for the new user
+        req.session.user = {
+            _id: newUser._id,
+            userName: newUser.userName,
+            role: newUser.role
+        };
+
+        // Redirect to the home page or any other page you want
+        res.redirect('/');
     } catch (err) {
         // Render the registration page with a generic error message
         res.render('register', {
