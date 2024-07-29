@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { productsConnection } = require('../databases');
+const { type } = require('os');
 
 const ProductSchema = new mongoose.Schema({
     title: {
@@ -40,6 +41,12 @@ const ProductSchema = new mongoose.Schema({
     },
     parve: {
         type: Boolean
+    },
+    minPrice:{
+        type:Number
+    },
+    maxPrice:{
+        type:Number
     }
 });
 

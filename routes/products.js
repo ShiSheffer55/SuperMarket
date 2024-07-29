@@ -17,3 +17,6 @@ router.get('/filter', filtersController.filterProducts);
 
 
 module.exports = router;
+
+
+
