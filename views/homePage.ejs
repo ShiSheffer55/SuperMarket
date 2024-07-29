@@ -72,10 +72,10 @@
                                 <label for="quantity">:בחר כמות</label>
                                 <br>
                                 <div class="custom-input-container">
-                                    <button type="button" class="custom-input-button" onclick="changeQuantity(this, -1)">-</button>
-                                    <input type="number" id="quantity" name="quantity" min="1" max="<%= parseInt(product.amount) %>" value="1" class="custom-input">
+                                    <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="100" value="1" class="custom-input">
                                     <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
-                                </div>
+                                </div>                                
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
                         <% if (user && user.role === 'admin') { %>

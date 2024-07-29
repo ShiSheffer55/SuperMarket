@@ -47,37 +47,61 @@
     font-weight: 100;
     color: rgb(0, 0, 0);
 }
-/* .custom-input-container {
+.custom-input-container {
   display: flex;
-  align-items: center;
+  align-items: center; 
+  justify-content: center;  
 }
-.custom-input {
-  width: 30%;
-  padding: 3%;
-  font-size: large;
-  text-align: center;
-  position: relative;
-  transition: border-color 0.3s ease;
-  margin-left: 18.5%;
+
+.custom-input-button1, .custom-input-button {
+  width: 10%; 
+  height: 37px; 
+  font-size: x-large; 
+  color: black;
+  background-color: rgb(219, 253, 224);
+  border: solid;
+  border-width: 0.3mm;
+  border-color: rgba(25, 134, 98, 0.986);
+  border-radius: 10%; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.custom-input-button1 {
+  margin-right: -28%; 
   margin-top: 4%;
+  width: 6%;
+  height: 37.6px;
 }
+
+.custom-input-button {
+  margin-left: 0%; 
+  margin-top: 4%;
+  height: 37.6px;
+  width: 6%;
+}
+
+.custom-input {
+  width: 32%;  
+  height: 40px; 
+  padding: 5%; 
+  margin-left: 28%;
+  margin-top: 4%;
+  font-size: large; 
+  text-align: center; 
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+  border-radius: 10%; 
+  transition: border-color 0.3s ease;
+}
+
 .custom-input:focus {
   border-color: rgb(219, 253, 224);
   outline: none;
 }
-.custom-input-button {
-  color: black;
-  font-size: large;
-  position: relative;
-  margin-left: 0%;
-  background-color: rgb(219, 253, 224);
-  border: solid;
-  width: 3%;
-  border-color: rgba(25, 134, 98, 0.986);
-  border-width: 0.3mm;
+.custom-input-button1:hover,
+.custom-input-button:hover{
+    background-color: rgba(163, 223, 172, 0.863); 
+  }
 
-}
-.custom-input-button:hover {
-  background-color: rgb(219, 253, 224);
-}
- */
