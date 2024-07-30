@@ -18,20 +18,6 @@ $(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $(document).ready(function() {
         // Initial fetch of products
         fetchProducts();
