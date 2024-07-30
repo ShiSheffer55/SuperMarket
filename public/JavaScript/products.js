@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
 async function addToCart(event) {
     event.preventDefault(); // Prevent default form submission
 
+
+    const isAuthenticated = document.getElementById('isAuthenticated').value === 'true';
+    if (!isAuthenticated) {
+        window.location.href = '/users/login';
+        return false; // Prevent the form from submitting
+    }
+
     const form = event.target;
     const productId = form.querySelector('input[name="productId"]').value;
     const category = form.querySelector('input[name="category"]').value;
@@ -66,3 +73,5 @@ function updateCartUI(cart) {
         cartItemCount.textContent = cart.length;
     }
 }
+
+
