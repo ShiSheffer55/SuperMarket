@@ -111,6 +111,13 @@ main {
     font-style: italic;
     text-shadow: 60%;
 }
+#T2 {
+  position: relative;
+  margin-left: 40%;
+  font-family: 'Rubik';
+  font-style: italic;
+  text-shadow: 60%;
+}
 
 #simple {
     position: relative;
@@ -231,4 +238,19 @@ main {
     margin-top: 10px; 
     text-align: center; 
 }
-
+#link1
+{
+   color: rgba(25, 134, 98, 0.986);
+   position: relative;
+   margin-left: 43.8%;
+   font-size: large;
+   font-weight: bold;
+}
+#link2
+{
+   color: rgba(25, 134, 98, 0.986);
+   position: relative;
+   margin-left: 43.8%;
+   font-size: large;
+   font-weight: bold;
+}
