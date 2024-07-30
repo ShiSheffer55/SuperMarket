@@ -29,10 +29,11 @@ const addToCart = async (req, res) => {
             });
         }
 
-        res.redirect('/cart');
+       
+        res.status(200).end();
     } catch (err) {
         console.error('Error adding product to cart:', err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).end();
     }
 };
 
@@ -70,6 +71,16 @@ const placeOrder = async (req, res) => {
     }
 };
 
+const emptyCart = async (req, res) => {
+    req.session.cart = [];
+    res.json({ message: 'Cart emptied' });
+}
+
+const removeProductFromCart= async (req, res) => {
+    const productId = req.params.id;
+    cart = cart.filter(item => item._id !== productId);
+    res.json({ message: 'Product removed successfully' });
+};
 
 
 
@@ -78,5 +89,7 @@ module.exports = {
     addToCart,
     viewCart,
     checkout,
-    placeOrder
+    placeOrder, 
+    emptyCart,
+    removeProductFromCart
 };

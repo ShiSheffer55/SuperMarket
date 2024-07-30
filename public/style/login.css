@@ -143,8 +143,13 @@ h2 {
 .hidden {
     display: none;
 }
-#login img{
-    position:absolute;
-    float:right;
-    top:44%;
+#login-img{
+    position: absolute;
+    margin-left: 74%;
+    top:15%;
+}
+#login-pic{
+    position: absolute;
+    float: left;
+    top:52.8%;
 }

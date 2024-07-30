@@ -12,7 +12,7 @@ const adminRoute = require('./routes/admin');
 const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
 const locationsRoute = require('./routes/location'); 
-const profileRoute = require('./routes/profile'); 
+const profileRoute = require('./routes/profile');
 
 
 const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
@@ -51,8 +51,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/admin', adminRoute);
 app.use('/cart', cartRoute);
+app.use('/admin', adminRoute);
 app.use('/profile', profileRoute);
 app.use('/search', searchRoute);
 app.use('/', productsRoute);

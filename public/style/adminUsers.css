@@ -1,0 +1,99 @@
+@font-face 
+  {
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Regular' ;
+  src: url("/fonts/IBMPlexSansHebrew-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Rubik' ;
+  src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+#simple {
+    position: relative;
+    margin-left: 34%;
+    border-style: solid;
+    border-color: rgb(219, 253, 224);
+    width: 30%;
+}
+#T1 {
+    position: relative;
+    margin-left: 38%;
+    font-family: 'Rubik';
+    font-style: italic;
+    text-shadow: 60%;
+    font-weight: normal;
+}
+#Tusers {
+    position: relative;
+    margin-left: 41%;
+    font-family: 'Rubik';
+    font-style: italic;
+    text-shadow: 60%;
+    font-weight: normal;
+}
+#but:hover{
+    background-color: rgba(163, 223, 172, 0.863); 
+  }
+
+#i1, #i2, #i3, #i4, #i5, #i7, #i6, #i8, #i9, #i10 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+}
+
+#but {
+    position: relative;
+    margin-left: 46%;
+    border-radius: 8px;
+    background-color: rgba(197, 231, 202, 0.822);
+    color: rgba(25, 134, 98, 0.986);
+    border: solid;
+    border-color: rgba(25, 134, 98, 0.986);
+    border-width: 0.3mm;
+}
+
+#d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 , #d9{
+    box-align: center;
+    
+}
+#userName,#fName,#lName,#tel,#city,#gmail,#password
+{
+  text-align: right;
+}
+#search-box
+{
+    padding: 0.5%; 
+    font-size: large; 
+    border: 2px solid rgba(197, 231, 202, 0.822) ; 
+    border-radius: 8px;
+    width: 18%; 
+}
+#search-but {
+    padding: 0.5%; /* מרווח פנימי */
+    font-size: large; /* גודל גופן */
+    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+    border-radius: 8px; /* עיגול הפינות */
+    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+    color: black; /* צבע הטקסט */
+    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
+    transition: background-color 0.3s; /* אנימציה על צבע הרקע */
+    color: rgba(25, 134, 98, 0.986);
+    
+}
+
+/* שינוי צבע רקע כשמעבירים את העכבר מעל הכפתור */
+#search-but:hover{
+    background-color: rgba(163, 223, 172, 0.863); 
+  }
