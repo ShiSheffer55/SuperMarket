@@ -148,3 +148,8 @@ h2 {
     margin-left: 74%;
     top:15%;
 }
+#login-pic{
+    position: absolute;
+    float: left;
+    top:52.8%;
+}
