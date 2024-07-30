@@ -13,6 +13,8 @@ const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
 const locationsRoute = require('./routes/location'); 
 const profileRoute = require('./routes/profile'); 
+
+
 const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
 
 const app = express();
