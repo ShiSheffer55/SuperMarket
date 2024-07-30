@@ -82,9 +82,6 @@ const getAverageOrdersPerMonth = async (req, res) => {
 };
 
 
-
-
-
 module.exports = {
     showAdminDashboard,
     renderAdminProducts,

@@ -9,7 +9,13 @@
 
 </head>
 <body>
-    <h1>כל ההזמנות</h1>
+
+
+    <h1>ממוצע חודשי של מספר ההזמנות בשנה</h1>
+    <div id="chart"></div>
+    <div id="alert-container" style="display: none; color: red; font-weight: bold;"></div>
+
+    <h1>כל ההזמנות ( <%= orders.length %> )</h1>
     <table>
         <thead>
             <tr>
@@ -40,9 +46,6 @@
             <% }) %>
         </tbody>
     </table>
-
-    <div id="chart"></div>
-    <div id="alert-container" style="display: none; color: red; font-weight: bold;"></div>
 
 
     <script src="/JavaScript/adminOrders.js"></script>
