@@ -98,17 +98,20 @@ const getManufacturersFromProducts = (products) => {
 
 const searchProducts = async (req, res) => {
     try {
-        const query = req.query.q || '';
+        const query = req.query.q || '';  // חיפוש ראשוני
         const minPrice = parseFloat(req.query.minPrice) || 0;
         const maxPrice = parseFloat(req.query.maxPrice) || Infinity;
         const kashrutFilters = req.query.kashrut || [];
         const manufacturerFilters = req.query.manufacturer || [];
 
+        // הסבה ל-arrays אם הם לא כאלה
         const kashrutFilterArray = Array.isArray(kashrutFilters) ? kashrutFilters : [kashrutFilters];
         const manufacturerFilterArray = Array.isArray(manufacturerFilters) ? manufacturerFilters : [manufacturerFilters];
 
+        // חיפוש מוצרים לפי query
         const products = await searchProductsAcrossCollections(query);
 
+        // פילטרים לפי מחירים, כשרות ויצרן
         const filteredProducts = products.filter(product => {
             const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
             const matchesKashrut = kashrutFilterArray.length === 0 || kashrutFilterArray.includes(product.kashrut);
@@ -116,9 +119,11 @@ const searchProducts = async (req, res) => {
             return matchesPrice && matchesKashrut && matchesManufacturer;
         });
 
+        // קבלת אפשרויות סינון לפי המוצרים המסוננים
         const kashrutOptions = getKashrutOptionsFromProducts(filteredProducts);
         const manufacturers = getManufacturersFromProducts(filteredProducts);
 
+        // שליחת תוצאות לתצוגה
         res.render('searchResult', {
             searchproducts: filteredProducts,
             kashrutOptions: kashrutOptions,
@@ -130,6 +135,5 @@ const searchProducts = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
-
 
 module.exports = { searchProducts };
