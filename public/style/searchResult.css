@@ -12,7 +12,14 @@ font-weight: 100;
   font-style: normal ;
   font-weight: 100;
 }
-
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  z-index: 3;
+  padding: 2%;
+}
 
 h1{
     text-align: right;
@@ -26,3 +33,139 @@ h1{
     margin-right: 2%;
    
 }
+.card {
+  position: relative;
+  margin: 2%;
+  width: 20rem;
+  height: 45em;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+}
+
+.card img {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.card-body {
+  position: relative;
+  text-align: right; /* Align text to the right */
+  z-index: 3;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  font-family: 'Medium';
+  width: 100%; /* Ensure card-body takes full width */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.card-text
+{
+ font-family: 'Regular';
+}
+#AddtoCart {
+  background-color: rgba(197, 231, 202, 0.822);
+  color: rgba(25, 134, 98, 0.986);
+  border: solid;
+  border-color: rgba(25, 134, 98, 0.986);
+  border-width: 0.3mm;
+  margin-top: 6%;
+  width: 100%; /* Ensure button takes full width */
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+#AddtoCart:hover {
+  background-color: rgba(163, 223, 172, 0.863);
+  transition: 0.57s;
+}
+
+
+.card-body a{
+  color: rgba(25, 134, 98, 0.986);   
+
+}
+.card img{
+  width: 85%;
+  margin: 0 auto;
+}
+.actions
+{
+  display: flex;
+  justify-content:space-evenly;
+  margin-top: auto ;
+}
+.custom-input-container {
+  display: flex;
+  align-items: center; 
+  justify-content: center;  
+}
+
+.custom-input-button1, .custom-input-button {
+  width: 10%; 
+  height: 37px; 
+  font-size: x-large; 
+  color: black;
+  background-color: rgb(219, 253, 224);
+  border: solid;
+  border-width: 0.3mm;
+  border-color: rgba(25, 134, 98, 0.986);
+  border-radius: 10%; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.custom-input-button1 {
+  margin-right: -28%; 
+  margin-top: 4%;
+  width: 15%;
+  height: 37.6px;
+}
+
+.custom-input-button {
+  margin-left: 0%; 
+  margin-top: 4%;
+  height: 37.6px;
+  width: 15%;
+}
+
+.custominput {
+  width: 32%;  
+  height: 39px; 
+  padding: 3%; 
+  margin-left: 28%;
+  margin-top: 4%;
+  font-size: large; 
+  text-align: center; 
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+  border-radius: 10%; 
+  transition: border-color 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: rgb(219, 253, 224);
+  outline: none;
+}
+.custom-input-button1:hover,
+.custom-input-button:hover{
+  background-color: rgba(163, 223, 172, 0.863); 
+}
+
+.reset-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: rgb(25, 134, 98); 
+  text-decoration: none; 
+  font-size: 16px;
+  cursor: pointer; 
+  position: relative;
+  margin-top: 0%;
+  transition: color 0.3s ease; 
+}
+
+
