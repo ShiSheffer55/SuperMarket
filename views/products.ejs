@@ -20,7 +20,8 @@
 
     
     <br><br>
-    <h1 id="collectionName">&#10044 <%= collectionNameHebrew %> &#10044</h1> <%- include('partials/filters') %>
+    <h1 id="collectionName">&#10044 <%= collectionNameHebrew %> &#10044</h1> 
+    <%- include('partials/filters') %>
     
       
     
@@ -35,7 +36,7 @@
                         <h5 class="card-title"><%= Product.title %></h5>
                         <p class="card-text"><%= Product.sub %></p>
                         <p>₪ <%= Product.price %></p>
-                        <form class="add-to-cart-form" action="/cart/add" method="POST">
+                        <form class="add-to-cart-form" onsubmit="addToCart(event)">
                             <input type="hidden" name="productId" value="<%= Product._id %>">
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
                             <label for="quantity">:בחר כמות</label>
@@ -50,6 +51,7 @@
                             </div>
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
+                        
                         <% if (user && user.role === 'admin') { %>
                             <div class="actions">
                                 <a href="/admin/products/edit/<%= collectionName %>/<%= Product._id %>">Edit</a>

@@ -29,10 +29,11 @@ const addToCart = async (req, res) => {
             });
         }
 
-        res.redirect('/cart');
+       
+        res.status(200).end();
     } catch (err) {
         console.error('Error adding product to cart:', err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).end();
     }
 };
 
