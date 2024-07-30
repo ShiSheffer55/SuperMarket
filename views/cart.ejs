@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>סל קניות</title>
+    <link rel="stylesheet" href="/style/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMKZ7s5x5s6bIV9wRsJ5hL6NaHrhj6fD9tsh9s0" crossorigin="anonymous">
 </head>
 <body>
     <h1>סל הקניות שלך</h1>
     <% if (cart.length === 0) { %>
-        <p>סל הקניות ריק</p>
+        <p class="empty-cart">סל הקניות ריק</p>
     <% } else { %>
         <table>
             <thead>
@@ -17,21 +19,31 @@
                     <th>מחיר</th>
                     <th>כמות</th>
                     <th>סה"כ</th>
+                    <th>מחיקה</th>
                 </tr>
             </thead>
             <tbody>
                 <% cart.forEach(item => { %>
                     <tr>
                         <td><%= item.title %></td>
-                        <td><%= item.price %></td>
+                        <td>₪<%= item.price %></td>
                         <td><%= item.quantity %></td>
-                        <td><%= item.price * item.quantity %></td>
+                        <td>₪<%= item.price * item.quantity %></td>
+                        <td>
+                            <form action="/cart/delete/<%= item._id %>" method="POST">
+                                <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> מחיקת שורה</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
-        <a href="/cart/checkout">המשך לחשבון</a>
-        <a href="/">המשך קנייה</a>
+        <div class="actions">
+            <a href="/cart/checkout">המשך לחשבון</a>
+            <a href="/">המשך קנייה</a>
+        </div>
     <% } %>
 </body>
 </html>
+
+
