@@ -82,6 +82,9 @@ const removeProductFromCart= async (req, res) => {
     res.json({ message: 'Product removed successfully' });
 };
 
+
+
+
 module.exports = {
     addToCart,
     viewCart,

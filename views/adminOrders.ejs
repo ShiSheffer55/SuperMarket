@@ -15,7 +15,18 @@
     <div id="chart"></div>
     <div id="alert-container" style="display: none; color: red; font-weight: bold;"></div>
 
-    <h1>כל ההזמנות ( <%= orders.length %> )</h1>
+    <!-- Total Orders -->
+    <div>
+        <h1>כל ההזמנות ( <%= totalOrders %> )</h1>
+    </div>
+
+    <!-- Search Form -->
+    <form action="/admin/orders/searchOrders" method="GET">
+        <input type="text" name="q" placeholder="Search orders and users..." required>
+        <button type="submit">Search</button>
+    </form>
+
+
     <table>
         <thead>
             <tr>

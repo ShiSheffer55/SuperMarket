@@ -5,6 +5,7 @@ const { isAdmin } = require('../controllers/passController');
 const adminController = require('../controllers/adminController');
 const productsController = require('../controllers/productsController');
 const usersController = require('../controllers/usersController');
+const orderController = require('../controllers/ordersController');
 
 // Admin dashboard
 router.get('/dashboard', isAdmin, adminController.showAdminDashboard);
@@ -21,9 +22,9 @@ router.get('/users/search', isAdmin, usersController.searchUsers);
 
 // Manage Orders
 router.get('/orders', isAdmin, adminController.renderAdminOrders);
-
 // Route to get the average orders per month data
 router.get('/orders/average-per-month', isAdmin, adminController.getAverageOrdersPerMonth); 
+router.get('/orders/searchOrders', isAdmin, orderController.searchOrders); 
 
 
 // Manage Products
