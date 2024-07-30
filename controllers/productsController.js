@@ -174,17 +174,18 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     const { collectionName, id } = req.params;
-    console.log(collectionName)
     const Product = getProductModel(collectionName);
     try {
-        await Product.findByIdAndDelete(id);
-        res.redirect('/admin?success=Product deleted successfully');
+        const product = await Product.findByIdAndDelete(id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.status(200).json({ message: 'Product deleted successfully' });
     } catch (err) {
         console.error('Error deleting product:', err);
-        res.redirect('/admin?error=Failed to delete product');
+        res.status(500).json({ message: 'Failed to delete product' });
     }
 };
-
 
 
 // Export all functions at the end
