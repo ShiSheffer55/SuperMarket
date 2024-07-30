@@ -39,6 +39,7 @@
                         <form class="add-to-cart-form" onsubmit="addToCart(event)">
                             <input type="hidden" name="productId" value="<%= Product._id %>">
                             <input type="hidden" name="category" value="<%= Product.collectionName %>">
+                            <input type="hidden" id="isAuthenticated" value="<%= user ? 'true' : 'false' %>">
                             <label for="quantity">:בחר כמות</label>
                             <br>
                             <div class="custom-input-container">

@@ -25,16 +25,16 @@ const searchOrders = async (req, res) => {
 
         res.render('adminOrders', {
             users,
-            orders,  // Pass orders to the template
+            orders,
             user: req.session.user,
-            totalOrders
+            totalOrders // Ensure totalOrders is always included
         });
     } catch (err) {
         res.render('adminOrders', {
             users: [],
-            orders: [],  // Ensure orders is an empty array if there's an error
+            orders: [], // Ensure orders is an empty array if there's an error
             user: req.session.user,
-            totalOrders: 0,
+            totalOrders: 0, // Set default value for totalOrders
             error: 'Failed to search users and orders: ' + err.message
         });
     }
