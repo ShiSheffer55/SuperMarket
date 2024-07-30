@@ -34,20 +34,18 @@ const ProductSchema = new mongoose.Schema({
     recommended: { 
         type: Boolean, 
        default:false },
-
-       
-    organic: {
-        type: Boolean
+    kashrut:
+    {
+        type: String, 
+        required: true
     },
-    parve: {
-        type: Boolean
-    },
-    minPrice:{
-        type:Number
-    },
-    maxPrice:{
-        type:Number
-    }
+    
+manufacturer:
+{
+    
+    type: String, 
+    required: true
+}
 });
 
 
