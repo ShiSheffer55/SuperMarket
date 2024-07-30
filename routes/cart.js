@@ -11,6 +11,12 @@ router.get('/', isUser, cartController.viewCart);
 router.get('/checkout', isUser, cartController.checkout);
 router.post('/place-order', isUser, cartController.placeOrder);
 
+// Remove a product from the cart
+router.post('/delete/:id', cartController.removeProductFromCart); 
+
+// Empty the cart
+router.post('/empty', cartController.emptyCart);
+
 module.exports = router;
 
 

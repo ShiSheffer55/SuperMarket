@@ -70,13 +70,22 @@ const placeOrder = async (req, res) => {
     }
 };
 
+const emptyCart = async (req, res) => {
+    req.session.cart = [];
+    res.json({ message: 'Cart emptied' });
+}
 
-
-
+const removeProductFromCart= async (req, res) => {
+    const productId = req.params.id;
+    cart = cart.filter(item => item._id !== productId);
+    res.json({ message: 'Product removed successfully' });
+};
 
 module.exports = {
     addToCart,
     viewCart,
     checkout,
-    placeOrder
+    placeOrder, 
+    emptyCart,
+    removeProductFromCart
 };
