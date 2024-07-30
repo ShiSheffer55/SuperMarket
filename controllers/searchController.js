@@ -6,7 +6,6 @@ const Fuse = require('fuse.js');
 
 const searchProductsAcrossCollections = async (query) => {
     const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Bread and pastries'];
-    let results = [];
     const categories = {
         meat: ['בשרים'],
         fish: ['דגים'],
@@ -21,7 +20,6 @@ const searchProductsAcrossCollections = async (query) => {
         'Bread and pastries': ['לחמים ומאפים', 'מאפים ולחמים']
     };
 
-    // הכנת נתוני החיפוש ל-Fuse
     const fuseData = [];
     for (const [category, terms] of Object.entries(categories)) {
         terms.forEach(term => {
@@ -38,69 +36,100 @@ const searchProductsAcrossCollections = async (query) => {
     const categoryResults = fuse.search(query);
     const matchedCategories = categoryResults.map(result => result.item.category);
 
-    // אובייקט לאחסון מוצרים על פי מזהה למניעת כפילויות
     const productsMap = {};
 
-    // בדיקת התאמת קטגוריה
     for (const category of matchedCategories) {
         const collection = await getProductModel(category);
         const foundProducts = await collection.find({}).exec();
 
-        // הוספת מוצרים למפה למניעת כפילויות עם שם הקטגוריה
         foundProducts.forEach(product => {
-            product.collectionName = category; // הוספת שם הקטגוריה למוצר
+            product.collectionName = category;
             productsMap[product._id] = product;
         });
     }
 
-    // אם לא נמצאו מוצרים מתאימים לפי קטגוריה, המשך חיפוש בכל הקולקציות
     if (Object.keys(productsMap).length === 0) {
         for (const collectionName of collections) {
             const collection = await getProductModel(collectionName);
             const foundProducts = await collection.find({}).exec();
 
-            // הוספת מוצרים למפה למניעת כפילויות עם שם הקטגוריה
             foundProducts.forEach(product => {
-                product.collectionName = collectionName; // הוספת שם הקטגוריה למוצר
+                product.collectionName = collectionName;
                 productsMap[product._id] = product;
             });
         }
 
-        // הגדרת אפשרויות החיפוש ב-Fuse.js
         const options = {
             keys: ['name', 'title', 'sub'],
             threshold: 0.35,
             distance: 100
         };
 
-        // המרת המפה למערך
-        results = Object.values(productsMap);
+        const results = Object.values(productsMap);
 
-        // ביצוע החיפוש עם Fuse.js
         const fuse = new Fuse(results, options);
         const searchResults = fuse.search(query);
 
-        return searchResults.map(result => result.item); // החזרת תוצאות החיפוש
+        return searchResults.map(result => result.item);
     }
 
-    // המרת המפה למערך
-    results = Object.values(productsMap);
-
-    return results; // החזרת מוצרים מהקטגוריות שנמצאו
+    return Object.values(productsMap);
 };
 
+const getKashrutOptionsFromProducts = (products) => {
+    const kashrutSet = new Set();
+    products.forEach(product => {
+        if (product.kashrut) {
+            kashrutSet.add(product.kashrut);
+        }
+    });
+    return Array.from(kashrutSet);
+};
 
+const getManufacturersFromProducts = (products) => {
+    const manufacturersSet = new Set();
+    products.forEach(product => {
+        if (product.manufacturer) {
+            manufacturersSet.add(product.manufacturer);
+        }
+    });
+    return Array.from(manufacturersSet);
+};
 
 const searchProducts = async (req, res) => {
-    console.log('im in');
-    const query = req.query.q; // המילה שהמשתמש חיפש
     try {
-        const searchproducts = await searchProductsAcrossCollections(query);
-        res.render('searchResult.ejs', { searchproducts, query});
-    } catch (err) {
-        console.log('Error searching products:', err);
+        const query = req.query.q || '';
+        const minPrice = parseFloat(req.query.minPrice) || 0;
+        const maxPrice = parseFloat(req.query.maxPrice) || Infinity;
+        const kashrutFilters = req.query.kashrut || [];
+        const manufacturerFilters = req.query.manufacturer || [];
+
+        const kashrutFilterArray = Array.isArray(kashrutFilters) ? kashrutFilters : [kashrutFilters];
+        const manufacturerFilterArray = Array.isArray(manufacturerFilters) ? manufacturerFilters : [manufacturerFilters];
+
+        const products = await searchProductsAcrossCollections(query);
+
+        const filteredProducts = products.filter(product => {
+            const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+            const matchesKashrut = kashrutFilterArray.length === 0 || kashrutFilterArray.includes(product.kashrut);
+            const matchesManufacturer = manufacturerFilterArray.length === 0 || manufacturerFilterArray.includes(product.manufacturer);
+            return matchesPrice && matchesKashrut && matchesManufacturer;
+        });
+
+        const kashrutOptions = getKashrutOptionsFromProducts(filteredProducts);
+        const manufacturers = getManufacturersFromProducts(filteredProducts);
+
+        res.render('searchResult', {
+            searchproducts: filteredProducts,
+            kashrutOptions: kashrutOptions,
+            manufacturers: manufacturers,
+            query: query
+        });
+    } catch (error) {
+        console.error('Error searching products:', error);
         res.status(500).send('Internal Server Error');
     }
 };
+
 
 module.exports = { searchProducts };

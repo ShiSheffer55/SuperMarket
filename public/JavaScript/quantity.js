@@ -1,16 +1,12 @@
-function changeQuantity(button, increment) {
-    var input = button.parentElement.querySelector('input');
-    var currentValue = parseInt(input.value);
-    var newValue = currentValue + increment;
-    var min = parseInt(input.min);
-    var max = parseInt(input.max);
-  
-    if (newValue >= min && newValue <= max) {
-      input.value = newValue;
-    }
+function changeQuantity(button, delta) {
+  var input = $(button).siblings('.custominput');
+  var newValue = parseInt(input.val()) + delta;
+  var max = parseInt(input.attr('max'));
+  if (newValue >= 1 && newValue <= max) {
+      input.val(newValue);
   }
+}
 
-  function resetQuantity() {
-    console.log("Reset Quantity function called");
-    document.getElementById('quantity').value = 1;
-    }
+function resetQuantity() {
+  $(".custominput").val(1);
+}
