@@ -1,27 +1,27 @@
 $(function() {
-    // Initialize the slider
+    const minPrice = parseFloat($("#minPriceSlider").val()) || 0;
+    const maxPrice = parseFloat($("#maxPriceSlider").val()) || 500;
+
     $("#slider-range").slider({
         range: true,
-        min: 0,
-        max: 500,
-        values: [75, 300], // Default values
+        min: minPrice,
+        max: maxPrice,
+        step: 0.01,
+        values: [minPrice, maxPrice],
         slide: function(event, ui) {
-            // Update the display values
             $("#amount").val("₪" + ui.values[0] + " - ₪" + ui.values[1]);
-            // Update the hidden fields
             $("#minPrice").val(ui.values[0]);
             $("#maxPrice").val(ui.values[1]);
         }
     });
 
-    // Set the initial values for the display and hidden fields
     $("#amount").val("₪" + $("#slider-range").slider("values", 0) + " - ₪" + $("#slider-range").slider("values", 1));
     $("#minPrice").val($("#slider-range").slider("values", 0));
     $("#maxPrice").val($("#slider-range").slider("values", 1));
-});
-    // Update the form action with the search query
+    
     $('#searchForm').submit(function(e) {
         e.preventDefault();
+
         const query = new URLSearchParams(window.location.search).get('q') || '';
         const minPrice = $("#minPrice").val();
         const maxPrice = $("#maxPrice").val();
@@ -37,3 +37,12 @@ $(function() {
 
         window.location.href = url.toString();
     });
+});
+function filterProducts(products) {
+    const minPrice = parseFloat($("#minPrice").val());
+    const maxPrice = parseFloat($("#maxPrice").val());
+    const filteredProducts = products.filter(product => 
+        product.price >= minPrice && product.price <= maxPrice
+    );
+    updateDisplay(filteredProducts);
+}
