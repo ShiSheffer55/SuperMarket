@@ -6,6 +6,7 @@ function deleteProduct(collectionName, id) {
         success: function (response) {
             console.log("Product deleted successfully:", response);
             alert(response.message);
+            location.reload();
             // כאן אפשר לרענן את העמוד או לעדכן את ה-UI בהתאם לצורך
         },
         error: function (xhr, status, error) {
