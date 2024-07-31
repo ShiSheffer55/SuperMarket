@@ -61,3 +61,43 @@ h1{
   border: 2px solid rgb(25, 134, 98); /* גבול שחור כאשר יש focus */
 }
 
+#amount
+{ 
+   display: inline-block;
+  border:0;
+  text-align: end;
+  margin-right: 7%;
+
+
+}
+#searchForm
+{
+  display: none;
+  text-align: right;
+}
+#filters
+{
+  cursor: pointer;
+  text-align: right;
+  margin-right: 2%;
+}
+.filter-option {
+  display: block;
+  text-align: right;
+  margin-right: 2%;
+}
+.filter-option-title
+{
+  text-align: right;
+  margin-right: 2%;
+}
+#submitFilters
+{
+  position: relative;
+  text-align: center;
+  margin-right: 2%;
+  border: solid;
+  border-width: 0.3mm;
+  border-radius: 5px;
+
+}

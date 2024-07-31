@@ -65,3 +65,7 @@ $('#searchForm').submit(function(e) {
 
     window.location.href = url.toString();
 });
+
+$('#filters').click(function() {
+    $('#searchForm').toggle();
+});

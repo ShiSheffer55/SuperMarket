@@ -17,34 +17,40 @@
     <h1>תוצאות חיפוש עבור: <%= query %></h1>
     <h5 id="numOfProducts">נמצאו <%= searchproducts.length %> מוצרים</h5>
     <% if (searchproducts.length > 0) { %>
+        <br>
+        <h5 id="filters">סינונים <i class="bi bi-funnel"></i></h5>
         <form id="searchForm">
             <input type="hidden" id="searchQuery" name="q" value="<%= query %>">
-            <div>
-                <label for="amount">Price range:</label>
-                <input type="text" id="amount" readonly>
+            <div class="slider-container">
+                <h6 class="filter-option-title"><label for="amount">  :טווח מחירים</label></h6>
+                <br><input type="text" id="amount" readonly>
                 <div id="slider-range"></div>
                 <input type="hidden" id="minPrice" name="minPrice" value="<%= minPriceSlider %>" data-default-min="<%= defaultMinPrice %>">
                 <input type="hidden" id="maxPrice" name="maxPrice" value="<%= maxPriceSlider %>" data-default-max="<%= defaultMaxPrice %>">
             </div>
             <div>
-                <h3>Kashrut:</h3>
+                <h6 class="filter-option-title">כשרות</h6>
                 <% kashrutOptions.forEach(option => { %>
-                    <label>
-                        <input type="checkbox" name="kashrut" value="<%= option %>" <%= selectedKashrut.includes(option) ? 'checked' : '' %>>
+                    <label class="filter-option">
                         <%= option %>
+                        <input type="checkbox" name="kashrut" value="<%= option %>" <%= selectedKashrut.includes(option) ? 'checked' : '' %>>
+                        
                     </label>
+                    <br>
                 <% }) %>
             </div>
             <div>
-                <h3>Manufacturer:</h3>
+                <h6 class="filter-option-title">יצרן</h6>
                 <% manufacturers.forEach(option => { %>
-                    <label>
-                        <input type="checkbox" name="manufacturer" value="<%= option %>" <%= selectedManufacturers.includes(option) ? 'checked' : '' %>>
+                    <label class="filter-option">
                         <%= option %>
+                        <input type="checkbox" name="manufacturer" value="<%= option %>" <%= selectedManufacturers.includes(option) ? 'checked' : '' %>>
+                    
                     </label>
+                    <br>
                 <% }) %>
             </div>
-            <button type="submit">Search</button>
+            <button id="submitFilters" type="submit"> &#10024; סנן</button>
         </form>
     <% } %>
     <main>
