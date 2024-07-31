@@ -52,7 +52,7 @@ const renderAdminUsers = async (req, res) => {
 // Render Admin Orders Page
 const renderAdminOrders = async (req, res) => {
     try {
-        const orders = await Order.find(); // Populate User
+        const orders = await Order.find().populate('user'); // Populate User
         res.render('adminOrders', { orders });
     } catch (error) {
         console.error('Error fetching orders:', error);

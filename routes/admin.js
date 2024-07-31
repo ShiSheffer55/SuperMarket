@@ -28,6 +28,8 @@ router.get('/orders/searchOrders', isAdmin, orderController.searchOrders);
 // Edit Order
 router.get('/orders/edit/:id', isAdmin, orderController.renderEditOrderForm);
 router.post('/orders/edit/:id', isAdmin, orderController.updateOrder);
+// Delete Order
+router.post('/orders/delete/:id', isAdmin, orderController.deleteOrder);  
 
 
 // Manage Products

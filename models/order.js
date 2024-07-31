@@ -4,14 +4,14 @@ const { ordersConnection } = require('../databases');
 const orderSchema = new mongoose.Schema({
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
+        refPath: 'User',  // Directly referencing the User model
         required: true 
     },
     products: [
         {
             productId: { 
                 type: mongoose.Schema.Types.ObjectId, 
-                ref: 'Product', 
+                refPath: 'Product',  // Directly referencing the Product model
                 required: true 
             },
             title: String,
@@ -27,6 +27,10 @@ const orderSchema = new mongoose.Schema({
     createdAt: { 
         type: Date, 
         default: Date.now 
+    },
+    status: {  // Added a status field for the order
+        type: String,
+        default: 'Pending'
     }
 });
 

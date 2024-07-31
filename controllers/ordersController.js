@@ -1,20 +1,19 @@
 const Order = require('../models/order');
 const User = require('../models/user');
 
-const renderEditOrderForm = async(req, res) =>{
+const renderEditOrderForm = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id).populate('user').populate('products.productId');
         if (!order) {
             return res.status(404).send('Order not found');
         }
-        res.render('editOrder', { order });
+        res.render('editOrder', { order});
     } catch (error) {
         console.error('Error fetching order:', error);
         res.status(500).send('Server error');
     }
-}
+};
 
-// Update Order
 const updateOrder = async (req, res) => {
     try {
         const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -24,6 +23,19 @@ const updateOrder = async (req, res) => {
         res.redirect('/admin/orders');
     } catch (error) {
         console.error('Error updating order:', error);
+        res.status(500).send('Server error');
+    }
+};
+
+const deleteOrder = async (req, res) => {
+    try {
+        const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+        if (!deletedOrder) {
+            return res.status(404).send('Order not found');
+        }
+        res.redirect('/admin/orders');
+    } catch (error) {
+        console.error('Error deleting order:', error);
         res.status(500).send('Server error');
     }
 };
@@ -69,6 +81,7 @@ const searchOrders = async (req, res) => {
 
 module.exports = {
     renderEditOrderForm, 
-    updateOrder, 
+    updateOrder,
+    deleteOrder, 
     searchOrders
 };

@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/style/adminOrders.css">
     <link rel="stylesheet" href="/style/orderHistory.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-
-
 </head>
 <body>
 
@@ -41,11 +39,14 @@
         <thead>
             <tr id="row">
                 <th class="order-id">Order ID</th>
-            <th class="user">User</th>
-            <th class="products">Products</th>
-            <th class="total">Total</th>
-            <th class="status">Status</th>
-            <th class="created-at">Created At</th>
+            <th class="user">משתמש</th>
+            <th class="products">מוצרים</th>
+            <th class="total">מחיר סופי</th>
+            <th class="status">סטטוס</th>
+            <th class="created-at">תאריך</th>
+            <th class="edit">עריכה</th>
+            <th class="delete">מחיקה</th>
+
             </tr>
         </thead>
         <tbody>
@@ -64,13 +65,17 @@
                     <td><%= order.status || 'N/A' %></td>
                     <td><%= order.createdAt.toDateString() %></td>
 
-                    <td><a href="/admin/orders/edit/<%= order._id %>">edit</a> </td>
+                    <td><a href="/admin/orders/edit/<%= order._id %>" class="btn btn-primary btn-sm">Edit</a></td>
+                    <td>
+                        <form action="/admin/orders/delete/<%= order._id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?');">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             <% }) %>
         </tbody>
     </table>
     <br>
-
 
     <script src="/JavaScript/adminOrders.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
