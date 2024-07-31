@@ -73,15 +73,25 @@ const placeOrder = async (req, res) => {
 
 const emptyCart = async (req, res) => {
     req.session.cart = [];
-    res.json({ message: 'Cart emptied' });
+    res.json({ message: 'הסל התבטל' });
 }
 
-const removeProductFromCart= async (req, res) => {
-    const productId = req.params.id;
-    cart = cart.filter(item => item._id !== productId);
-    res.json({ message: 'Product removed successfully' });
-};
+// Remove a product from the cart
+const removeProductFromCart = async (req, res) => {
+    const productName = req.params.name; // Get the product name from the request parameters
+    console.log('Removing product with name:', productName);
 
+    // Assuming you have a method to access the cart (e.g., in session or database)
+    let cart = req.session.cart || []; // Use the session or fetch from the database
+
+    // Remove the product from the cart based on the product name
+    cart = cart.filter(item => item.title !== productName);
+
+    // Save the updated cart (e.g., in session or database)
+    req.session.cart = cart;
+
+    res.json({ message: 'המוצר הוסר' });
+};
 
 
 

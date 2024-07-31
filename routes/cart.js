@@ -12,7 +12,7 @@ router.get('/checkout', isUser, cartController.checkout);
 router.post('/place-order', isUser, cartController.placeOrder);
 
 // Remove a product from the cart
-router.post('/delete/:id', cartController.removeProductFromCart); 
+router.post('/delete/:name', cartController.removeProductFromCart);
 
 // Empty the cart
 router.post('/empty', cartController.emptyCart);
