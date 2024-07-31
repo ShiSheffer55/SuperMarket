@@ -95,7 +95,29 @@ const getManufacturersFromProducts = (products) => {
     });
     return Array.from(manufacturersSet);
 };
-
+const maxPricef = (products) => {
+    max=-1;
+    products.forEach(product => {
+        let price = parseFloat(product.price);
+        console.log(`Product price: ${price}`);
+        console.log(max);
+        if (product.price>max) {
+            max=product.price;
+        }
+    });
+    return max;
+};
+const minPricef = (products) => {
+    min=Infinity;
+    products.forEach(product => {
+        let price = parseFloat(product.price);
+        console.log(`Product price: ${price}`);
+        if (product.price<min) {
+            min=product.price;
+        }
+    });
+    return min;
+};
 const searchProducts = async (req, res) => {
     try {
         const query = req.query.q || '';  // חיפוש ראשוני
@@ -122,13 +144,18 @@ const searchProducts = async (req, res) => {
         // קבלת אפשרויות סינון לפי המוצרים המסוננים
         const kashrutOptions = getKashrutOptionsFromProducts(filteredProducts);
         const manufacturers = getManufacturersFromProducts(filteredProducts);
-
+        const maxPriceSlider=maxPricef(filteredProducts);
+        const minPriceSlider=minPricef(filteredProducts);
+        console.log(max);
+        console.log(min);
         // שליחת תוצאות לתצוגה
         res.render('searchResult', {
             searchproducts: filteredProducts,
             kashrutOptions: kashrutOptions,
             manufacturers: manufacturers,
-            query: query
+            query: query,
+            maxPriceSlider: maxPriceSlider,
+            minPriceSlider: minPriceSlider
         });
     } catch (error) {
         console.error('Error searching products:', error);
