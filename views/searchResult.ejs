@@ -16,11 +16,11 @@
     <br>
     <h1>תוצאות חיפוש עבור: <%= query %></h1>
     <h5 id="numOfProducts">נמצאו <%= searchproducts.length %> מוצרים</h5>
-    
+    <% if (searchproducts.length > 0) { %>
     <form id="searchForm" action="/search" method="GET">
         <p>
             <label for="amount">Price range:</label>
-            <input type="text" id="amount" readonly="" style="border:0; color:#f6931f; font-weight:bold;">
+            <input type="text" id="amount" readonly="" >
           </p>
            
           <div id="slider-range"></div>
@@ -46,7 +46,7 @@
         </div>
         <button type="submit">Search</button>
     </form>
-    
+    <% } %>
     <main>
         <% if (searchproducts.length > 0) { %>
             <% searchproducts.forEach(product => { %>
@@ -92,6 +92,8 @@
             <p>לא נמצאו תוצאות לחיפוש שלך</p>
         <% } %>
     </main>
+    <input type="hidden" name="minPriceSlider" id="minPriceSlider" value="<%=minPriceSlider%>">
+    <input type="hidden" name="maxPriceSlider" id="maxPriceSlider" value="<%=maxPriceSlider%>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="JavaScript/search.js"></script>
