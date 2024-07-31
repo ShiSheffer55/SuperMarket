@@ -18,11 +18,6 @@ $(function() {
     $("#amount").val("₪" + $("#slider-range").slider("values", 0) + " - ₪" + $("#slider-range").slider("values", 1));
     $("#minPrice").val($("#slider-range").slider("values", 0));
     $("#maxPrice").val($("#slider-range").slider("values", 1));
-
-    // Handle the reset quantity functionality
-    $(".reset-link").click(function() {
-        $(this).closest('.custom-input-container').find('.custominput').val(1);
-    });
 });
     // Update the form action with the search query
     $('#searchForm').submit(function(e) {
