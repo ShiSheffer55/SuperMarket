@@ -3,6 +3,7 @@ const Product = require('../models/product');
 const User = require('../models/user');
 const Order = require('../models/order');
 
+
 // Admin Dashboard
 const showAdminDashboard = (req, res) => {
     console.log('Rendering admin dashboard');
@@ -37,13 +38,13 @@ const renderAdminUsers = async (req, res) => {
 const renderAdminOrders = async (req, res) => {
     try {
         const orders = await Order.find({});
-        res.render('adminOrders', { orders, user: req.session.user });
+        res.render('adminOrders', { orders });
     } catch (err) {
         console.error('Error fetching orders:', err);
-        req.flash('error_msg', 'Failed to fetch orders');
-        res.redirect('/admin/dashboard');
+        res.status(500).send('Server error');
     }
 };
+
 const getAverageOrdersPerDay = async (req, res) => {
     try {
         const orders = await Order.aggregate([

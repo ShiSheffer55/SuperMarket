@@ -205,13 +205,16 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        await User.findByIdAndDelete(req.params.id);
-        // Redirect with a success message in the query parameters
-        res.redirect('/admin/users?success=User deleted successfully!');
+        const userId = req.params.id;
+        const result = await User.findByIdAndDelete(userId);
+        if (result) {
+            res.json({ message: 'User deleted successfully!' });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
     } catch (error) {
         console.error('Error deleting user:', error);
-        // Redirect with an error message in the query parameters
-        res.redirect('/admin/users?error=Failed to delete user');
+        res.status(500).json({ message: 'Failed to delete user' });
     }
 };
 
