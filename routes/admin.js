@@ -22,6 +22,8 @@ router.get('/users/search', isAdmin, usersController.searchUsers);
 // Manage Orders
 router.get('/orders', isAdmin, adminController.renderAdminOrders);
 
+// Route to get the average orders per month data
+router.get('/orders/average-per-month', isAdmin, adminController.getAverageOrdersPerMonth); 
 
 // Manage Products
 router.get('/products/add', isAdmin, productsController.renderAddProductForm);

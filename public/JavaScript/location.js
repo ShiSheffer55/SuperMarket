@@ -12,8 +12,8 @@
             locations.forEach(location => {
                 const marker = new google.maps.Marker({
                     position: {
-                        lat: location.location.coordinates[1],
-                        lng: location.location.coordinates[0]
+                        lat: location.coordinates[1],
+                        lng: location.coordinates[0]
                     },
                     map: map,
                     title: location.name

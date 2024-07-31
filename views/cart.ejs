@@ -16,6 +16,7 @@
     <% if (cart.length === 0) { %>
         <p class="empty-cart">סל הקניות ריק</p>
     <% } else { %>
+        <p id="numOfProducts"><%= cart.length%> מוצרים</p>
         <table>
             <thead>
                 <tr>
@@ -24,6 +25,7 @@
                     <th>כמות</th>
                     <th>סה"כ</th>
                     <th>מחיקה</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +42,7 @@
                 <% }) %>
             </tbody>
         </table>
+
         <button id="cancel-cart">בטל הזמנה</button>
         <div class="actions">
             <a href="/cart/checkout">המשך לחשבון</a>

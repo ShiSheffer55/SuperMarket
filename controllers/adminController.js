@@ -45,6 +45,42 @@ const renderAdminOrders = async (req, res) => {
     }
 };
 
+const getAverageOrdersPerMonth = async (req, res) => {
+    try {
+        const orders = await Order.aggregate([
+            {
+                $group: {
+                    _id: {
+                        year: { $year: '$createdAt' },
+                        month: { $month: '$createdAt' }
+                    },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id.year',
+                    monthlyOrders: {
+                        $push: { month: '$_id.month', count: '$count' }
+                    },
+                    totalOrders: { $sum: '$count' }
+                }
+            },
+            {
+                $project: {
+                    year: '$_id',
+                    averageOrders: { $divide: ['$totalOrders', { $size: '$monthlyOrders' }] }
+                }
+            }
+        ]);
+
+        res.json(orders);
+    } catch (err) {
+        console.error('Error fetching average orders per month:', err);
+        res.status(500).send('Server error');
+    }
+};
+
 
 
 
@@ -53,5 +89,6 @@ module.exports = {
     showAdminDashboard,
     renderAdminProducts,
     renderAdminUsers,
-    renderAdminOrders
+    renderAdminOrders,
+    getAverageOrdersPerMonth
 };

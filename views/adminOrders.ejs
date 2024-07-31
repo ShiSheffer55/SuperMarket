@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
     <link rel="stylesheet" href="/style/orderHistory.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
 </head>
 <body>
     <h1>כל ההזמנות</h1>
@@ -38,5 +40,11 @@
             <% }) %>
         </tbody>
     </table>
+
+    <div id="chart"></div>
+    <div id="alert-container" style="display: none; color: red; font-weight: bold;"></div>
+
+
+    <script src="/JavaScript/adminOrders.js"></script>
 </body>
 </html>

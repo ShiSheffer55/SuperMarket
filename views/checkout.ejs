@@ -28,8 +28,15 @@
         <p>Total: <%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0) %>₪</p>
         
         <form action="/cart//place-order" method="POST">
-            <button type="submit">Place Order</button>
+            <button type="submit">אשר הזמנה</button>
         </form>
+
+        <button id="cancel-cart">בטל הזמנה</button>
+
     <% } %>
+
+   
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/JavaScript/cart.js"></script>
 </body>
 </html>
