@@ -81,7 +81,7 @@ const renderAddProductForm = (req, res) => {
 
 //working
 const addProduct = async (req, res) => {
-    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const { title, img, name, price, category, sub, supplier, amount, recommended, kashrut, manufacturer } = req.body;
     const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
     console.log('category:', category);
 console.log(collectionName);
@@ -102,7 +102,9 @@ console.log(category);
             sub,
             supplier,
             amount,
-            recommended: isRecommended 
+            recommended: isRecommended,
+            kashrut,
+            manufacturer 
         });
         await newProduct.save();
         res.redirect(`/${collectionName}`); // Redirect back to the collection page
@@ -135,7 +137,7 @@ const renderEditProductForm = async (req, res) => {
 //working
 const updateProduct = async (req, res) => {
     const { collectionName, id } = req.params;
-    const { title, img, name, price, category, sub, supplier, amount, recommended } = req.body;
+    const { title, img, name, price, category, sub, supplier, amount, recommended, kashrut, manufacturer } = req.body;
     const isRecommended = recommended === 'כן';
 
     console.log('collectionName:', collectionName);
@@ -159,7 +161,9 @@ const updateProduct = async (req, res) => {
             sub,
             supplier,
             amount,
-            recommended: isRecommended
+            recommended: isRecommended,
+            kashrut,
+            manufacturer
         });
 
         await newProduct.save();

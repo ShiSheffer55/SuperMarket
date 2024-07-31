@@ -36,7 +36,7 @@
 }
 #Tusers {
     position: relative;
-    margin-left: 41%;
+    margin-left: 41.2%;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -97,3 +97,52 @@
 #search-but:hover{
     background-color: rgba(163, 223, 172, 0.863); 
   }
+  .card {
+    position: relative;
+    margin: 2%;
+    border: 2px solid rgba(197, 231, 202, 0.822);
+    width: 20rem;
+    height: 12em;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+}
+.card-body {
+    position: relative;
+    text-align: center; /* Align text to the right */
+    z-index: 3;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    font-family: 'regular';
+    width: 100%; /* Ensure card-body takes full width */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+#Tcard
+{
+    font-family: 'medium';
+}
+.actions
+{
+    display: flex;
+    justify-content:space-evenly;
+    margin-top: auto ;
+}
+#link1
+{
+    color: rgba(25, 134, 98, 0.986);
+   position: relative;
+   margin-top: -6%;
+   margin-left: 30%;
+   font-size: large;
+}
+#link2
+{
+    color: rgba(25, 134, 98, 0.986);
+    position: relative;
+    top: -26px;
+    margin-left: 55%;
+    font-size: large;
+}

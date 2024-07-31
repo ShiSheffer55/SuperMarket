@@ -12,7 +12,14 @@ font-weight: 100;
   font-style: normal ;
   font-weight: 100;
 }
-
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  z-index: 3;
+  padding: 2%;
+}
 
 h1{
     text-align: right;

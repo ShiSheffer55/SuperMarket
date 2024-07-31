@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 // Singleton connection
 const mongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
 const connection = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -20,7 +19,19 @@ const productSchema = new mongoose.Schema({
     sub: { type: String, required: true },
     supplier: { type: String, required: true },
     amount: { type: Number },
-    recommended:{type: Boolean}
+    recommended:{type: Boolean},
+    kashrut:
+    {
+        type: String, 
+        required: true
+    },
+    
+manufacturer:
+{
+    
+    type: String, 
+    required: true
+}
 });
 
 function getProductModel(collectionName) {
