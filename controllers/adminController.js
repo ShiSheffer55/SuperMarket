@@ -1,5 +1,5 @@
 // controllers/adminController.js
-const Product = require('../models/product');
+const getProductModel = require('../models/getProductModel');
 const User = require('../models/user');
 const Order = require('../models/order');
 
@@ -12,15 +12,30 @@ const showAdminDashboard = (req, res) => {
 
 // Render Admin Products Page
 const renderAdminProducts = async (req, res) => {
+
     try {
-        const products = await Product.find({});
-        res.render('products', { products, user: req.session.user });
+        const collections = ['frozen', 'sweets and snacks','milk', 'fruits', 'vegetables', 'drinks','Bread and pastries', 'dry','cleanliness',  'meat', 'fish']; // Replace with your actual collection names
+        let products = [];
+
+        for (const collectionName of collections) {
+            const collection = await getProductModel(collectionName);
+            const foundProducts = await collection.find({}).exec();
+            console.log(`Found ${foundProducts.length} products in ${collectionName}`);
+
+            // Attach the collection name to each product
+            foundProducts.forEach(product => product.collectionName = collectionName);
+
+            products = products.concat(foundProducts);
+        }
+
+        console.log(products.length);
+        res.render('adminProducts', { products });
     } catch (err) {
-        console.error('Error fetching products:', err);
-        req.flash('error_msg', 'Failed to fetch products');
-        res.redirect('/admin/dashboard');  // Ensure the redirection path is correct
+        console.log('Error fetching  products:', err);
+        res.status(500).send('Internal Server Error');
     }
 };
+
 
 // Render Admin Users Page
 const renderAdminUsers = async (req, res) => {
@@ -37,13 +52,14 @@ const renderAdminUsers = async (req, res) => {
 // Render Admin Orders Page
 const renderAdminOrders = async (req, res) => {
     try {
-        const orders = await Order.find({});
+        const orders = await Order.find().populate('user'); // Populate User
         res.render('adminOrders', { orders });
-    } catch (err) {
-        console.error('Error fetching orders:', err);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
         res.status(500).send('Server error');
     }
 };
+
 
 const getAverageOrdersPerDay = async (req, res) => {
     try {

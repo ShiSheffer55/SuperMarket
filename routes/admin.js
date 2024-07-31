@@ -25,9 +25,13 @@ router.get('/orders', isAdmin, adminController.renderAdminOrders);
 // Route to get the average orders per month data
 router.get('/orders/average-per-day', isAdmin, adminController.getAverageOrdersPerDay); 
 router.get('/orders/searchOrders', isAdmin, orderController.searchOrders); 
+// Edit Order
+router.get('/orders/edit/:id', isAdmin, orderController.renderEditOrderForm);
+router.post('/orders/edit/:id', isAdmin, orderController.updateOrder);
 
 
 // Manage Products
+router.get('/products', isAdmin, adminController.renderAdminProducts);
 router.get('/products/add', isAdmin, productsController.renderAddProductForm);
 router.post('/products/add', isAdmin, productsController.addProduct);
 router.get('/products/edit/:collectionName/:id', isAdmin, productsController.renderEditProductForm);

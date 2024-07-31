@@ -60,6 +60,8 @@
                     <td>₪<%= order.total %></td>
                     <td><%= order.status || 'N/A' %></td>
                     <td><%= order.createdAt.toDateString() %></td>
+
+                    <td><a href="/admin/orders/edit/<%= order._id %>">edit</a> </td>
                 </tr>
             <% }) %>
         </tbody>

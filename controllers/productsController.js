@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
+
 const categoryMap = {
     'בשר': 'meat',
     'דגים': 'fish',
@@ -84,8 +85,8 @@ const addProduct = async (req, res) => {
     const { title, img, name, price, category, sub, supplier, amount, recommended, kashrut, manufacturer } = req.body;
     const collectionName = categoryMap[category]; // Convert Hebrew category to English collection name
     console.log('category:', category);
-console.log(collectionName);
-console.log(category);
+    console.log(collectionName);
+    console.log(category);
     if (!collectionName) {
         return res.status(400).send('Invalid category');
     }

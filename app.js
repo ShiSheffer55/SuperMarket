@@ -51,8 +51,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/cart', cartRoute);
 app.use('/admin', adminRoute);
+app.use('/cart', cartRoute);
 app.use('/profile', profileRoute);
 app.use('/search', searchRoute);
 app.use('/', productsRoute);
