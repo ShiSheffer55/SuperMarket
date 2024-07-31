@@ -79,6 +79,7 @@
     border: 2px solid rgba(197, 231, 202, 0.822) ; 
     border-radius: 8px;
     width: 18%; 
+    text-align: center;
 }
 #search-but {
     padding: 0.5%; /* מרווח פנימי */
@@ -90,7 +91,6 @@
     cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
     transition: background-color 0.3s; /* אנימציה על צבע הרקע */
     color: rgba(25, 134, 98, 0.986);
-    
 }
 
 /* שינוי צבע רקע כשמעבירים את העכבר מעל הכפתור */
