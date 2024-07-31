@@ -167,5 +167,31 @@ h1{
   margin-top: 0%;
   transition: color 0.3s ease; 
 }
+#slider-range {
+  width: 25%; /* שינוי לרוחב מלא או ערך אחר לצורך התאמה */
+  margin-bottom: 1rem; /* מרווח תחתון */
+}
+
+/* צבעים לסליידר */
+.ui-slider-range {
+  background: rgb(219, 253, 224); /* צבע עמידה של הסליידר */
+}
+/* צבע גבול הידיות של הסליידר */
+.ui-slider-handle {
+  background: rgb(219, 253, 224); /* צבע רקע של הידית של הסליידר */
+  border: 2px solid rgb(25, 134, 98); /* גבול שחור עם רוחב של 2px */
+}
+
+/* שינוי צבע גבול הידיות בעת השהייה (hover) */
+.ui-slider-handle:hover {
+  background:rgb(219, 253, 224); /* צבע הידית כאשר עובר מעליה בעכבר */
+  border: 2px solid rgb(25, 134, 98); /* גבול שחור בעת השהייה */
+}
+
+/* שינוי צבע גבול הידיות כאשר יש focus */
+.ui-slider-handle:focus {
+  background: rgb(219, 253, 224); /* צבע הידית כאשר יש focus */
+  border: 2px solid rgb(25, 134, 98); /* גבול שחור כאשר יש focus */
+}
 
 
