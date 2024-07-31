@@ -44,49 +44,47 @@ const renderAdminOrders = async (req, res) => {
         res.redirect('/admin/dashboard');
     }
 };
-
-const getAverageOrdersPerMonth = async (req, res) => {
+const getAverageOrdersPerDay = async (req, res) => {
     try {
         const orders = await Order.aggregate([
             {
                 $group: {
                     _id: {
                         year: { $year: '$createdAt' },
-                        month: { $month: '$createdAt' }
+                        month: { $month: '$createdAt' },
+                        day: { $dayOfMonth: '$createdAt' }
                     },
                     count: { $sum: 1 }
                 }
             },
             {
-                $group: {
-                    _id: '$_id.year',
-                    monthlyOrders: {
-                        $push: { month: '$_id.month', count: '$count' }
-                    },
-                    totalOrders: { $sum: '$count' }
-                }
+                $sort: { '_id.year': 1, '_id.month': 1, '_id.day': 1 }
             },
             {
                 $project: {
-                    year: '$_id',
-                    averageOrders: { $divide: ['$totalOrders', { $size: '$monthlyOrders' }] }
+                    date: {
+                        $dateFromParts: {
+                            year: '$_id.year',
+                            month: '$_id.month',
+                            day: '$_id.day'
+                        }
+                    },
+                    count: 1
                 }
             }
         ]);
 
         res.json(orders);
     } catch (err) {
-        console.error('Error fetching average orders per month:', err);
+        console.error('Error fetching average orders per day:', err);
         res.status(500).send('Server error');
     }
 };
-
-
 
 module.exports = {
     showAdminDashboard,
     renderAdminProducts,
     renderAdminUsers,
     renderAdminOrders,
-    getAverageOrdersPerMonth
+    getAverageOrdersPerDay
 };

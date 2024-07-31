@@ -1,24 +1,27 @@
 async function fetchData() {
     const alertContainer = document.getElementById('alert-container');
     try {
-        const response = await fetch('/admin/orders/average-per-month');
+        // Fetch data from the server
+        const response = await fetch('/admin/orders/average-per-day');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
         return data;
     } catch (error) {
+        // Show an alert if there's an error
         showAlert('An unexpected error occurred. Please try again.');
         return []; // Return an empty array to avoid further errors in rendering
     }
 }
 
-
 function renderChart(data) {
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+    // Set up chart dimensions
+    const margin = { top: 20, right: 30, bottom: 40, left: 50 };
     const width = 800 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
+    // Create an SVG container
     const svg = d3.select("#chart")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -26,51 +29,56 @@ function renderChart(data) {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const x = d3.scaleBand()
-        .domain(data.map(d => d.year))
-        .range([0, width])
-        .padding(0.1);
+    // Set up the x-axis scale (time scale for dates)
+    const x = d3.scaleTime()
+        .domain(d3.extent(data, d => new Date(d.date))) // Use extent to get min and max dates
+        .range([0, width]);
 
+    // Set up the y-axis scale (linear scale for number of orders)
     const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.averageOrders) || 0])
-        .nice()
+        .domain([0, d3.max(data, d => d.count) || 0]) // Use max to get the highest count of orders
+        .nice() // Round the domain values for better display
         .range([height, 0]);
 
+    // Create the bars for the chart
     svg.append("g")
         .selectAll(".bar")
         .data(data)
         .enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("x", d => x(d.year))
-        .attr("y", d => y(d.averageOrders))
-        .attr("width", x.bandwidth())
-        .attr("height", d => height - y(d.averageOrders))
+        .attr("x", d => x(new Date(d.date)))
+        .attr("y", d => y(d.count))
+        .attr("width", 5) // Set a fixed width for the bars
+        .attr("height", d => height - y(d.count))
         .attr("fill", "steelblue");
 
+    // Add the x-axis to the chart
     svg.append("g")
         .attr("class", "x-axis")
         .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x))
+        .call(d3.axisBottom(x)) // Use d3.axisBottom for the x-axis
         .append("text")
         .attr("class", "axis-label")
         .attr("x", width / 2)
         .attr("y", margin.bottom - 10)
         .attr("text-anchor", "middle")
-        .text("Year");
+        .text("Date");
 
+    // Add the y-axis to the chart
     svg.append("g")
         .attr("class", "y-axis")
-        .call(d3.axisLeft(y))
+        .call(d3.axisLeft(y)) // Use d3.axisLeft for the y-axis
         .append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2)
-        .attr("y", -margin.left + 10)
+        .attr("y", -margin.left + 15)
         .attr("text-anchor", "middle")
-        .text("Average Orders per Month");
+        .text("Number of Orders");
 }
 
+// Fetch data and render the chart if data is available
 fetchData().then(data => {
     if (data.length > 0) {
         renderChart(data);
@@ -79,6 +87,7 @@ fetchData().then(data => {
     }
 });
 
+// Function to show alert messages
 function showAlert(message) {
     const alertContainer = document.getElementById('alert-container');
     if (alertContainer) {
