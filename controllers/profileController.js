@@ -1,10 +1,14 @@
 const User = require('../models/user'); 
 
 
-const profile = async(req, res) => {
-   console.log('User object:', req.session.user); // Check the structure and values here
-    res.render('profile', { user: req.session.user });
+const profile = (req, res) => {
+   if (req.session.user) {
+       res.render('profile', { user: req.session.user });
+   } else {
+       res.redirect('/users/login');
+   }
 };
+
 
 module.exports = {
    profile
