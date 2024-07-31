@@ -59,27 +59,28 @@
     <% if (recommendedProducts.length > 0) { %>
         <% recommendedProducts.forEach(product => { %>
             <% if (product.amount > 0) { %>
-                <div class="card">
+                <div class="card ">
                     <img src="<%= product.img %>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><%= product.title %></h5>
                         <p class="card-text"><%= product.sub %></p>
                         <p>₪ <%= product.price %></p>
-                        <form class="add-to-cart-form" action="/cart/add" method="POST">
+                        <form class="add-to-cart-form" onsubmit="addToCart(event)">
                             <input type="hidden" name="productId" value="<%= product._id %>">
                             <input type="hidden" name="category" value="<%= product.collectionName %>">
-                                <label for="quantity">:בחר כמות</label>
-                                <br>
-                                <div class="custom-input-container">
-                                    <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
-                                    <input type="number" id="quantity" name="quantity" min="1"  max="<%=parseInt(product.amount)%>" value="1" class="custominput">
-                                    <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
-                                </div>        
-                                <div class="reset-container">
-                                    <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
-                                </div>                  
+                            <label for="quantity">:בחר כמות</label>
+                            <br>
+                            <div class="custom-input-container">
+                                <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
+                                <input type="number" id="quantity" name="quantity" min="1"  max="<%=parseInt(product.amount)%>" value="1" class="custominput">
+                                <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
+                            </div> 
+                            <div class="reset-container">
+                                <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
+                            </div>
                             <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                         </form>
+                        
                         <% if (user && user.role === 'admin') { %>
                             <div class="actions">
                                 <a href="/admin/products/edit/<%= product.collectionName %>/<%= product._id %>">Edit</a>
@@ -100,6 +101,8 @@
   
 
 </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="JavaScript/products.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="JavaScript/categoryBar.js"></script>
     <script src="JavaScript/deleteProduct.js"></script>

@@ -31,6 +31,13 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
+                <ul>
+                    <% if (user && user.role === 'admin') { %>
+                        <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
+                    <% } %>
+                </ul>
+              
+
             </ul>
         </nav>
         <nav class="categoryDiv">
@@ -98,6 +105,12 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
+                <ul>
+                    <% if (user && user.role === 'admin') { %>
+                        <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
+                    <% } %>
+                </ul>
+              
                 </ul>
             </div>
         </nav>
@@ -144,16 +157,17 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
+                <ul>
+                    <% if (user && user.role === 'admin') { %>
+                        <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
+                    <% } %>
+                </ul>
+              
                 </ul>
             </div>
         </nav>
        
-        <ul>
-            <% if (user && user.role === 'admin') { %>
-                <li><a href="/admin/dashboard">Admin Dashboard</a></li>              
-            <% } %>
-        </ul>
-      
+    
         
     </header>
     <script src="JavaScript/categoryBar.js"></script>
