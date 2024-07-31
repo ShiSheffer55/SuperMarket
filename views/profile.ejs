@@ -15,17 +15,16 @@
 
 
     <% if (user) { %>
-        <h1>הפרטים שלך:</h1>
-        <p>שם משתמש: <%= user.userName %></p>
-        <p>שם פרטי: <%= user.fName %></p>
-        <p>שם משפחה: <%= user.lName %></p>
-        <p>מספר טלפון: <%= user.tel %></p>
-        <p>עיר: <%= user.city %></p>
-    <% } else { %>
-       
+        <div id="user-data">
+            <h1>הפרטים שלך:</h1>
+            <p>שם משתמש: <%= user.userName %></p>
+            <p>שם פרטי: <%= user.fName %></p>
+            <p>שם משפחה: <%= user.lName %></p>
+            <p>מספר טלפון: <%= user.tel %></p>
+            <p>עיר: <%= user.city %></p>
+        </div>
     <% } %>
 
-    <script src="/JavaScript/directToLogin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/views/categoryBar.js"></script>
 </body>
