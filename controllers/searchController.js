@@ -120,47 +120,46 @@ const minPricef = (products) => {
 };
 const searchProducts = async (req, res) => {
     try {
-        const query = req.query.q || '';  // חיפוש ראשוני
+        const query = req.query.q || '';
         const minPrice = parseFloat(req.query.minPrice) || 0;
         const maxPrice = parseFloat(req.query.maxPrice) || Infinity;
         const kashrutFilters = req.query.kashrut || [];
         const manufacturerFilters = req.query.manufacturer || [];
-
-        // הסבה ל-arrays אם הם לא כאלה
+                                     // checks if arr
         const kashrutFilterArray = Array.isArray(kashrutFilters) ? kashrutFilters : [kashrutFilters];
         const manufacturerFilterArray = Array.isArray(manufacturerFilters) ? manufacturerFilters : [manufacturerFilters];
 
-        // חיפוש מוצרים לפי query
         const products = await searchProductsAcrossCollections(query);
 
-        // פילטרים לפי מחירים, כשרות ויצרן
         const filteredProducts = products.filter(product => {
             const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
-            const matchesKashrut = kashrutFilterArray.length === 0 || kashrutFilterArray.includes(product.kashrut);
-            const matchesManufacturer = manufacturerFilterArray.length === 0 || manufacturerFilterArray.includes(product.manufacturer);
+            const matchesKashrut = kashrutFilterArray.length === 0 || kashrutFilterArray.includes(product.kashrut); // checks if kashrut of product in the filters
+            const matchesManufacturer = manufacturerFilterArray.length === 0 || manufacturerFilterArray.includes(product.manufacturer);// checks if manufacturer of product in the filters
             return matchesPrice && matchesKashrut && matchesManufacturer;
         });
 
-        // קבלת אפשרויות סינון לפי המוצרים המסוננים
         const kashrutOptions = getKashrutOptionsFromProducts(filteredProducts);
         const manufacturers = getManufacturersFromProducts(filteredProducts);
-        const maxPriceSlider=maxPricef(filteredProducts);
-        const minPriceSlider=minPricef(filteredProducts);
-        console.log(max);
-        console.log(min);
-        // שליחת תוצאות לתצוגה
+        const defaultMinPrice = Math.min(...products.map(product => product.price));
+        const defaultMaxPrice = Math.max(...products.map(product => product.price));
+
         res.render('searchResult', {
             searchproducts: filteredProducts,
             kashrutOptions: kashrutOptions,
             manufacturers: manufacturers,
             query: query,
-            maxPriceSlider: maxPriceSlider,
-            minPriceSlider: minPriceSlider
+            maxPriceSlider: maxPrice,
+            minPriceSlider: minPrice,
+            defaultMinPrice: defaultMinPrice,
+            defaultMaxPrice: defaultMaxPrice,
+            selectedKashrut: kashrutFilterArray,
+            selectedManufacturers: manufacturerFilterArray
         });
     } catch (error) {
         console.error('Error searching products:', error);
         res.status(500).send('Internal Server Error');
     }
 };
+
 
 module.exports = { searchProducts };
