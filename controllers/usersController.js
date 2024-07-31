@@ -71,51 +71,34 @@ const registerUser = async (req, res) => {
 
 
 
-// Handle user login
-const loginUser = async (req, res) => {
+const loginUser =  async (req, res) => {
     const { userName, password } = req.body;
-
-    // Debugging: Log the entire req.body
-    console.log('req.body:', req.body);
-
     try {
-        // Find user by username
         const user = await User.findOne({ userName });
-
         if (!user) {
-            console.log('User not found');
-            console.log('userName:', username);
-            console.log('password:', password);
-
-            return res.render('login', {
-                error_msg: 'Invalid username or password'
-            });
+            return res.status(400).send('User not found');
         }
 
-        // Compare password
         const isMatch = await bcrypt.compare(password, user.password);
-        console.log('Password match:', isMatch);
-
         if (!isMatch) {
-            console.log('Password does not match');
-            return res.render('login', {
-                error_msg: 'Invalid username or password'
-            });
+            return res.status(400).send('Invalid credentials');
         }
 
-        // Set session
+        // Store user data in session
         req.session.user = {
             _id: user._id,
             userName: user.userName,
+            fName: user.fName,
+            lName: user.lName,
+            tel: user.tel,
+            city: user.city,
             role: user.role
         };
 
-        res.redirect('/');
+        res.redirect('/'); // Redirect to a protected route
     } catch (err) {
         console.error('Error logging in:', err);
-        res.render('login', {
-            error_msg: 'Something went wrong'
-        });
+        res.status(500).send('Server error');
     }
 };
 

@@ -57,21 +57,20 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%= product.title %></h5>
                                 <p class="card-text"><%= product.sub %></p>
-                                <p><%= product.kashrut %></p>
+                                <p id="kashrut">כשרות: <%= product.kashrut %> </p>
                                 <p>₪ <%= product.price %></p>
                                 <form class="add-to-cart-form" action="/cart/add" method="POST">
                                     <input type="hidden" name="productId" value="<%= product._id %>">
                                     <input type="hidden" name="category" value="<%= product.collectionName %>">
-                                    <label for="quantity">בחר כמות:</label>
-                                    <br>
+                
                                     <div class="custom-input-container">
                                         <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
-                                        <input type="number" id="quantity" name="quantity" min="1" max="<%= parseInt(product.amount) %>" value="1" class="custominput">
+                                        <input type="number" id="quantity" name="quantity" min="1"  max="<%=product.amount%>" value="1" class="custominput">
                                         <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
-                                    </div>        
+                                    </div> 
                                     <div class="reset-container">
                                         <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
-                                    </div> 
+                                    </div>
                                     <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
                                 </form>
                                 <% if (user && user.role === 'admin') { %>
