@@ -15,6 +15,7 @@
 
     <%- include('partials/header') %>
 
+   
     <h1 id="T1">&#9734; הוסף מוצר חדש &#9734;</h1>
     <form action="/admin/products/add" method="POST">
         <table id="simple" class="table">
@@ -32,7 +33,7 @@
                     <td id="i3">שם</td>
                 </tr>
                 <tr id="d4">
-                    <td><input type="number" id="price" name="price" class="form-control" step="0.01" required></td>
+                    <td><input type="number" id="price" name="price" class="form-control" min="0" step="0.01" required></td>
                     <td id="i4">מחיר</td>
                 </tr>
                 <tr id="d5">
@@ -58,7 +59,7 @@
                     <td id="i6">ספק</td>
                 </tr>
                 <tr id="d7">
-                    <td><input type="number" id="amount" name="amount" class="form-control" required></td>
+                    <td><input type="number" id="amount" name="amount" min="0" class="form-control" required></td>
                     <td id="i7">כמות</td>
                 </tr>
                 <tr id="d8">
@@ -87,6 +88,8 @@
         <button id="but" type="submit" class="btn btn-success">הוסף מוצר</button>
         <br><br>
     </form>
+    
+
 
     <main>
         <% if (products.length > 0) { %>
