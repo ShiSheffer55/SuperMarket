@@ -74,18 +74,20 @@
         </div>
             <!-- Edit and Delete links -->
             <a id="link1" href="/admin/users/edit/<%= user._id %>">Edit</a>
-            <form action="/admin/users/delete/<%= user._id %>" method="POST" style="display:inline;">
+            <!-- <form action="/admin/users/delete/<%= user._id %>" method="POST">
                 <a id="link2" href="#" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
-            </form>
+            </form> -->
+            <a href="#" id="link2" onclick="deleteUser('<%= user._id %>'); return false;">Delete</a>
         </div>
     <% }) %> <% } else { %>
         <h3>
             <td colspan="3">No users found</td>
         </h3>
     <% } %>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/views/categoryBar.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/JavaScript/deleteUser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/JavaScript/categoryBar.js"></script>
 </body>
 </html>

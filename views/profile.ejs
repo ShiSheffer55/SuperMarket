@@ -17,10 +17,10 @@
     <% if (user) { %>
         <h1>הפרטים שלך:</h1>
         <p>שם משתמש: <%= user.userName %></p>
-        <p>שם פרטי: <%= user.fName || 'Not provided' %></p>
-        <p>שם משפחה: <%= user.lName || 'Not provided' %></p>
-        <p>מספר טלפון: <%= user.tel || 'Not provided' %></p>
-        <p>עיר: <%= user.city || 'Not provided' %></p>
+        <p>שם פרטי: <%= user.fName %></p>
+        <p>שם משפחה: <%= user.lName %></p>
+        <p>מספר טלפון: <%= user.tel %></p>
+        <p>עיר: <%= user.city %></p>
     <% } else { %>
         <p>לצפייה בפרופיל עלייך להתחבר/להירשם לאתר</p>
         <a href="/">חזרה לדף הבית</a>
