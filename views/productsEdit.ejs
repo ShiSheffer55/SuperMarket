@@ -35,7 +35,7 @@
                         <td id="i3">שם</td>
                     </tr>
                     <tr id="d4">
-                        <td><input type="number" id="price" name="price" class="form-control" step="0.01" value="<%= product.price %>" required></td>
+                        <td><input type="number" id="price" name="price" class="form-control" step="0.01" value="<%= product.price %>" min="0" required></td>
                         <td id="i4">מחיר</td>
                     </tr>
                     <tr id="d5">
@@ -61,7 +61,7 @@
                         <td id="i6">ספק</td>
                     </tr>
                     <tr id="d7">
-                        <td><input type="number" id="amount" name="amount" class="form-control" value="<%= product.amount %>" required></td>
+                        <td><input type="number" id="amount" name="amount" class="form-control" min="0" value="<%= product.amount %>" required></td>
                         <td id="i7">כמות</td>
                     </tr>
                     <tr id="d8">
