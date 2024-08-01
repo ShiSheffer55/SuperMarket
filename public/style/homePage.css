@@ -133,4 +133,36 @@
     margin-top: 10px; 
     text-align: center; 
 }
-
+#greeting
+{
+  font-weight: bold;
+  font-family: 'Medium';
+}
+@font-face 
+  {
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Regular' ;
+  src: url("/fonts/IBMPlexSansHebrew-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Rubik' ;
+  src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+@font-face 
+  {
+  font-family:'Rubik2' ;
+  src: url("/fonts/Rubik-Regular.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
