@@ -38,6 +38,15 @@
                 <label for="city" class="form-label">עיר</label>
                 <input type="text" id="city" name="city" class="form-control" value="<%= user.city %>" required>
             </div>
+            <div class="mb-3">
+                <label for="role">האם מנהל?</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="כן">כן</option>
+                    <option value="לא">לא</option>
+                </select>
+            </div>
+
+            </tr>
             <button type="submit" class="btn btn-primary">Update User</button>
         </form>
         <a href="/admin/users" class="btn btn-secondary mt-2">Back to User List</a>
