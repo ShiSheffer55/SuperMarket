@@ -53,3 +53,28 @@
       flex-direction: column;
       align-items: center; /* Center the content horizontally */
     }
+    #search-box
+{
+    padding: 0.5%; 
+    font-size: large; 
+    border: 2px solid rgba(197, 231, 202, 0.822) ; 
+    border-radius: 8px;
+    width: 18%; 
+    text-align: right;
+}
+    #search-but {
+      padding: 0.5%; /* מרווח פנימי */
+      font-size: large; /* גודל גופן */
+      border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+      border-radius: 8px; /* עיגול הפינות */
+      background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+      color: black; /* צבע הטקסט */
+      cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
+      transition: background-color 0.3s; /* אנימציה על צבע הרקע */
+      color: rgba(25, 134, 98, 0.986);
+  }
+  
+  /* שינוי צבע רקע כשמעבירים את העכבר מעל הכפתור */
+  #search-but:hover{
+      background-color: rgba(163, 223, 172, 0.863); 
+    }
