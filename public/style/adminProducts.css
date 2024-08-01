@@ -43,3 +43,13 @@
     {
     text-align: right;
     }
+    .card {
+      position: relative;
+      margin: 2%;
+      width: 23rem;
+      height: 35em;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center the content horizontally */
+    }
