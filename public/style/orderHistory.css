@@ -1,3 +1,13 @@
+
+
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -16,4 +26,30 @@ th {
     font-weight: 100;
     color: rgb(0, 0, 0);
     text-align: center;
+}
+#t1 {
+    color: rgba(197, 231, 202, 0.822);/* משנה את הצבע של האלמנט עם ה-id 't1' לירוק */
+}
+
+.list-group-item {
+    border-top: 0.2em solid rgb(219, 253, 224)!important; /* ניתן לשנות ל-em כדי להתאים לגובה הטקסט */
+    border-right: 0.2em solid rgb(219, 253, 224) !important;
+    border-bottom: 0.2em solid rgb(219, 253, 224)!important;;
+    border-left: 0.2em solid  rgb(219, 253, 224) !important;
+    margin-bottom: 2%; /* מוסיף רווח בין ההזמנות */
+    border-radius: 0.8em; /* מוסיף עיגול קל לפינות */
+    padding: 1%; /* מוסיף רווח פנימי להזמנה */
+    box-sizing: border-box; /* מבטיח שה-padding לא יחתוך את הגבול */
+}
+#greeting
+{
+      font-family: 'Medium';
+      text-shadow: black;
+}
+@font-face 
+  {
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
 }
