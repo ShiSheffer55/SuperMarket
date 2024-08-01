@@ -13,7 +13,8 @@ const usersRoute = require('./routes/users');
 const cartRoute = require('./routes/cart');
 const locationsRoute = require('./routes/location'); 
 const profileRoute = require('./routes/profile');
-
+const historyRoute = require('./routes/history');
+const ordersRoute = require('./routes/orders'); 
 
 const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
 
@@ -59,6 +60,8 @@ app.use('/search', searchRoute);
 app.use('/', productsRoute);
 app.use('/users', usersRoute);
 app.use('/location', locationsRoute);
+app.use('/history', historyRoute); // חיבור מסלול ההיסטוריה
+app.use('/orders', ordersRoute);
 
 // Start server
 app.listen(port, () => {
