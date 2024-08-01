@@ -131,3 +131,8 @@ h1{
 #submitFilters:hover{
   background-color: rgba(163, 223, 172, 0.863); 
 }
+#filters:hover
+{
+  color:rgb(54, 168, 130);
+  transition: 0.4s;
+}
