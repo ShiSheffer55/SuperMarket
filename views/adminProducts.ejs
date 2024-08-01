@@ -102,21 +102,6 @@
                             <p class="card-text"><%= product.sub %></p>
                             <p id="kashrut">כשרות: <%= product.kashrut %> </p>
                             <p>₪ <%= product.price %></p>
-                            <form class="add-to-cart-form" onsubmit="addToCart(event)">
-                                <input type="hidden" name="productId" value="<%= product._id %>">
-                                <input type="hidden" name="category" value="<%= product.collectionName %>">
-                                <input type="hidden" id="isAuthenticated" value="<%= user ? 'true' : 'false' %>">
-                             
-                                <div class="custom-input-container">
-                                    <button type="button" class="custom-input-button1" onclick="changeQuantity(this, -1)">-</button>
-                                    <input type="number" id="quantity" name="quantity" min="1"  max="<%=product.amount%>" value="1" class="custominput">
-                                    <button type="button" class="custom-input-button" onclick="changeQuantity(this, 1)">+</button>
-                                </div> 
-                                <div class="reset-container">
-                                    <span class="reset-link" onclick="resetQuantity()">איפוס כמות</span>
-                                </div>
-                                <button id="AddtoCart" class="btn btn-primary">הוספה לסל</button>
-                            </form>
                             
                             <% if (user && user.role === 'admin') { %>
                                 <div class="actions">
