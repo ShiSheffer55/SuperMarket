@@ -71,7 +71,7 @@ function renderChart(data) {
     // Add the y-axis to the chart
     svg.append("g")
         .attr("class", "y-axis")
-        .call(d3.axisLeft(y)) // Use d3.axisLeft for the y-axis
+        .call(d3.axisLeft(y).ticks(d3.max(data, d => Math.ceil(d.count)) || 0).tickFormat(d3.format("d"))) // Use d3.axisLeft for the y-axis
         .append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
