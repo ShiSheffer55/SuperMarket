@@ -79,7 +79,7 @@
     border: 2px solid rgba(197, 231, 202, 0.822) ; 
     border-radius: 8px;
     width: 18%; 
-    text-align: center;
+    text-align: right;
 }
 #search-but {
     padding: 0.5%; /* מרווח פנימי */
