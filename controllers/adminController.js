@@ -52,13 +52,14 @@ const renderAdminUsers = async (req, res) => {
 // Render Admin Orders Page
 const renderAdminOrders = async (req, res) => {
     try {
-        const orders = await Order.find().populate('user'); // Populate User
-        res.render('adminOrders', { orders });
+        const orders = await Order.find().populate('user'); // Populate user data
+        res.render('adminOrders', { orders }); // Pass data to view
     } catch (error) {
         console.error('Error fetching orders:', error);
         res.status(500).send('Server error');
     }
 };
+
 
 
 const getAverageOrdersPerDay = async (req, res) => {

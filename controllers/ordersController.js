@@ -43,7 +43,9 @@ const deleteOrder = async (req, res) => {
 // Search orders and users, and get total order count
 const searchOrders = async (req, res) => {
     const query = req.query.q || ''; // Default to empty string if query is not provided
+
     try {
+        // Search for users matching the query
         const users = await User.find({
             $or: [
                 { userName: { $regex: query, $options: 'i' } },
@@ -53,12 +55,13 @@ const searchOrders = async (req, res) => {
             ]
         });
 
+        // Extract user IDs
+        const userIds = users.map(user => user._id);
+
+        // Search for orders by matching user IDs
         const orders = await Order.find({
-            $or: [
-                { _id: { $regex: query, $options: 'i' } },
-                { createdAt: { $regex: query, $options: 'i' } }
-            ]
-        });
+            user: { $in: userIds }
+        }).populate('user');
 
         const totalOrders = await Order.countDocuments();
 
@@ -66,18 +69,21 @@ const searchOrders = async (req, res) => {
             users,
             orders,
             user: req.session.user,
-            totalOrders // Ensure totalOrders is always included
+            totalOrders,
+            query // Pass the query to the template
         });
     } catch (err) {
+        console.error('Failed to search users and orders:', err);
         res.render('adminOrders', {
             users: [],
-            orders: [], // Ensure orders is an empty array if there's an error
+            orders: [],
             user: req.session.user,
-            totalOrders: 0, // Set default value for totalOrders
+            totalOrders: 0,
             error: 'Failed to search users and orders: ' + err.message
         });
     }
 };
+
 
 module.exports = {
     renderEditOrderForm, 

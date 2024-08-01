@@ -28,12 +28,12 @@
         <h1 id="t2"> &#9734; הזמנות &#9734;</h1>
     </div>
 <br>
-    <!-- Search Form -->
-    <form action="/admin/orders/searchOrders" method="GET">
-        <input id="search-box" type="text" name="q" placeholder="Search orders and users..." required>
+     <!-- Search Form -->
+     <form action="/admin/orders/searchOrders" method="GET">
+        <input id="search-box" type="text" name="q" placeholder="Search orders and users..." value="<%= query %>" required>
         <button id="search-but" type="submit">Search</button>
     </form>
-
+    
 <br>
     <table id="table">
         <thead>
@@ -53,19 +53,22 @@
             <% orders.forEach(order => { %>
                 <tr>
                     <td><%= order._id %></td>
-                    <td>Name: <%= order.user.fName %> <%= order.user.lName %><br>Email: <%= order.user.gmail %></td>
+                    <td>
+                        Name: <%= order.userDetails.fName %> <%= order.userDetails.lName %><br>
+                        Email: <%= order.userDetails.gmail %>
+                    </td>
                     <td>
                         <ul>
                             <% order.products.forEach(product => { %>
-                                <li><%= product.title %> x <%=product.quantity %> - ₪<%= product.price * product.quantity%></li>
+                                <li><%= product.title %> x <%= product.quantity %> - ₪<%= product.price * product.quantity %></li>
                             <% }) %>
                         </ul>
                     </td>
                     <td>₪<%= order.total %></td>
                     <td><%= order.status || 'N/A' %></td>
-                    <td><%= order.createdAt.toDateString() %></td>
-
+                    <td><%= new Date(order.createdAt).toLocaleDateString() %></td>
                     <td><a href="/admin/orders/edit/<%= order._id %>" class="btn btn-primary btn-sm">Edit</a></td>
+                        
                     <td>
                         <form action="/admin/orders/delete/<%= order._id %>" method="POST" style="display:inline;">
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?');">Delete</button>

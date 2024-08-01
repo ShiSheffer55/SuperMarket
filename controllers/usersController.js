@@ -90,6 +90,7 @@ const loginUser =  async (req, res) => {
             userName: user.userName,
             fName: user.fName,
             lName: user.lName,
+            gmail: user.gmail,
             tel: user.tel,
             city: user.city,
             role: user.role
@@ -169,7 +170,7 @@ const renderEditUserForm = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
-    const { userName, fName, lName, email, password, tel, city, role } = req.body;
+    const { userName, fName, lName, gmail, password, tel, city, role } = req.body;
 
     try {
         // Hash the password if it's provided
@@ -180,7 +181,7 @@ const updateUser = async (req, res) => {
             userName,
             fName,
             lName,
-            email,
+            gmail,
             tel,
             city,
             role: userRole
