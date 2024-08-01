@@ -1,18 +1,17 @@
 $(document).ready(function() {
     console.log('cart.js loaded');
 
-    // Remove product from cart
     $('.delete-btn').click(function(event) {
         event.preventDefault(); // Prevent the default form submission
-
+    
         const productName = $(this).closest('tr').data('product-name'); // Get the product name
         console.log('Delete button clicked for product name:', productName);
-
+    
         $.ajax({
             url: '/cart/delete/' + encodeURIComponent(productName), // Use the encoded product name
-            method: 'POST',
+            method: 'POST', // Or 'DELETE' if the server expects DELETE requests
             success: function(response) {
-                // Alert the user about the successful removal
+                console.log('Product removed successfully:', response);
                 alert(response.message);
                 location.reload(); // Reload the page to update the cart
             },
@@ -22,7 +21,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    
     // Function to update the cart UI
     function updateCartUI(cart) {
         // Update the cart UI with the new cart contents

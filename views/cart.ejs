@@ -32,9 +32,9 @@
                 <% cart.forEach(item => { %>
                     <tr data-product-name="<%= item.title %>"> <!-- Updated to use title -->
                         <td><%= item.title %></td>
-                        <td>₪<%= item.price %></td>
+                        <td><%= item.price %>₪</td>
                         <td><%= item.quantity %></td>
-                        <td>₪<%= item.price * item.quantity %></td>
+                        <td><%= item.price * item.quantity %>₪</td>
 
                         <td>
                             <button class="delete-btn"><i class="fas fa-trash"></i></button>
@@ -42,7 +42,11 @@
                     </tr>
                 <% }) %>
                 
-                
+                <tr>
+                    <td colspan="3"><strong>סה"כ:</strong></td>
+                    <td><%= total %>₪</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
 

@@ -76,7 +76,11 @@ const addToCart = async (req, res) => {
 
 
 const viewCart = (req, res) => {
-    res.render('cart', { cart: req.session.cart || [] });
+    let cart = req.session.cart || [];
+
+    // Calculate total price
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    res.render('cart', { cart, total: totalPrice });
 };
 
 const checkout = (req, res) => {
@@ -146,7 +150,7 @@ const emptyCart = async (req, res) => {
 
 // Remove a product from the cart
 const removeProductFromCart = async (req, res) => {
-    const productName = decodeURIComponent(req.params.name); // Decode the product name if needed
+    const productName = req.params.name; 
     console.log('Removing product with name:', productName);
 
     // Retrieve the cart from the session
