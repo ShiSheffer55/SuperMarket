@@ -47,13 +47,34 @@
             <img src="/img/vilifood_logo.png" />
         </div>
     </div>
-
+<!-- 
     <% if (user) { %>
         <p id="welcome"> !ברוך שובך <%= user.userName %></p>
-    <% } %>
+    <% } %> -->
     
-    
-    <div id="recommended">
+    <p id="greeting">
+        <% if (user) { %>
+            <% 
+                const now = new Date();
+                const hours = now.getHours();
+                let greeting;
+
+                if (hours >= 0 && hours < 6) {
+                    greeting = 'לילה טוב';
+                } else if (hours >= 6 && hours < 12) {
+                    greeting = 'בוקר טוב';
+                } else if (hours >= 12 && hours < 17) {
+                    greeting = 'צהריים טובים';
+                } else if (hours >= 17 && hours < 19) {
+                    greeting = 'אחר צהריים טובים';
+                } else {
+                    greeting = 'ערב טוב';
+                }
+            %>
+            <%= `${greeting}, ${user.fName} ${user.lName}` %>
+        <% } %>
+    </p>
+
     <h1 id="recommended_title">&#9734;     המומלצים שלנו  &#9734;</h1> 
    </div>
 

@@ -1,5 +1,6 @@
 const getProductModel = require('../models/getProductModel');
 const Order = require('../models/order');
+const User = require('../models/user');
 
 const addToCart = async (req, res) => {
     const { productId, quantity, category } = req.body;
@@ -76,7 +77,11 @@ const addToCart = async (req, res) => {
 
 
 const viewCart = (req, res) => {
-    res.render('cart', { cart: req.session.cart || [] });
+    let cart = req.session.cart || [];
+
+    // Calculate total price
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    res.render('cart', { cart, total: totalPrice });
 };
 
 const checkout = (req, res) => {
@@ -94,12 +99,30 @@ const placeOrder = async (req, res) => {
     }
 
     try {
+        const user = await User.findById(req.session.user._id).select('fName lName gmail');
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        const orderProducts = cart.map(item => ({
+            productId: item._id, 
+            title: item.title,
+            price: item.price,
+            quantity: item.quantity
+        }));
+
         const order = new Order({
             user: req.session.user._id,
-            products: cart,
+            userDetails: {
+                fName: user.fName,
+                lName: user.lName,
+                gmail: user.gmail
+            },
+            products: orderProducts,
             total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
         });
 
+        console.log('Order to be saved:', order); // Debug log
         await order.save();
         req.session.cart = []; // Clear the cart after placing the order
         res.render('orderSuccess');
@@ -108,6 +131,8 @@ const placeOrder = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
+
+
 const emptyCart = async (req, res) => {
     // Retrieve the cart from the session
     let cart = req.session.cart || [];
@@ -146,7 +171,7 @@ const emptyCart = async (req, res) => {
 
 // Remove a product from the cart
 const removeProductFromCart = async (req, res) => {
-    const productName = decodeURIComponent(req.params.name); // Decode the product name if needed
+    const productName = req.params.name; 
     console.log('Removing product with name:', productName);
 
     // Retrieve the cart from the session
