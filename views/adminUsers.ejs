@@ -14,11 +14,7 @@
     <%- include('partials/header') %>
 
 <br>
-      <!-- Search form -->
-      <form action="/admin/users/search" method="GET">
-        <input id="search-box" type="text" name="q" placeholder="חיפוש לפי שם או אימייל">
-        <button id="search-but" type="submit">חיפוש</button>
-    </form>
+     
 
     
  <!-- Form for adding a new user -->
@@ -68,6 +64,13 @@
     <button id="but" type="submit" class="btn btn-success">הוסף משתמש</button>
  </form>
  <hr>
+
+
+  <!-- Search form -->
+  <form action="/admin/users/search" method="GET">
+    <input id="search-box" type="text" name="q" placeholder="חיפוש לפי שם או אימייל">
+    <button id="search-but" type="submit">חיפוש</button>
+</form>
 
 
     <h1 id="Tusers"> &#9734; משתמשים &#9734;</h1>
