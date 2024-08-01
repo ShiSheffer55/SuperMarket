@@ -18,11 +18,11 @@
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select class="form-select" id="status" name="status" required>
-                <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
-                <option value="Processing" <%= order.status === 'Processing' ? 'selected' : '' %>>Processing</option>
-                <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
-                <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
-                <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>ממתין</option>
+                <option value="Processing" <%= order.status === 'Processing' ? 'selected' : '' %>>מעבד</option>
+                <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>נשלח</option>
+                <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>נמסר</option>
+                <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>בוטל</option>
             </select>
         </div>
 

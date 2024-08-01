@@ -91,6 +91,7 @@ table {
     max-width: 1200px; /* מקסימום רוחב לטבלה */
     border-collapse: collapse; /* מסיר רווחים בין התאים */
     margin: 0 auto; /* מרכז את הטבלה בתוך הקונטיינר */
+    text-align: center;
 }
 /* הגדרת רוחב לפי מחלקות */
 .order-id {
