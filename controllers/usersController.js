@@ -128,7 +128,7 @@ const addUser = async (req, res) => {
     try {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
+        const userRole = role === 'כן' ? 'admin' : 'user';
         // Create a new user
         const newUser = new User({
             userName,
@@ -139,7 +139,7 @@ const addUser = async (req, res) => {
             tel,
             city,
             isLivesInCenter,
-            role
+            role: userRole
         });
 
         // Save the new user to the database
@@ -169,12 +169,12 @@ const renderEditUserForm = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
-    const { userName, fName, lName, email, password, tel, city } = req.body;
+    const { userName, fName, lName, email, password, tel, city, role } = req.body;
 
     try {
         // Hash the password if it's provided
         const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
-
+        const userRole = role === 'כן' ? 'admin' : 'user';
         // Prepare update object
         const updateData = {
             userName,
@@ -182,7 +182,8 @@ const updateUser = async (req, res) => {
             lName,
             email,
             tel,
-            city
+            city,
+            role: userRole
         };
         
         // Include password in the update if it's hashed
