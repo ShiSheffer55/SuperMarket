@@ -108,11 +108,40 @@ const placeOrder = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
-
 const emptyCart = async (req, res) => {
-    req.session.cart = [];
-    res.json({ message: 'הסל התבטל' });
-}
+    // Retrieve the cart from the session
+    let cart = req.session.cart || [];
+
+    try {
+        // Loop through the cart items
+        for (const item of cart) {
+            // Get the model for the product category
+            const Product = getProductModel(item.category);
+
+            // Find the product in the database
+            const product = await Product.findById(item._id);
+
+            if (!product) {
+                console.error('Product not found:', item._id);
+                continue; // Skip this product and continue with the next one
+            }
+
+            // Update the product's amount in the database
+            product.amount += item.quantity;
+            await product.save();
+            console.log('Updated product amount:', product._id, product.amount);
+        }
+
+        // Empty the cart
+        req.session.cart = [];
+
+        res.json({ message: 'הסל התבטל' });
+    } catch (err) {
+        console.error('Internal server error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 
 
 // Remove a product from the cart

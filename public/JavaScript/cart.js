@@ -41,22 +41,22 @@ $(document).ready(function() {
     }
 
      // Empty the cart
-     $('#cancel-cart').click(function() {
-        console.log('Cancel cart button clicked');
+     $('#cancel-cart').on('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+
         $.ajax({
-            url: '/cart/empty',
-            method: 'POST',
+            url: '/cart/empty', // Adjust URL based on your route
+            type: 'POST', // Or 'DELETE' if that fits your route
             success: function(response) {
+                // Optionally update the UI to show the cart is empty
+                $('#cart-container').html('<p>הסל ריק</p>'); // Example update
                 alert(response.message);
                 location.reload(); // Reload the page to update the cart
+
             },
-            error: function(err) {
-                console.error('Error emptying cart:', err);
-                if (err.responseJSON && err.responseJSON.message) {
-                    alert('Error: ' + err.responseJSON.message);
-                } else {
-                    alert('Failed to empty cart. Please try again.');
-                }
+            error: function(xhr) {
+                console.error('Error emptying cart:', xhr.responseText);
+                alert('Error emptying cart');
             }
         });
     });
