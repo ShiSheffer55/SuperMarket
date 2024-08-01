@@ -70,18 +70,17 @@ const registerUser = async (req, res) => {
 };
 
 
-
-const loginUser =  async (req, res) => {
+const loginUser = async (req, res) => {
     const { userName, password } = req.body;
     try {
         const user = await User.findOne({ userName });
         if (!user) {
-            return res.status(400).send('User not found');
+            return res.render('login', { error: 'שם משתמש שגוי'});
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).send('Invalid credentials');
+            return res.render('login', { error: 'סיסמה שגויה' });
         }
 
         // Store user data in session
@@ -102,6 +101,7 @@ const loginUser =  async (req, res) => {
         res.status(500).send('Server error');
     }
 };
+
 
 
 // Handle user logout
