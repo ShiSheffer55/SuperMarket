@@ -35,30 +35,40 @@
     font-weight: normal;
   }
 
-
-  /* כלליים עבור כל הקישורים */
   #link1,#link2,#link3 {
-    color: rgba(25, 134, 98, 0.986); /* צבע הקישורים */
-    font-size: 1.2em; /* גודל הטקסט של הקישורים */
-    text-decoration: none; /* מבטל את הקו התחתון של הקישורים */
-    position: relative; /* נדרש כדי למקם את הכוכבית יחסית לקישור */
-    padding: 10px 20px; /* ריפוד פנימי עבור הקישורים */
-    display: inline-block; /* מאפשר להוסיף רווח בין הקישורים */
-    margin-right: 2%; /* רווח בין הקישורים */
+    color: rgba(25, 134, 98, 0.986); 
+    font-size: 1.2em; 
+    text-decoration: none; 
+    position: relative; 
+    padding: 10px 20px; 
+    display: inline-block; 
+    margin-right: 2%; 
     font-weight: bold;
-    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע של האליפסה */
-    border-radius: 50px; /* רדיוס הגבול ליצירת אליפסה */
-    text-align: center; /* מיישר את הטקסט במרכז האליפסה */
-    border: 3px solid rgba(25, 134, 98, 0.986); /* קו מסגרת מסביב לאליפסה */
+    background-color: rgba(197, 231, 202, 0.822); 
+    border-radius: 50px; 
+    text-align: center; 
+    border: 3px solid rgba(25, 134, 98, 0.986); 
 }
 #link1
 {
     position: relative;
     margin-left: 32%;
 }
-    
-/* שינוי צבע הקישור כאשר העכבר מרחף עליו */
+
 a:hover {
-    color: rgba(25, 134, 98, 0.986); /* צבע הקישור בעת ריחוף */
+    color: rgba(25, 134, 98, 0.986); 
+}
+#admin
+{
+    position: relative;
+    margin-top: 19%; /* מוסיף מרווח עליון של 20px */
+    margin-left: 2.5%;
+
+}
+#admin2,#admin3,#admin4
+{
+    position: relative;
+    margin-top: 19%; /* מוסיף מרווח עליון של 20px */
+
 }
 
