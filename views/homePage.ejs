@@ -52,8 +52,8 @@
         <p id="welcome"> !ברוך שובך <%= user.userName %></p>
     <% } %>
     
-    
-    <div id="recommended">
+    <div id="greeting"></div>
+    <div id="greeting" data-user-name="לקוח"><%= user.fName %> <%= user.lName %></div>
     <h1 id="recommended_title">&#9734;     המומלצים שלנו  &#9734;</h1> 
    </div>
 
@@ -111,5 +111,6 @@
     <script src="JavaScript/categoryBar.js"></script>
     <script src="JavaScript/deleteProduct.js"></script>
     <script src="JavaScript/quantity.js"></script>
+    <script src="JavaScript/greeting.js"></script>
 </body>
 </html>
