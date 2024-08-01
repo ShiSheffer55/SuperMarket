@@ -3,39 +3,77 @@ const Order = require('../models/order');
 
 const addToCart = async (req, res) => {
     const { productId, quantity, category } = req.body;
-    const productModel = getProductModel(category);
 
-    console.log(req.body);
+    // Ensure that all required fields are present
+    if (!productId || !quantity || !category) {
+        return res.status(400).json({ message: 'Product ID, quantity, and category are required' });
+    }
+
+    console.log('Request body:', req.body);
+
     try {
-        const product = await productModel.findById(productId);
+        // Get the product model based on the category
+        const Product = getProductModel(category);
+
+        // Check if the Product model was successfully retrieved
+        if (!Product) {
+            console.error('Invalid category:', category);
+            return res.status(400).json({ message: 'Invalid category' });
+        }
+
+        // Fetch the product from the database
+        const product = await Product.findById(productId);
+
         if (!product) {
-            return res.status(404).send('Product not found');
+            console.error('Product not found:', productId);
+            return res.status(404).json({ message: 'Product not found' });
         }
 
-        if (!req.session.cart) {
-            req.session.cart = [];
+        const quantityInt = parseInt(quantity, 10);
+        console.log('Parsed quantity:', quantityInt);
+
+        // Check if there's enough stock
+        if (product.amount < quantityInt) {
+            console.error('Not enough stock available for product:', productId);
+            return res.status(400).json({ message: 'Not enough stock available' });
         }
 
-        const cartItemIndex = req.session.cart.findIndex(item => item.productId === productId);
-        if (cartItemIndex > -1) {
-            req.session.cart[cartItemIndex].quantity += parseInt(quantity);
+        // Update the product quantity in the database
+        product.amount -= quantityInt;
+        await product.save();
+        console.log('Updated product amount:', product.amount);
+
+        // Add the product to the cart (assuming req.session.cart is an array)
+        let cart = req.session.cart || [];
+        const cartItem = cart.find(item => item._id === productId && item.category === category);
+
+        if (cartItem) {
+            cartItem.quantity += quantityInt;
         } else {
-            req.session.cart.push({
-                productId: product._id,
+            cart.push({
+                _id: product._id,
                 title: product.title,
+                img: product.img,
                 price: product.price,
-                quantity: parseInt(quantity),
-                img: product.img
+                quantity: quantityInt,
+                category: category // Include the category in the cart item
             });
         }
 
-       
-        res.status(200).end();
+        req.session.cart = cart;
+        console.log('Updated cart:', req.session.cart);
+
+        return res.status(200).json({ 
+            cart: req.session.cart, 
+            message: 'Product added to cart successfully', 
+            newAmount: product.amount // Return the new amount of the product
+        });
     } catch (err) {
-        console.error('Error adding product to cart:', err);
-        res.status(500).end();
+        console.error('Internal server error:', err);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 const viewCart = (req, res) => {
     res.render('cart', { cart: req.session.cart || [] });
@@ -76,23 +114,56 @@ const emptyCart = async (req, res) => {
     res.json({ message: 'הסל התבטל' });
 }
 
+
 // Remove a product from the cart
 const removeProductFromCart = async (req, res) => {
-    const productName = req.params.name; // Get the product name from the request parameters
+    const productName = decodeURIComponent(req.params.name); // Decode the product name if needed
     console.log('Removing product with name:', productName);
 
-    // Assuming you have a method to access the cart (e.g., in session or database)
-    let cart = req.session.cart || []; // Use the session or fetch from the database
+    // Retrieve the cart from the session
+    let cart = req.session.cart || [];
+    console.log('Current cart:', cart);
 
-    // Remove the product from the cart based on the product name
-    cart = cart.filter(item => item.title !== productName);
+    // Find the item to remove from the cart
+    const itemToRemove = cart.find(item => item.title === productName);
 
-    // Save the updated cart (e.g., in session or database)
-    req.session.cart = cart;
+    if (!itemToRemove) {
+        console.log('Product not found in cart');
+        return res.status(404).json({ message: 'Product not found in cart' });
+    }
 
-    res.json({ message: 'המוצר הוסר' });
+    // Get the product category from the item to use for model lookup
+    const productCategory = itemToRemove.category; // Ensure `category` is properly set in the cart item
+    console.log(productCategory); 
+    const Product = getProductModel(productCategory); // Get model based on category
+
+    try {
+        // Fetch the product from the database
+        const product = await Product.findOne({ title: productName });
+
+        if (!product) {
+            console.log('Product not found in database');
+            return res.status(404).json({ message: 'Product not found in database' });
+        }
+
+        // Update the product amount in the database
+        product.amount += itemToRemove.quantity;
+        await product.save();
+
+        // Remove the product from the cart
+        cart = cart.filter(item => item.title !== productName);
+        req.session.cart = cart;
+
+        console.log('Updated cart:', cart);
+        res.json({ 
+            message: 'Product removed successfully', 
+            cart: req.session.cart 
+        });
+    } catch (err) {
+        console.error('Database error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };
-
 
 
 module.exports = {

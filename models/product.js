@@ -26,7 +26,6 @@ const ProductSchema = new mongoose.Schema({
     amount: {
         type: Number
     },
-     // Remove or make optional if not used
     sub: { 
         type: String, 
         required: false 
@@ -40,12 +39,11 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     
-manufacturer:
-{
-    
+    manufacturer:
+    {
     type: String, 
     required: true
-}
+    }
 });
 
 
