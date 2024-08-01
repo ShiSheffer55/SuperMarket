@@ -1,6 +1,19 @@
 const Order = require('../models/order');
 const User = require('../models/user');
 
+// פונקציה להציג את היסטוריית ההזמנות
+const getOrderHistory = async (req, res) => {
+    try {
+        const orders = await Order.find({ user: req.params.userId });
+        if (!orders || orders.length === 0) {
+            return res.status(404).send('No orders found for this user');
+        }
+        res.render('orderHistory', { orders });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).send('Server error');
+    }
+};
 const renderEditOrderForm = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id).populate('user').populate('products.productId');
@@ -43,9 +56,7 @@ const deleteOrder = async (req, res) => {
 // Search orders and users, and get total order count
 const searchOrders = async (req, res) => {
     const query = req.query.q || ''; // Default to empty string if query is not provided
-
     try {
-        // Search for users matching the query
         const users = await User.find({
             $or: [
                 { userName: { $regex: query, $options: 'i' } },
@@ -55,13 +66,12 @@ const searchOrders = async (req, res) => {
             ]
         });
 
-        // Extract user IDs
-        const userIds = users.map(user => user._id);
-
-        // Search for orders by matching user IDs
         const orders = await Order.find({
-            user: { $in: userIds }
-        }).populate('user');
+            $or: [
+                { _id: { $regex: query, $options: 'i' } },
+                { createdAt: { $regex: query, $options: 'i' } }
+            ]
+        });
 
         const totalOrders = await Order.countDocuments();
 
@@ -69,25 +79,23 @@ const searchOrders = async (req, res) => {
             users,
             orders,
             user: req.session.user,
-            totalOrders,
-            query // Pass the query to the template
+            totalOrders // Ensure totalOrders is always included
         });
     } catch (err) {
-        console.error('Failed to search users and orders:', err);
         res.render('adminOrders', {
             users: [],
-            orders: [],
+            orders: [], // Ensure orders is an empty array if there's an error
             user: req.session.user,
-            totalOrders: 0,
+            totalOrders: 0, // Set default value for totalOrders
             error: 'Failed to search users and orders: ' + err.message
         });
     }
 };
 
-
 module.exports = {
     renderEditOrderForm, 
     updateOrder,
     deleteOrder, 
-    searchOrders
+    searchOrders,
+    getOrderHistory
 };
