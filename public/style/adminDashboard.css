@@ -58,17 +58,8 @@
 a:hover {
     color: rgba(25, 134, 98, 0.986); 
 }
-#admin
+#admin1
 {
-    position: relative;
-    margin-top: 19%; /* מוסיף מרווח עליון של 20px */
-    margin-left: 2.5%;
-
+  position: relative;
+  margin-left: 40%;
 }
-#admin2,#admin3,#admin4
-{
-    position: relative;
-    margin-top: 19%; /* מוסיף מרווח עליון של 20px */
-
-}
-
