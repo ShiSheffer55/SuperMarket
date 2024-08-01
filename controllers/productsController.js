@@ -193,6 +193,9 @@ const deleteProduct = async (req, res) => {
 };
 
 
+
+
+
 // Export all functions at the end
 module.exports = {
     getRecommendedProducts,

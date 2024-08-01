@@ -37,6 +37,8 @@ h1{
 #slider-range {
   width: 25%; /* שינוי לרוחב מלא או ערך אחר לצורך התאמה */
   margin-bottom: 1rem; /* מרווח תחתון */
+  position: relative;
+  margin-left: 72.5%;
 }
 
 /* צבעים לסליידר */
@@ -46,19 +48,16 @@ h1{
 /* צבע גבול הידיות של הסליידר */
 .ui-slider-handle {
   background: rgb(219, 253, 224); /* צבע רקע של הידית של הסליידר */
-  border: 2px solid rgb(25, 134, 98); /* גבול שחור עם רוחב של 2px */
 }
 
 /* שינוי צבע גבול הידיות בעת השהייה (hover) */
 .ui-slider-handle:hover {
   background:rgb(219, 253, 224); /* צבע הידית כאשר עובר מעליה בעכבר */
-  border: 2px solid rgb(25, 134, 98); /* גבול שחור בעת השהייה */
 }
 
 /* שינוי צבע גבול הידיות כאשר יש focus */
 .ui-slider-handle:focus {
   background: rgb(219, 253, 224); /* צבע הידית כאשר יש focus */
-  border: 2px solid rgb(25, 134, 98); /* גבול שחור כאשר יש focus */
 }
 
 #amount
@@ -89,15 +88,51 @@ h1{
 .filter-option-title
 {
   text-align: right;
-  margin-right: 2%;
+  position: relative;
+  margin-left: 92%;
+  font-size: large;
+  font-family: 'Medium';
+  font-weight: bold;
+  color:rgba(25, 134, 98, 0.986); ;
+}
+.filter-option-title1
+{
+  text-align: right;
+  position: relative;
+  margin-left: 94.5%;
+  font-size: large;
+  font-family: 'Medium';
+  font-weight: bold;
+  color:rgba(25, 134, 98, 0.986); ;
+}
+.filter-option-title2
+{
+  text-align: right;
+  position: relative;
+  margin-left: 95.5%;
+  font-size: large;
+  font-family: 'Medium';
+  font-weight: bold;
+  color:rgba(25, 134, 98, 0.986); ;
 }
 #submitFilters
 {
+  font-size: large; /* גודל גופן */
+  border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+  border-radius: 20px; /* עיגול הפינות */
+  background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+  color: black; /* צבע הטקסט */
+  cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
+  transition: background-color 0.3s; /* אנימציה על צבע הרקע */
+  color: rgba(25, 134, 98, 0.986);
   position: relative;
-  text-align: center;
-  margin-right: 2%;
-  border: solid;
-  border-width: 0.3mm;
-  border-radius: 5px;
-
+  margin-right: 1%;
+}
+#submitFilters:hover{
+  background-color: rgba(163, 223, 172, 0.863); 
+}
+#filters:hover
+{
+  color:rgb(54, 168, 130);
+  transition: 0.4s;
 }

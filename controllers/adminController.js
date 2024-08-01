@@ -64,7 +64,18 @@ const renderAdminOrders = async (req, res) => {
 
 const getAverageOrdersPerDay = async (req, res) => {
     try {
+        const today = new Date();
+        // Start of the day for today
+        const startOfToday = new Date(today.setHours(0, 0, 0, 0));
+
         const orders = await Order.aggregate([
+            // Match orders from today onward
+            {
+                $match: {
+                    createdAt: { $gte: startOfToday }
+                }
+            },
+            // Group by day
             {
                 $group: {
                     _id: {
@@ -75,9 +86,11 @@ const getAverageOrdersPerDay = async (req, res) => {
                     count: { $sum: 1 }
                 }
             },
+            // Sort by date
             {
                 $sort: { '_id.year': 1, '_id.month': 1, '_id.day': 1 }
             },
+            // Project the result
             {
                 $project: {
                     date: {

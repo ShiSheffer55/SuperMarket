@@ -40,6 +40,9 @@ function renderChart(data) {
         .nice() // Round the domain values for better display
         .range([height, 0]);
 
+    // Set a fixed width for the bars (make bars thinner by reducing this value)
+    const barWidth = 12; // Adjust the bar width to make it thinner
+
     // Create the bars for the chart
     svg.append("g")
         .selectAll(".bar")
@@ -47,9 +50,9 @@ function renderChart(data) {
         .enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("x", d => x(new Date(d.date)))
+        .attr("x", d => x(new Date(d.date)) - barWidth / 2)
         .attr("y", d => y(d.count))
-        .attr("width", 5) // Set a fixed width for the bars
+        .attr("width", barWidth)
         .attr("height", d => height - y(d.count))
         .attr("fill", "steelblue");
 
@@ -68,7 +71,7 @@ function renderChart(data) {
     // Add the y-axis to the chart
     svg.append("g")
         .attr("class", "y-axis")
-        .call(d3.axisLeft(y)) // Use d3.axisLeft for the y-axis
+        .call(d3.axisLeft(y).ticks(d3.max(data, d => Math.ceil(d.count)) || 0).tickFormat(d3.format("d"))) // Use d3.axisLeft for the y-axis
         .append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
