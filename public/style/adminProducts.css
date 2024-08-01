@@ -1,0 +1,45 @@
+#T2 {
+    position: relative;
+    margin-left: 40%;
+    font-family: 'Rubik';
+    font-style: italic;
+    text-shadow: 60%;
+    }
+    
+    #simple {
+      position: relative;
+      margin-left: 34%;
+      border-style: solid;
+      border-color: rgb(219, 253, 224);
+      width: 30%;
+    }
+    #but:hover{
+      background-color: rgba(163, 223, 172, 0.863); 
+    }
+    
+    #i1, #i2, #i3, #i4, #i5, #i7, #i6, #i8, #i9, #i10,#i11,#i12 {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-weight: bold;
+      font-size: large;
+      text-align: center;
+    }
+    
+    #but {
+      position: relative;
+      margin-left: 46%;
+      border-radius: 8px;
+      background-color: rgba(197, 231, 202, 0.822);
+      color: rgba(25, 134, 98, 0.986);
+      border: solid;
+      border-color: rgba(25, 134, 98, 0.986);
+      border-width: 0.3mm;
+    }
+    
+    #d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 , #d9,#d10,#d11{
+      box-align: center;
+    
+    }
+    #title,#img,#name,#price,#category,#supplier,#amount,#description,#recommended,#manufacturer,#kashrut
+    {
+    text-align: right;
+    }
