@@ -38,7 +38,7 @@
     <table id="table">
         <thead>
             <tr id="row">
-                <th class="order-id">Order ID</th>
+                <th class="order-id">מספר הזמנה</th>
             <th class="user">משתמש</th>
             <th class="products">מוצרים</th>
             <th class="total">מחיר סופי</th>
@@ -54,8 +54,8 @@
                 <tr>
                     <td><%= order._id %></td>
                     <td>
-                        Name: <%= order.userDetails.fName %> <%= order.userDetails.lName %><br>
-                        Email: <%= order.userDetails.gmail %>
+                        <%= order.userDetails.fName %> <%= order.userDetails.lName %><br>
+                        <%= order.userDetails.gmail %>
                     </td>
                     <td>
                         <ul>
