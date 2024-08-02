@@ -1,0 +1,78 @@
+footer {
+    background: rgba(197, 231, 202, 0.822);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+.footer-container section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+.footer-container h3 {
+    margin-bottom: 10px;
+}
+.footer-container p,
+.footer-container ul,
+.footer-container a,
+.footer-container address {
+    margin: 5px 0;
+    color: black;
+}
+.footer-container ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-container ul li {
+    margin: 5px 0;
+}
+.footer-container ul li a {
+    color: black;
+    text-decoration: none;
+}
+.footer-container ul li a:hover {
+    color: black;
+}
+.footer-social a {
+    margin: 0 5px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+.footer-social a:hover {
+    color: #fff;
+}
+.footer-video video {
+    margin: 10px 0;
+}
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+#p
+{
+      font-family: 'Medium';
+      text-shadow: black;
+      text-align: center;
+
+}
+
+@font-face 
+{
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
+
+#t
+{
+    color:rgba(25, 134, 98, 0.986);
+}
