@@ -55,7 +55,12 @@ const registerUser = async (req, res) => {
         // Set session for the new user
         req.session.user = {
             _id: newUser._id,
+            fName: newUser.fName,
+            lName: newUser.lName,
             userName: newUser.userName,
+            gmail: newUser.gmail,
+            tel: newUser.tel,
+            city: newUser.city,
             role: newUser.role
         };
 
