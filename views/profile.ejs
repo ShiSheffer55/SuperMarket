@@ -21,16 +21,19 @@
             <h1 id="title">&#9734;     הפרטים שלך  &#9734;</h1> 
             <br>
             <br>
+            <div class="card">
         <div id="div1">
+            <br>
             <p>שם משתמש: <%= user.userName %></p>
             <p>שם פרטי: <%= user.fName %></p>
             <p>שם משפחה: <%= user.lName %></p>
             <p>אימייל: <%= user.gmail %></p>
             <p>מספר טלפון: <%= user.tel %></p>
             <p>עיר: <%= user.city %></p>
-            <a href="/orders/<%= user._id %>">היסטוריית ההזמנות שלי</a>
-
+            <a  id="link" href="/orders/<%= user._id %>">היסטוריית ההזמנות שלי</a>
         </div>
+        </div>
+        <img id="private" src="/img/private.png">
         </div>
     <% } %>
 
