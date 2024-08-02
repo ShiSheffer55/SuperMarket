@@ -17,3 +17,18 @@ text-align: center;
     color: rgb(0, 0, 0);
     text-align: center;
 }
+#div1
+{
+      font-family: 'Medium';
+      text-shadow: black;
+      text-align: center;
+
+}
+
+@font-face 
+{
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}
