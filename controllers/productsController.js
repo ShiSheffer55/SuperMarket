@@ -198,32 +198,34 @@ const deleteProduct = async (req, res) => {
 
 const getMostSoldProducts = async (req, res) => {
     try {
-        
         const collections = ['frozen', 'sweets and snacks', 'milk', 'fruits', 'vegetables', 'drinks', 'Bread and pastries', 'dry', 'cleanliness', 'meat', 'fish'];
 
         let aggregatedData = [];
 
+        // Loop through each collection and aggregate product sales
         for (const collection of collections) {
             const Product = productsConnection.model('Product', new mongoose.Schema({}), collection);
             const products = await Product.aggregate([
-                { $group: { _id: "$name", totalSold: { $sum: "$amount" } } },
-                { $sort: { totalSold: -1 } }
+                { $group: { _id: "$name", minAmount: { $min: "$amount" } } }, // Use $min instead of $sum
+                { $sort: { minAmount: 1 } } // Sort by minAmount in ascending order
             ]);
             aggregatedData = aggregatedData.concat(products);
         }
 
-        // Aggregate results from all collections
-        const finalResults = Object.values(aggregatedData.reduce((acc, curr) => {
+        // Combine results from all collections
+        const combinedResults = aggregatedData.reduce((acc, curr) => {
             if (!acc[curr._id]) {
-                acc[curr._id] = { _id: curr._id, totalSold: 0 };
+                acc[curr._id] = { _id: curr._id, minAmount: Infinity }; // Initialize with Infinity for min comparison
             }
-            acc[curr._id].totalSold += curr.totalSold;
+            acc[curr._id].minAmount = Math.min(acc[curr._id].minAmount, curr.minAmount);
             return acc;
-        }, {}));
+        }, {});
 
-        finalResults.sort((a, b) => b.totalSold - a.totalSold);
+        // Convert combined results to array and sort
+        const finalResults = Object.values(combinedResults).sort((a, b) => a.minAmount - b.minAmount);
 
-        res.json(finalResults.slice(0, 10)); // Return top 10 most sold products
+        // Respond with the top 10 products with the smallest minAmount
+        res.json(finalResults.slice(0, 10));
     } catch (err) {
         console.error('Error fetching most sold products:', err);
         res.status(500).send('Server error');
