@@ -7,6 +7,9 @@
 .axis-label {
     font: 12px sans-serif;
 }
+#chart{
+    text-align: center;
+}
 #t3
 {
     position: relative;
