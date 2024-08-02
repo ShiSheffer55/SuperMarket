@@ -129,18 +129,5 @@ font-weight: 100;
   font-style: normal ;
   font-weight: 100;
 }
-#but1,#but2,#but3 {
-    padding: 0.5%; /* מרווח פנימי */
-    font-size: large; /* גודל גופן */
-    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
-    border-radius: 8px; /* עיגול הפינות */
-    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
-    color: black; /* צבע הטקסט */
-    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
-    transition: background-color 0.3s; /* אנימציה על צבע הרקע */
-    color: rgba(25, 134, 98, 0.986);
-}
-#but1:hover,#but2:hover,#but3:hover{
-    background-color: rgba(163, 223, 172, 0.863); 
-  }
+
 
