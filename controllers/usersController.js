@@ -22,14 +22,14 @@ const registerUser = async (req, res) => {
         const existingUser = await User.findOne({ userName });
         if (existingUser) {
             return res.render('register', {
-                error: 'Username already exists'
+                error: 'שם משתמש כבר קיים'
             });
         }
 
         // Validate required fields
         if (!userName || !fName || !lName || !password || !gmail || !tel || !city) {
             return res.render('register', {
-                error: 'All required fields must be filled'
+                error: 'חובה למלא את כל השדות'
             });
         }
 
