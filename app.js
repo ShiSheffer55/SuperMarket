@@ -5,7 +5,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
+require('dotenv').config();
 
+// עכשיו תוכל להשתמש במפתחי ה-API שלך
+const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
 const searchRoute = require('./routes/search');
 const productsRoute = require('./routes/products');
 const adminRoute = require('./routes/admin');

@@ -1,7 +1,5 @@
 # Ignore a specific file
-views/locations.ejs
-public/JavaScript/locations.js
-controllers/locationController.js
+
 # Ignore API keys
 .env
 config/*.json
