@@ -13,6 +13,9 @@
       text-shadow: 60%;
       }
     
+      #chart{
+        text-align: center;
+      }
     #simple {
       position: relative;
       margin-left: 34%;
