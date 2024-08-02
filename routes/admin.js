@@ -40,6 +40,6 @@ router.get('/products/edit/:collectionName/:id', isAdmin, productsController.ren
 router.post('/products/edit/:collectionName/:id', isAdmin, productsController.updateProduct);
 router.delete('/products/delete/:collectionName/:id', isAdmin, productsController.deleteProduct);
 router.get('/:collectionName', isAdmin, productsController.getProductsFromCollection);
-
+router.get('/products/most-sold', isAdmin, productsController.getMostSoldProducts); 
 
 module.exports = router;

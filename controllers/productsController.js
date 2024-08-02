@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const getProductModel = require('../models/getProductModel');
 const Product = getProductModel('products'); 
+const { productsConnection } = require('../databases');
 
 const categoryMap = {
     'בשר': 'meat',
@@ -195,6 +196,40 @@ const deleteProduct = async (req, res) => {
 
 
 
+const getMostSoldProducts = async (req, res) => {
+    try {
+        
+        const collections = ['frozen', 'sweets and snacks', 'milk', 'fruits', 'vegetables', 'drinks', 'Bread and pastries', 'dry', 'cleanliness', 'meat', 'fish'];
+
+        let aggregatedData = [];
+
+        for (const collection of collections) {
+            const Product = productsConnection.model('Product', new mongoose.Schema({}), collection);
+            const products = await Product.aggregate([
+                { $group: { _id: "$name", totalSold: { $sum: "$amount" } } },
+                { $sort: { totalSold: -1 } }
+            ]);
+            aggregatedData = aggregatedData.concat(products);
+        }
+
+        // Aggregate results from all collections
+        const finalResults = Object.values(aggregatedData.reduce((acc, curr) => {
+            if (!acc[curr._id]) {
+                acc[curr._id] = { _id: curr._id, totalSold: 0 };
+            }
+            acc[curr._id].totalSold += curr.totalSold;
+            return acc;
+        }, {}));
+
+        finalResults.sort((a, b) => b.totalSold - a.totalSold);
+
+        res.json(finalResults.slice(0, 10)); // Return top 10 most sold products
+    } catch (err) {
+        console.error('Error fetching most sold products:', err);
+        res.status(500).send('Server error');
+    }
+};
+
 
 // Export all functions at the end
 module.exports = {
@@ -204,5 +239,6 @@ module.exports = {
     addProduct,
     renderEditProductForm,
     updateProduct,
-    deleteProduct
+    deleteProduct, 
+    getMostSoldProducts
 };
