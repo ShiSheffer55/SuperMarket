@@ -36,7 +36,8 @@
                         <ul >
                             <% order.products.forEach(product => { %>
                                 <li id="greeting"> 
-                                    <strong><%= product.title %></strong> - ₪<%= product.price %> x <%= product.quantity %>
+                                    <strong><%= product.title %></strong> - <%= (product.price * product.quantity).toFixed(2) %>₪ x <%= product.quantity %>
+
                                 </li>
                             <% }); %>
                         </ul>
