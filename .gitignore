@@ -1,3 +1,7 @@
 # Ignore a specific file
-views/location.ejs
-public/JavaScript/location.js
+views/locations.ejs
+public/JavaScript/locations.js
+controllers/locationController.js
+# Ignore API keys
+.env
+config/*.json
