@@ -7,13 +7,14 @@
 .axis-label {
     font: 12px sans-serif;
 }
-#t1
+#t3
 {
     position: relative;
-    margin-left: 27%;
+    margin-left: 32%;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
+    color: black;
 }
 #t2
 {

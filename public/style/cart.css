@@ -1,12 +1,10 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-}
 
-#numOfProducts{
+
+#numOfProducts
+{
+    text-align: center;
+    font-family: 'Medium';
+    text-shadow: black;
     text-align: center;
 }
 
@@ -99,5 +97,35 @@ td a:hover {
     }
 }
 
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+}
 
 
+#title
+{
+    font-size: 300%;
+    font-family: 'Rubik';
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+#th1
+{
+    font-family: 'Medium';
+    text-shadow: black;
+    text-align: center;
+
+}
+
+@font-face 
+{
+  font-family:'Medium' ;
+  src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
+  font-style: normal ;
+  font-weight: 100;
+}

@@ -31,7 +31,7 @@
                     </div>
                 <% }); %>
             </div>
-            <p>Total: <%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(3) %>₪</p>
+            <p>Total: <%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2) %>₪</p>
             <br>
             <div class="buttons">
                 
@@ -42,6 +42,7 @@
             </div>
         </div>
     <% } %>
+    <img id="img-order" src="/img/order.png">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JavaScript/cart.js"></script>
