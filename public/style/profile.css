@@ -1,0 +1,19 @@
+
+@font-face 
+{
+font-family:'Rubik' ;
+src: url("/fonts/RubikDoodleShadow-Regular.ttf");
+font-style: normal ;
+font-weight: 100;
+text-align: center;
+}
+
+
+#title
+{
+    font-size: 300%;
+    font-family: 'Rubik';
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
