@@ -45,7 +45,7 @@ function renderProductChart(data) {
         .attr("y", d => y(d.totalSold))
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d.totalSold))
-        .attr("fill", "steelblue");
+        .attr("fill", "green");
 
     svg.append("g")
         .attr("class", "x-axis")
