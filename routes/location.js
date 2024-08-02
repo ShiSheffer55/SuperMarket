@@ -5,5 +5,4 @@ const locationsController = require('../controllers/locationsController');
 router.get('/locations', locationsController.getLocations);
 router.get('/map', locationsController.renderLocations);
 
-
 module.exports = router;

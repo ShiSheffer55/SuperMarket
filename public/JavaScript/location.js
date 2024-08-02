@@ -1,5 +1,5 @@
-  // Initialize the Google Map
-  function initMap() {
+// Initialize the Google Map
+function initMap() {
     const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
         center: { lat: 31.7683, lng: 35.2137 } // Default center, Jerusalem
@@ -10,10 +10,10 @@
         .then(response => response.json())
         .then(locations => {
             locations.forEach(location => {
-                const marker = new google.maps.Marker({
+                new google.maps.Marker({
                     position: {
-                        lat: location.coordinates[1],
-                        lng: location.coordinates[0]
+                        lat: location.location.coordinates[1],
+                        lng: location.location.coordinates[0]
                     },
                     map: map,
                     title: location.name
