@@ -58,23 +58,25 @@ td a:hover {
 }
 
 .actions a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    color: black;
-    background-color: rgb(219, 253, 224);
-    border: none;
+    padding: 0.5%; /* מרווח פנימי */
+    font-size: large; /* גודל גופן */
+    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+    border-radius: 8px; /* עיגול הפינות */
+    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+    color: black; /* צבע הטקסט */
+    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
+    color: rgba(25, 134, 98, 0.986);
+    margin-right: 10px;
     text-decoration: none;
-    font-size: 16px;
-    border-color: black;
-    border-radius: 5px;
-    border: 1px solid #000000; 
-
 }
+
 
 .actions a:hover {
     background-color: #45a049;
+
 }
+
+
 
 .delete-btn {
     background-color: transparent;
@@ -86,6 +88,7 @@ td a:hover {
     align-items: center;
     gap: 5px;
 }
+    
 
 .delete-btn:hover {
     color: #ff0000;
