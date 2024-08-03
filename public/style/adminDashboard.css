@@ -58,3 +58,8 @@
 a:hover {
     color: rgba(25, 134, 98, 0.986); 
 }
+#admin
+{
+  position: relative;
+  margin-left: 35%;
+}
