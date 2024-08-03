@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 async function addToCart(event) {
     event.preventDefault(); // Prevent default form submission
-
 
     const isAuthenticated = document.getElementById('isAuthenticated').value === 'true';
     if (!isAuthenticated) {
@@ -45,6 +45,8 @@ async function addToCart(event) {
         if (response.ok) {
             const result = await response.json();
             updateCartUI(result.cart);
+            // Refresh the page after successful addition to the cart
+            location.reload();
         } else {
             const errorText = await response.text();
             showAlert(`Error adding product to cart: ${errorText}`);
@@ -73,5 +75,3 @@ function updateCartUI(cart) {
         cartItemCount.textContent = cart.length;
     }
 }
-
-
