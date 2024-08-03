@@ -63,7 +63,7 @@ app.use('/search', searchRoute);
 app.use('/', productsRoute);
 app.use('/users', usersRoute);
 app.use('/location', locationsRoute);
-app.use('/history', historyRoute); // חיבור מסלול ההיסטוריה
+app.use('/history', historyRoute); 
 app.use('/orders', ordersRoute);
 
 // Start server
