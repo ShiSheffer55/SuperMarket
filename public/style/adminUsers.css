@@ -36,7 +36,7 @@
 }
 #Tusers {
     position: relative;
-    margin-left: 41.2%;
+    margin-left: 42%;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -154,4 +154,5 @@
     margin-left: 7%;
     grid-row-gap: 3%; /* רווח ספציפי בין השורות */
 }
+
 
