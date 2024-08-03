@@ -39,3 +39,12 @@
   font-style: normal ;
   font-weight: 100;
 }
+
+.weather-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.weather-icon {
+  width: 100px;
+}
