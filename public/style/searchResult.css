@@ -62,10 +62,10 @@ h1{
 
 #amount
 { 
-   display: inline-block;
+  display: inline-block;
   border:0;
-  text-align: end;
-  margin-right: 7%;
+  text-align: center;
+  margin-right: 9%;
 
 
 }
@@ -136,3 +136,5 @@ h1{
   color:rgb(54, 168, 130);
   transition: 0.4s;
 }
+
+
