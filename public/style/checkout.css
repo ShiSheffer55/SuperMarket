@@ -22,81 +22,180 @@
     font-style: normal;
 }
 
-#div1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: uppercase;
 }
-
-.cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Adjust the gap between items */
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Adjust the gap between image and text */
-}
-
-.item-details {
+#total
+{
+    text-align: center;
     font-family: 'Medium';
 }
-.buttons {
+
+.container{
+    min-height: 100vh;
+    background: #eee;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 80px;
 }
 
-.buttons .btn {
-    margin: 0 5px; /* מרווח בין הכפתורים אם צריך */
+.container form{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    padding: 20px;
+    width: 600px;
+    padding-top: 160px;
 }
-#address,#city
-{
-    text-align: right;
+#address
+.container form .inputBox,
+.container .inputBox{
+    margin-top: 20px;
 }
 
-.inline-form {
-    margin: 0;
+.container form .inputBox span,
+.container .inputBox span{
+    display: block;
+    color:#999;
+    padding-bottom: 5px;
 }
-#img-order {
-    width: 30%; 
-    height: auto; 
+
+
+.container form .inputBox input,
+.container form .inputBox select,
+.container .inputBox input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid rgba(0,0,0,.3);
+    color:#444;
+}
+
+.container form .flexbox{
+    display: flex;
+    gap:15px;
+}
+
+.container form .flexbox .inputBox{
+    flex:1 1 150px;
+}
+
+.container form .submit-btn{
+    width: 100%;
+    background:linear-gradient(45deg,rgb(172, 223, 180),rgb(85, 185, 152) );
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color:#fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.container form .submit-btn:hover{
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.container .card-container{
+    margin-bottom: -150px;
     position: relative;
-    margin-left: 0%;
-}
-.form-control {
-    border: 2px solid #ccc; /* מסגרת אפורה לשדות הקלט */
-    border-radius: 4px; /* פינות מעוגלות לשדות הקלט */
-    padding: 8px; /* ריפוד פנימי לשדות הקלט */
-    box-sizing: border-box; /* כולל גבולות ו-padding ברוחב */
-    transition: border-color 0.3s; /* אנימציה על שינוי צבע המסגרת */
+    height: 250px;
+    width: 400px;
 }
 
-.form-control:focus {
-    border-color: #007bff; /* צבע מסגרת כחול כאשר שדה הקלט בפוקוס */
-    outline: none; /* מסיר את הקו מסביב לשדה הקלט */
+.container .card-container .front{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0; left: 0;
+    background:linear-gradient(45deg,rgb(172, 223, 180),rgb(85, 185, 152) );
+    border-radius: 5px;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    padding:20px;
+    transform:perspective(1000px) rotateY(0deg);
+    transition:transform .4s ease-out;
 }
 
-.form-label {
-    display: block; /* הופך את התיוג לבלוק */
-    margin-bottom: 0.5rem; /* מרווח בין התיוג לשדה הקלט */
-    font-weight: bold; /* בולט יותר */
-    border: 1px solid #ddd; /* מסגרת קלה לתיוגים */
-    border-radius: 4px; /* פינות מעוגלות לתיוגים */
-    padding: 4px; /* ריפוד פנימי לתיוגים */
-    background-color: #f9f9f9; /* צבע רקע לתיוגים */
+.container .card-container .front .image{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.container .card-container .front .image img{
+    height: 50px;
+}
+
+.container .card-container .front .card-number-box{
+    padding:30px 0;
+    font-size: 22px;
+    color:#fff;
+}
+
+.container .card-container .front .flexbox{
+    display: flex;
+}
+
+.container .card-container .front .flexbox .box:nth-child(1){
+    margin-right: auto;
+}
+
+.container .card-container .front .flexbox .box{
+    font-size: 15px;
+    color:#fff;
+}
+
+.container .card-container .back{
+    position: absolute;
+    top:0; left: 0;
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(45deg,rgb(172, 223, 180),rgb(85, 185, 152) );
+    border-radius: 5px;
+    padding: 20px 0;
     text-align: right;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    transform:perspective(1000px) rotateY(180deg);
+    transition:transform .4s ease-out;
 }
 
-.mb-3 {
-    margin-bottom: 1rem; /* רווח בין השדות */
+.container .card-container .back .stripe{
+    background: #000;
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
 }
-.form-container {
-    border: 3px solid rgb(219, 253, 224); /* מסגרת דקה סביב כל הטופס */
-    border-radius: 8px; /* עיגול הפינות של המסגרת */
-    padding: 16px; /* ריפוד פנימי סביב התוכן */
-    max-width: 100%; /* רוחב מקסימלי לקונטיינר */
-    margin: auto; /* למרכז את הקונטיינר בדף */
-    background-color: #fff; /* צבע רקע לבן */
+
+.container .card-container .back .box{
+    padding: 0 20px;
+}
+
+.container .card-container .back .box span{
+    color:#fff;
+    font-size: 15px;
+}
+
+.container .card-container .back .box .cvv-box{
+    height: 50px;
+    padding: 10px;
+    margin-top: 5px;
+    color:#333;
+    background: #fff;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.container .card-container .back .box img{
+    margin-top: 30px;
+    height: 30px;
 }
