@@ -57,7 +57,7 @@
                     <option value="לא">לא</option>
                 </select>
             </td>
-                <td id="i7">האם מנהל?</td>
+                <td id="i8">?אתה מנהל</td>
             </tr>
         </tbody>
     </table>
@@ -74,9 +74,10 @@
 
 
     <h1 id="Tusers"> &#9734; משתמשים &#9734;</h1>
+    <br>
     <!-- Display users here -->
     <% if (users.length > 0) { %>
-
+        <div class="container">
          <% users.forEach(user => { %>
         <div class="card">
             <div class="card-body">
@@ -96,6 +97,7 @@
             <td colspan="3">No users found</td>
         </h3>
     <% } %>
+        </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JavaScript/deleteUser.js"></script>
