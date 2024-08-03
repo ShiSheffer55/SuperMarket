@@ -28,3 +28,23 @@ document.querySelector('.cvv-input').oninput = () =>{
     document.querySelector('.cvv-box').innerText = document.querySelector('.cvv-input').value;
 }
 
+document.querySelector('.card-number-input').addEventListener('keypress', function (e) {
+    // מונע הכנסת תווים שאינם מספרים
+    if (e.key < '0' || e.key > '9') {
+        e.preventDefault();
+    }
+});
+document.querySelector('.cvv-input').addEventListener('keypress', function (e) {
+    // מונע הכנסת תווים שאינם מספרים
+    if (e.key < '0' || e.key > '9') {
+        e.preventDefault();
+    }
+});
+document.querySelector('.card-holder-input').addEventListener('keypress', function (e) {
+    // השגת התו שהוזן
+    const char = String.fromCharCode(e.which || e.keyCode);
+    // בדיקה אם התו הוא אות כלשהי
+    if (!char.match(/^[\p{L}]$/u)) {
+        e.preventDefault();
+    }
+});
