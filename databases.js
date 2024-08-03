@@ -7,29 +7,12 @@ const locationsMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.
 const ordersMongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/orders?retryWrites=true&w=majority';
 
 // Create connections
-const usersConnection = mongoose.createConnection(usersMongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const usersConnection = mongoose.createConnection(usersMongoURI);
+const productsConnection = mongoose.createConnection(productsMongoURI);
+const locationsConnection = mongoose.createConnection(locationsMongoURI);
+const ordersConnection = mongoose.createConnection(ordersMongoURI);
 
-const productsConnection = mongoose.createConnection(productsMongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-const locationsConnection = mongoose.createConnection(locationsMongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-const ordersConnection = mongoose.createConnection(ordersMongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-mongoose.connect(productsMongoURI, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
+mongoose.connect(productsMongoURI, {
     serverSelectionTimeoutMS: 30000  // Increase server selection timeout
 });
 
