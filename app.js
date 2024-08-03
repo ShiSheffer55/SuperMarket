@@ -20,7 +20,7 @@ const profileRoute = require('./routes/profile');
 const historyRoute = require('./routes/history');
 const ordersRoute = require('./routes/orders'); 
 
-const { usersConnection, productsConnection, locationsConnection } = require('./databases'); // Import connections
+const { usersConnection, productsConnection, locationsConnection, ordersConnection } = require('./databases'); // Import connections
 
 const app = express();
 const port = 3001;
