@@ -28,25 +28,26 @@
                     <th>מחיקה</th>
                 </tr>
             </thead>
+        
             <tbody>
                 <% cart.forEach(item => { %>
-                    <tr data-product-name="<%= item.title %>">
+                    <tr data-product-id="<%= item.id %>" data-product-name="<%= item.title %>">
                         <td><img src="<%= item.img %>" alt="<%= item.title %>" class="product-img"></td>
                         <td><%= item.title %></td>
                         <td><%= item.price %>₪</td>
                         <td><%= item.quantity %></td>
-                        <td><%= (item.price * item.quantity).toFixed(2) %>₪</td>
+                        <td id="TotalPrice"><%= (item.price * item.quantity).toFixed(2) %>₪</td>
                         <td>
-                            <button class="delete-btn"><i class="bi bi-trash"></i></button>
+                            <button class="delete-btn" data-product-id="<%= item.id %>"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
                 <% }) %>
                 <tr>
-                    <td colspan="3"><strong>סה"כ</strong></td>
+                    <td colspan="5"><strong>סה"כ</strong></td>
                     <td><%= total.toFixed(2) %>₪</td>
-                    <td></td>
                 </tr>
             </tbody>
+            
         </table>
         <div class="actions">
             <a href="#" id="cancel-cart">מחק סל</a>
@@ -59,5 +60,9 @@
     <script src="/JavaScript/categoryBar.js"></script>
 </body>
 </html>
+
+
+
+
 
 
