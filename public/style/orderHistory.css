@@ -53,3 +53,11 @@ th {
   font-style: normal ;
   font-weight: 100;
 }
+
+
+#no-orders-message {
+    text-align: center;
+    font-size: large;
+    color: rgba(25, 134, 98, 0.986);
+    margin-top: 20px;
+}

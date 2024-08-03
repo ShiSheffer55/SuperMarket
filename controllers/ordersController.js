@@ -7,15 +7,14 @@ const User = require('../models/user');
 const getOrderHistory = async (req, res) => {
     try {
         const orders = await Order.find({ user: req.params.userId });
-        if (!orders || orders.length === 0) {
-            return res.status(404).send('No orders found for this user');
-        }
+       
         res.render('orderHistory', { orders });
     } catch (error) {
         console.error('Error fetching orders:', error);
         res.status(500).send('Server error');
     }
 };
+
 const renderEditOrderForm = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id).populate('user').populate('products.productId');
