@@ -148,7 +148,7 @@ header{
     
 }
 .custom-badge {
-  background-color: rgba(25, 134, 98, 0.986); /* צבע הרקע של ה-badge */
+  background-color: rgb(54, 168, 130); /* צבע הרקע של ה-badge */
   color: white; /* צבע הטקסט של ה-badge */
 }
 
