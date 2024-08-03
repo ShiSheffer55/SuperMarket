@@ -36,7 +36,7 @@
 }
 #Tusers {
     position: relative;
-    margin-left: 41.2%;
+    margin-left: 42%;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -68,7 +68,7 @@
     box-align: center;
     
 }
-#userName,#fName,#lName,#tel,#city,#gmail,#password
+#userName,#fName,#lName,#tel,#city,#gmail,#password,#role
 {
   text-align: right;
 }
@@ -146,3 +146,13 @@
     margin-left: 55%;
     font-size: large;
 }
+.container {
+    display: grid; /* הופך את הקונטיינר ל-Grid */
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr)); /* יוצר עמודות אוטומטיות עם רוחב מינימלי של 200px */
+    gap: 13%; /* רווח בין הכרטיסים */
+    position: relative;
+    margin-left: 7%;
+    grid-row-gap: 3%; /* רווח ספציפי בין השורות */
+}
+
+
