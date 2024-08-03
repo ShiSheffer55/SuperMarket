@@ -147,6 +147,10 @@ header{
   padding-top:50px ;
     
 }
+.custom-badge {
+  background-color: rgba(25, 134, 98, 0.986); /* צבע הרקע של ה-badge */
+  color: white; /* צבע הטקסט של ה-badge */
+}
 
 #navbar li a, .categoryDiv li a, .categoryDivSmall li a, .categoryDivVerySmall li a
 {
