@@ -35,12 +35,12 @@
   font-weight: normal;
 }
 #Tusers {
-    position: relative;
-    margin-left: 41.2%;
-    font-family: 'Rubik';
-    font-style: italic;
-    text-shadow: 60%;
-    font-weight: normal;
+  position: relative;
+  margin-left: 41.2%;
+  font-family: 'Rubik';
+  font-style: italic;
+  text-shadow: 60%;
+  font-weight: normal;
 }
 #but:hover {
   background-color: rgba(163, 223, 172, 0.863);
@@ -147,7 +147,6 @@
     margin-left: 55%;
     font-size: large;
 }
-
 .container {
   display: grid; /* הופך את הקונטיינר ל-Grid */
   grid-template-columns: repeat(auto-fill, minmax(15%, 1fr)); /* יוצר עמודות אוטומטיות עם רוחב מינימלי של 200px */
@@ -155,5 +154,39 @@
   position: relative;
   margin-left: 7%;
   grid-row-gap: 3%; /* רווח ספציפי בין השורות */
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    margin-left: 2%;
+  }
+
+  .actions a {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    margin-left: 1%;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .actions a {
+    font-size: small;
+  }
 }
 
