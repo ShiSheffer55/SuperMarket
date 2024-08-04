@@ -76,32 +76,7 @@ h2 {
     position: relative;
     width: 100%; /* Make image responsive */
     max-width: 500px; /* Constrain image width */
-    height: auto; /* Maintain aspect ratio */
+    margin-top: -28%;
+
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .login-box {
-        padding: 5%; /* Adjust padding on smaller screens */
-        max-width: 90%; /* Allow form to be wider on smaller screens */
-    }
-    
-    h2 {
-        font-size: 24px; /* Smaller font size for h2 */
-    }
-    
-    .textbox input {
-        font-size: 14px; /* Adjust font size for inputs */
-    }
-    
-    .btn {
-        font-size: 14px; /* Adjust button font size */
-        padding: 10px; /* Adjust button padding */
-    }
-    
-    #register-image {
-        position: relative;
-        width: 100%; /* Ensure image is responsive */
-        margin: 0; /* Reset margin for better alignment */
-    }
-}
