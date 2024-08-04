@@ -7,6 +7,10 @@
     text-shadow: black;
     text-align: center;
 }
+.rtl-text {
+    direction: rtl;
+}
+
 #total
 {
     position: relative;
