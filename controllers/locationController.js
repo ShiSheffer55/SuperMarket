@@ -1,4 +1,5 @@
 const Location = require('../models/location');
+const fetch = require('node-fetch');
 
 const getLocations = async (req, res) => {
     try {
@@ -24,7 +25,6 @@ const renderLocations = async (req, res) => {
     }
 };
 
-const fetch = require('node-fetch');
 
 const renderWeather = async (req, res) => {
     try {
@@ -49,7 +49,6 @@ const renderWeather = async (req, res) => {
     }
 };
 
-module.exports = { renderWeather };
 
 
 
