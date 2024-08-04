@@ -19,8 +19,10 @@ router.post('/login', userController.loginUser);
 // Handle logout
 router.get('/logout', userController.logoutUser); 
 
+// Show register form
 router.get('/register', userController.renderRegisterForm); 
 
+// Handle register
 router.post('/register', userController.registerUser); 
 
 

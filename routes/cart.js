@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const cartController = require('../controllers/cartController');
 const { isUser } = require('../controllers/passController');
-const { isAdmin } = require('../controllers/passController');
 
 
 // Ensure these routes match what you expect for the cart functionality

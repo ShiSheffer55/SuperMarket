@@ -24,12 +24,9 @@ const renderLocations = async (req, res) => {
     }
 };
 
-const renderWeather = async(req, res) => {
-    res.render('weather'); 
-}
+
 
 module.exports = {
     getLocations,
-    renderLocations,
-    renderWeather
+    renderLocations
 };
