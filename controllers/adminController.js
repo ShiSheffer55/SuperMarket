@@ -61,21 +61,17 @@ const renderAdminOrders = async (req, res) => {
 };
 
 
-
-const getAverageOrdersPerDay = async (req, res) => {
+const getOrdersPerDay = async (req, res) => {
     try {
-        const today = new Date();
-        // Start of the day for today
-        const startOfToday = new Date(today.setHours(0, 0, 0, 0));
+        const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+        const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0); // Last day of the current month
 
         const orders = await Order.aggregate([
-            // Match orders from today onward
             {
                 $match: {
-                    createdAt: { $gte: startOfToday }
+                    createdAt: { $gte: startOfMonth, $lte: endOfMonth }
                 }
             },
-            // Group by day
             {
                 $group: {
                     _id: {
@@ -86,11 +82,9 @@ const getAverageOrdersPerDay = async (req, res) => {
                     count: { $sum: 1 }
                 }
             },
-            // Sort by date
             {
                 $sort: { '_id.year': 1, '_id.month': 1, '_id.day': 1 }
             },
-            // Project the result
             {
                 $project: {
                     date: {
@@ -107,15 +101,19 @@ const getAverageOrdersPerDay = async (req, res) => {
 
         res.json(orders);
     } catch (err) {
-        console.error('Error fetching average orders per day:', err);
+        console.error('Error fetching orders per day:', err);
         res.status(500).send('Server error');
     }
 };
+
+
+
+
 
 module.exports = {
     showAdminDashboard,
     renderAdminProducts,
     renderAdminUsers,
     renderAdminOrders,
-    getAverageOrdersPerDay
+    getOrdersPerDay
 };
