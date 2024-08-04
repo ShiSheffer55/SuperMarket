@@ -28,7 +28,7 @@ const { usersConnection, productsConnection, locationsConnection, ordersConnecti
 
 //use express 
 const app = express();
-const port = 3001;
+const port = 3002;
 
 // Set view engine to EJS (dont have to use .ejs if rendering)
 app.set('view engine', 'ejs');

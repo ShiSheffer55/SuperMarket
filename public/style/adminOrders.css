@@ -13,7 +13,7 @@
 #t3
 {
     position: relative;
-    margin-left: 32%;
+    text-align: center;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -22,7 +22,7 @@
 #t2
 {
     position: relative;
-    margin-left: 42%;
+text-align: center;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
@@ -92,10 +92,9 @@
   font-weight: 100;
 }
 table {
-    width: 100%; /* מאפשר לטבלה להשתמש בכל רוחב הקונטיינר שלה */
-    max-width: 1200px; /* מקסימום רוחב לטבלה */
+ position: relative;
     border-collapse: collapse; /* מסיר רווחים בין התאים */
-    margin: 0 auto; /* מרכז את הטבלה בתוך הקונטיינר */
+  /* מרכז את הטבלה בתוך הקונטיינר */
     text-align: center;
 }
 /* הגדרת רוחב לפי מחלקות */
@@ -132,4 +131,12 @@ table {
 {
     background-color: rgba(197, 231, 202, 0.822);
 }
-
+.c
+{
+    position: relative;
+}
+.cont
+{
+    width: 90%; 
+   margin: 0 auto;
+}
