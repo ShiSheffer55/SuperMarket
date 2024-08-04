@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));// allows for objects and arrays
 app.use(express.json());//divide incoming requests with JSON
 app.use(methodOverride('_method'));
 app.use(session({
-    secret: process.env.SESSION_SECRET,//secret key to manage cookies 
+    secret: process.env.SESSION_SECRET,//secret key to manage cookies and keep privecy 
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },

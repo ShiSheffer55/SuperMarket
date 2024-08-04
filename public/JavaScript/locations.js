@@ -26,42 +26,34 @@ function initMap() {
 // Call initMap when the window loads
 window.onload = initMap;
 
-
-
-const apiKey = 'c90aacc7583863f6225f59439eeecbc7'; // Replace with your OpenWeather API key
-
-function getWeather(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            const weatherHtml = `
-                <h3>${data.name}</h3>
-                <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
-                <p>${data.weather[0].description}</p>
-                <p>Temperature: ${data.main.temp}°C</p>
-                <p>Humidity: ${data.main.humidity}%</p>
-            `;
-            $('#weather').html(weatherHtml);
-        })
-        .catch(error => {
-            console.error('Error fetching weather data:', error);
-            $('#weather').html('<p>Error loading weather data.</p>');
-        });
-}
-
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', () => {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition((position) => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            getWeather(lat, lon);
-        }, function(error) {
+
+            fetch(`/location/weather?lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    const weatherHtml = `
+                        <h3>${data.name}</h3>
+                        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
+                        <p>${data.weather[0].description}</p>
+                        <p>Temperature: ${data.main.temp}°C</p>
+                        <p>Humidity: ${data.main.humidity}%</p>
+                    `;
+                    document.getElementById('weather').innerHTML = weatherHtml;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                    document.getElementById('weather').innerHTML = '<p>Error loading weather data.</p>';
+                });
+        }, (error) => {
             console.error('Error getting location:', error);
-            $('#weather').html('<p>Error getting location.</p>');
+            document.getElementById('weather').innerHTML = '<p>Error getting location.</p>';
         });
     } else {
         console.error('Geolocation is not supported by this browser.');
-        $('#weather').html('<p>Geolocation is not supported by this browser.</p>');
+        document.getElementById('weather').innerHTML = '<p>Geolocation is not supported by this browser.</p>';
     }
 });
