@@ -160,21 +160,3 @@ h2 {
    margin-left: 37%;
    font-size: large;
 }
-@media (max-height: 828px)
-{
-    #login-pic
-    {
-        margin-top: -3.5%;
-    }
-}
-@media (max-width: 1394px)
-{
-    #login-pic
-    {
-        width: 28%;
-    }
-    #login-img
-    {
-
-    }
-}

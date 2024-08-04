@@ -71,3 +71,16 @@ a:hover {
 }
 }
 
+@media (min-height: 757px) and (max-height: 872px){
+  #admin
+  {
+    width: 33%;
+  }
+  }
+
+  @media (min-height: 600px) and (max-height: 756px){
+    #admin
+    {
+      width: 20%;
+    }
+    }
