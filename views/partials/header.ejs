@@ -103,11 +103,10 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
-                <ul>
                     <% if (user && user.role === 'admin') { %>
                         <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
                     <% } %>
-                </ul>
+        
               
                 </ul>
             </div>
@@ -155,11 +154,11 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
-                <ul>
+            
                     <% if (user && user.role === 'admin') { %>
                         <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
                     <% } %>
-                </ul>
+                
               
                 </ul>
             </div>
