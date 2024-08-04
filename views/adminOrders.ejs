@@ -59,7 +59,7 @@
                         <%= order.userDetails.gmail %>
                     </td>
                     <td>
-                        <ul>
+                        <ul id="pro">
                             <% order.products.forEach(product => { %>
                                 <li><%= product.title %> x <%= product.quantity %> - ₪<%= product.price * product.quantity %></li>
                             <% }) %>

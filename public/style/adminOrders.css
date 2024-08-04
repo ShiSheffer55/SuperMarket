@@ -61,6 +61,7 @@
     text-align: center;
     font-size: large;
     font-family: 'medium';
+    color: rgba(25, 134, 98, 0.986);
   }
 @font-face 
   {
@@ -100,24 +101,35 @@ table {
 /* הגדרת רוחב לפי מחלקות */
 .order-id {
     width: 5%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
 
 .user {
     width: 30%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
 
 .products {
     width: 30%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
 
 .total {
     width: 10%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
 
 .status {
     width: 5%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
 
 .created-at {
     width: 15%;
+    background-color: rgba(197, 231, 202, 0.822);
 }
+.edit,.delete
+{
+    background-color: rgba(197, 231, 202, 0.822);
+}
+
