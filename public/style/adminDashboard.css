@@ -28,13 +28,17 @@
 }
 #t1 {
     position: relative;
-    margin-left: 39%;
+    /* margin-left: 39%; */
+    text-align: center;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
     font-weight: normal;
   }
-
+#linksNav{
+  text-align: center;
+  
+}
   #link1,#link2,#link3 {
     color: rgba(25, 134, 98, 0.986); 
     font-size: 1.2em; 
@@ -42,24 +46,28 @@
     position: relative; 
     padding: 10px 20px; 
     display: inline-block; 
-    margin-right: 2%; 
+  margin-left: 1.5%;
+  margin-bottom: 2%;
     font-weight: bold;
     background-color: rgba(197, 231, 202, 0.822); 
     border-radius: 50px; 
     text-align: center; 
-    border: 3px solid rgba(25, 134, 98, 0.986); 
+    border: 2.5px solid rgba(25, 134, 98, 0.986); 
 }
-#link1
+/* #link1
 {
     position: relative;
     margin-left: 32%;
-}
+} */
 
 a:hover {
     color: rgba(25, 134, 98, 0.986); 
 }
+
+@media (max-width: 525px){
 #admin
 {
-  position: relative;
-  margin-left: 35%;
+  width: 73%;
 }
+}
+
