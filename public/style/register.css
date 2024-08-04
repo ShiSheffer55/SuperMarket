@@ -1,10 +1,7 @@
 /* Base styles */
 body {
-    background-color: transparent;
-    background: url(e1924646c99584b62845a6ae30647e06.jpg) no-repeat;
-    background-position: center;
-}
-
+    background: linear-gradient(90deg, rgba(158, 241, 195, 0.459), rgba(87, 250, 149, 0.774)) ;
+  } 
 /* Warning message */
 .warning {
     text-align: center;
@@ -72,11 +69,16 @@ h2 {
 }
 
 /* Image */
-#register-image {
-    position: relative;
-    width: 100%; /* Make image responsive */
-    max-width: 500px; /* Constrain image width */
-    margin-top: -28%;
-
+.absolute-container {
+    position: absolute;
+    top: 65%;
+    transform: translate(-50%, -50%); /* Center the container */
+    width: 50%;
+    display: flex;
+    justify-content: end; /* Center horizontally */
 }
 
+#register-image {
+    width: 100%; /* Make image responsive */
+    max-width: 500px; /* Constrain image width */
+}
