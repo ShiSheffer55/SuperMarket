@@ -20,12 +20,10 @@
         <p>Your cart is empty</p>
     <% } else { %>
           <p id="total"> <%= cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2) %>₪         - סך הכל לתשלום</p>
-          
         <div class="container">
       
-       
+       <br><br><br>
             <div class="card-container">
-    
                 <div class="front">
                     <div class="image">
                         <img src="/img/chip.png" alt="">
@@ -126,7 +124,7 @@
   
     <% } %>
 
-
+<br>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JavaScript/cart.js"></script>
     <script src="/JavaScript/checkout.js"></script>  

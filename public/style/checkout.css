@@ -34,16 +34,16 @@
     text-align: center;
     font-family: 'Medium';
 }
-
-.container{
-    min-height: 100vh;
-    background: #eee;
+.container {
+    width: 45%; /* רוחב מופחת של הקונטיינר */
+    background-color: rgba(197, 231, 202, 0.822);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column;
     padding-bottom: 80px;
 }
+
 
 .container form{
     background: #fff;
