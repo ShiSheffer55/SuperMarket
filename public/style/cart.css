@@ -74,19 +74,22 @@ td a:hover {
     text-decoration: none;
     font-size: 16px;
     border-radius: 8px;
-    background-color: rgba(197, 231, 202, 0.822);
-    color: rgba(25, 134, 98, 0.986);
-    border: solid;
     border-color: rgba(25, 134, 98, 0.986);
-    border-width: 0.3mm;
+    border-width: 0.3mm;padding: 0.5%; /* מרווח פנימי */
+    font-size: large; /* גודל גופן */
+    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+    border-radius: 8px; /* עיגול הפינות */
+    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+    color: black; /* צבע הטקסט */
+    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
+    transition: background-color 0.3s; /* אנימציה על צבע הרקע */
+    color: rgba(25, 134, 98, 0.986);
 
 }
-.actions a:hover {
-    background-color:  rgba(180, 219, 186, 0.836);
-    transition: 1s;
+#total
+{
+    font-weight: bold;
 }
-
-
 .delete-btn {
     position: relative;
     margin-left: 40%;
