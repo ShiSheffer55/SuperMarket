@@ -25,11 +25,12 @@ h1 {
 
 table {
     width: 80%;
-    margin: 20px auto;
+    margin: 20px auto; /* Center the entire table within its parent */
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 th, td {
     padding: 15px;
@@ -38,8 +39,8 @@ th, td {
 }
 
 th {
-    background-color: rgb(219, 253, 224);
-    color: black;
+    background-color: rgba(197, 231, 202, 0.822);
+    color:  rgba(25, 134, 98, 0.986);
 }
 
 tr:nth-child(even) {
@@ -69,21 +70,22 @@ td a:hover {
 .actions a {
     display: inline-block;
     margin: 10px;
-    padding: 10px 20px;
-    color: black;
-    background-color: rgb(219, 253, 224);
-    border: none;
+    padding: 8px 20px;
     text-decoration: none;
     font-size: 16px;
-    border-color: black;
-    border-radius: 5px;
-    border: 1px solid #000000; 
+    border-radius: 8px;
+    background-color: rgba(197, 231, 202, 0.822);
+    color: rgba(25, 134, 98, 0.986);
+    border: solid;
+    border-color: rgba(25, 134, 98, 0.986);
+    border-width: 0.3mm;
 
 }
-
 .actions a:hover {
-    background-color: #45a049;
+    background-color:  rgba(180, 219, 186, 0.836);
+    transition: 1s;
 }
+
 
 .delete-btn {
     position: relative;
@@ -150,4 +152,6 @@ font-weight: 100;
     margin: 0 auto;
 }
 
-
+#total td {
+    text-align: center; /* Center the text within the table cell */
+}
