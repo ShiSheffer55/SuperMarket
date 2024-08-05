@@ -9,7 +9,7 @@ const methodOverride = require('method-override');//allows to use methods such a
 require('dotenv').config();//allows us to use .env file and keeps security
 
 //API keys
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY; //maps
+const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;//maps
 const openWeatherApiKey = process.env.OPENWEATHER_API_KEY;//weather
 
 //routes:
