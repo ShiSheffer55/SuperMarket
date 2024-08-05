@@ -32,32 +32,28 @@ $(document).ready(function() {
 
     // Empty the cart
     $('#cancel-cart').on('click', function(e) {
-    // Empty the cart
-    // $('#cancel-cart').on('click', function(e) {
-    //     e.preventDefault(); // Prevent default link behavior
-    //     var userConfirmed = confirm("האם אתה בטוח שברצונך למחוק את הסל?");
-    //     if (userConfirmed){
-    //     $.ajax({
-    //         url: '/cart/empty', // Adjust URL based on your route
-    //         type: 'POST', // Or 'DELETE' if that fits your route
-    //         success: function(response) {
-    //             // Optionally update the UI to show the cart is empty
-    //             $('#cart-container').html('<p>הסל ריק</p>'); // Example update
-    //             alert(response.message);
-    //             location.reload(); // Reload the page to update the cart
-    //         },
-    //         error: function(xhr) {
-    //             console.error('Error emptying cart:', xhr.responseText);
-    //             alert('Error emptying cart');
-    //         }
-    //     });}
-    //     else {
-    //         // User canceled, do nothing
-    //         alert("הסל לא נמחק.");
-    //     }
-    // });
-    $('#cancel-cart').on('click', function(e) {
         e.preventDefault(); // Prevent default link behavior
+        var userConfirmed = confirm("האם אתה בטוח שברצונך למחוק את הסל?");
+        if (userConfirmed){
+        $.ajax({
+            url: '/cart/empty', // Adjust URL based on your route
+            type: 'POST', // Or 'DELETE' if that fits your route
+            success: function(response) {
+                // Optionally update the UI to show the cart is empty
+                $('#cart-container').html('<p>הסל ריק</p>'); // Example update
+                alert(response.message);
+                location.reload(); // Reload the page to update the cart
+            },
+            error: function(xhr) {
+                console.error('Error emptying cart:', xhr.responseText);
+                alert('Error emptying cart');
+            }
+        });}
+        else {
+            // User canceled, do nothing
+            alert("הסל לא נמחק.");
+        }
+    });
     
         // Show the custom confirmation modal
         $('#confirm-modal').show();
@@ -90,6 +86,3 @@ $(document).ready(function() {
         // User canceled, just hide the modal
         $('#confirm-modal').hide();
     });
-});
-
-})
