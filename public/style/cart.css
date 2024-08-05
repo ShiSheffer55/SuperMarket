@@ -68,31 +68,26 @@ td a:hover {
 }
 
 .actions a {
-    display: inline-block;
-    margin: 10px;
-    padding: 8px 20px;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
-    border-color: rgba(25, 134, 98, 0.986);
-    border-width: 0.3mm;padding: 0.5%; 
-    font-size: large; 
-    border: 2px solid  rgba(25, 134, 98, 0.986); 
-    border-radius: 8px; 
-    background-color: rgba(197, 231, 202, 0.822); 
-    color: black; 
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    padding: 0.5%; /* מרווח פנימי */
+    font-size: large; /* גודל גופן */
+    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
+    border-radius: 8px; /* עיגול הפינות */
+    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
+    color: black; /* צבע הטקסט */
+    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
     color: rgba(25, 134, 98, 0.986);
-
+    margin-right: 10px;
+    text-decoration: none;
 }
+
+
 .actions a:hover {
-    background-color: rgba(163, 223, 172, 0.863); 
+    background-color: #45a049;
+
 }
 
-#total {
-    font-weight: bold;
-}
+
+
 .delete-btn {
     position: relative;
     margin-left: 40%;
@@ -105,6 +100,7 @@ td a:hover {
     align-items: center;
     gap: 5px;
 }
+    
 
 .delete-btn:hover {
     color: #ff0000;
@@ -157,44 +153,8 @@ font-weight: 100;
     border-radius: 5px;
     margin: 0 auto;
 }
+#TotalPrice {
+  }
+  
+  
 
-#total td {
-    text-align: center; /* Center the text within the table cell */
-}
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.349); /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 400px; /* Maximum width of the modal */
-    border-radius: 8px;
-    text-align: center;
-}
-
-.btn {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    background-color: rgb(158, 224, 168);
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: rgb(119, 209, 133);
-}
