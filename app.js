@@ -6,7 +6,7 @@ const session = require('express-session');//allowing the creation and storage o
 const MongoStore = require('connect-mongo');//connectiong mongo
 const flash = require('connect-flash');//allows to render a pop-up message whenever a user is redirected to a particular webpage
 const methodOverride = require('method-override');//allows to use methods such as POST
-require('dotenv').config();//allows us to use .env file and keepssecurity
+require('dotenv').config();//allows us to use .env file and keeps security
 
 //API keys
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;//maps
