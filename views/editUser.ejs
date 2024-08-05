@@ -4,52 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/style/editUser.css">
 </head>
 <body>
+    <%- include('partials/header') %>
     <div class="container mt-4">
-        <h1>Edit User</h1>
+        <br>
+        <h1 id="T2" > &#9734; עריכת משתמש &#9734;</h1>
         <form action="/admin/users/edit/<%= user._id %>" method="POST">
-            <div class="mb-3">
-                <label for="userName" class="form-label">שם משתמש</label>
-                <input type="text" id="userName" name="userName" class="form-control" value="<%= user.userName %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="fName" class="form-label">שם פרטי</label>
-                <input type="text" id="fName" name="fName" class="form-control" value="<%= user.fName %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="lName" class="form-label">שם משפחה</label>
-                <input type="text" id="lName" name="lName" class="form-control" value="<%= user.lName %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">סיסמה</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="gmail" class="form-label">אימייל</label>
-                <input type="gmail" id="gmail" name="gmail" class="form-control" value="<%= user.gmail %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="tel" class="form-label">טלפון</label>
-                <input type="text" id="tel" name="tel" class="form-control" value="<%= user.tel %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">עיר</label>
-                <input type="text" id="city" name="city" class="form-control" value="<%= user.city %>" required>
-            </div>
-            <div class="mb-3">
-                <label for="role">האם מנהל?</label>
-                <select id="role" name="role" class="form-control" required>
-                    <option value="כן">כן</option>
-                    <option value="לא">לא</option>
-                </select>
-            </div>
-
-            </tr>
-            <button type="submit" class="btn btn-primary">Update User</button>
-        </form>
-        <a href="/admin/users" class="btn btn-secondary mt-2">Back to User List</a>
+            <table id="simple" class="table">
+                <tbody>
+                    <tr id="d1">
+                        <td><input type="text" id="userName" name="userName" class="form-control" required></td>
+                        <td id="i1">שם משתמש</td>
+                    </tr>
+                    <tr id="d2">
+                        <td><input type="text" id="fName" name="fName" class="form-control" required></td>
+                        <td id="i2">שם פרטי</td>
+                    </tr>
+                    <tr id="d3">
+                        <td><input type="text" id="lName" name="lName" class="form-control" required></td>
+                        <td id="i3">שם משפחה</td>
+                    </tr>
+                    <tr id="d4">
+                        <td><input type="text" id="password" name="password" class="form-control" required></td>
+                        <td id="i4">סיסמה</td>
+                    </tr>
+                    <tr id="d5">
+                        <td><input type="text" id="gmail" name="gmail" class="form-control" required></td>
+                        <td id="i5">דואר אלקטרוני</td>
+                    </tr>
+                    <tr id="d6">
+                        <td><input type="text" id="tel" name="tel" class="form-control" required></td>
+                        <td id="i6">טלפון</td>
+                    </tr>
+                    <tr id="d7">
+                        <td><input type="text" id="city" name="city" class="form-control" ></td>
+                        <td id="i7">עיר</td>
+                    </tr>
+                    <tr id="d8">
+                        <td>
+                        <select id="role" name="role" class="form-control" required>
+                            <option value="כן">כן</option>
+                            <option value="לא">לא</option>
+                        </select>
+                    </td>
+                        <td id="i8">?אתה מנהל</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button id="but1" type="submit">ערוך משתמש</button>
+                <button id="but2" type="submit">מעבר לרשימת משתמשים</button>
+            </div>            
+    </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
