@@ -28,14 +28,14 @@ th {
     text-align: center;
 }
 #t1 {
-    color: rgba(197, 231, 202, 0.822);/* משנה את הצבע של האלמנט עם ה-id 't1' לירוק */
+    color: rgba(25, 134, 98, 0.986);/* משנה את הצבע של האלמנט עם ה-id 't1' לירוק */
 }
 
 .list-group-item {
-    border-top: 0.2em solid rgb(219, 253, 224)!important; /* ניתן לשנות ל-em כדי להתאים לגובה הטקסט */
-    border-right: 0.2em solid rgb(219, 253, 224) !important;
-    border-bottom: 0.2em solid rgb(219, 253, 224)!important;;
-    border-left: 0.2em solid  rgb(219, 253, 224) !important;
+    border-top: 2px solid rgba(197, 231, 202, 0.822)!important;
+    border-right: 2px solid rgba(197, 231, 202, 0.822)!important;
+    border-bottom:2px solid rgba(197, 231, 202, 0.822)!important;;
+    border-left: 2px solid rgba(197, 231, 202, 0.822)!important;
     margin-bottom: 2%; /* מוסיף רווח בין ההזמנות */
     border-radius: 0.8em; /* מוסיף עיגול קל לפינות */
     padding: 1%; /* מוסיף רווח פנימי להזמנה */
@@ -52,4 +52,12 @@ th {
   src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
   font-style: normal ;
   font-weight: 100;
+}
+
+
+#no-orders-message {
+    text-align: center;
+    font-size: large;
+    color: rgba(25, 134, 98, 0.986);
+    margin-top: 20px;
 }

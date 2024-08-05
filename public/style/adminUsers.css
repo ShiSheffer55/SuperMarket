@@ -1,135 +1,136 @@
 @font-face 
-  {
+{
   font-family:'Medium' ;
   src: url("/fonts/IBMPlexSansHebrew-Medium.ttf");
   font-style: normal ;
   font-weight: 100;
 }
 @font-face 
-  {
+{
   font-family:'Regular' ;
   src: url("/fonts/IBMPlexSansHebrew-Regular.ttf");
   font-style: normal ;
   font-weight: 100;
 }
 @font-face 
-  {
+{
   font-family:'Rubik' ;
   src: url("/fonts/RubikDoodleShadow-Regular.ttf");
   font-style: normal ;
   font-weight: 100;
 }
 #simple {
-    position: relative;
-    margin-left: 34%;
-    border-style: solid;
-    border-color: rgb(219, 253, 224);
-    width: 30%;
+  position: relative;
+  margin-left: 34%;
+  border-style: solid;
+  border-color: rgb(219, 253, 224);
+  width: 30%;
 }
 #T1 {
-    position: relative;
-    margin-left: 38%;
-    font-family: 'Rubik';
-    font-style: italic;
-    text-shadow: 60%;
-    font-weight: normal;
+  position: relative;
+  margin-left: 38%;
+  font-family: 'Rubik';
+  font-style: italic;
+  text-shadow: 60%;
+  font-weight: normal;
 }
 #Tusers {
-    position: relative;
-    margin-left: 41.2%;
-    font-family: 'Rubik';
-    font-style: italic;
-    text-shadow: 60%;
-    font-weight: normal;
+  position: relative;
+  margin-left: 41.2%;
+  font-family: 'Rubik';
+  font-style: italic;
+  text-shadow: 60%;
+  font-weight: normal;
 }
-#but:hover{
-    background-color: rgba(163, 223, 172, 0.863); 
-  }
+#but:hover {
+  background-color: rgba(163, 223, 172, 0.863);
+}
 
 #i1, #i2, #i3, #i4, #i5, #i7, #i6, #i8, #i9, #i10 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size: large;
-    text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
 }
 
 #but {
-    position: relative;
-    margin-left: 46%;
-    border-radius: 8px;
-    background-color: rgba(197, 231, 202, 0.822);
-    color: rgba(25, 134, 98, 0.986);
-    border: solid;
-    border-color: rgba(25, 134, 98, 0.986);
-    border-width: 0.3mm;
+  position: relative;
+  margin-left: 46%;
+  border-radius: 8px;
+  background-color: rgba(197, 231, 202, 0.822);
+  color: rgba(25, 134, 98, 0.986);
+  border: solid;
+  border-color: rgba(25, 134, 98, 0.986);
+  border-width: 0.3mm;
 }
 
-#d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8 , #d9{
-    box-align: center;
-    
+#d1, #d2, #d3, #d4, #d5, #d6, #d7, #d8, #d9 {
+  box-align: center;
 }
-#userName,#fName,#lName,#tel,#city,#gmail,#password
-{
+#userName, #fName, #lName, #tel, #city, #gmail, #password, #role {
   text-align: right;
 }
-#search-box
-{
-    padding: 0.5%; 
-    font-size: large; 
-    border: 2px solid rgba(197, 231, 202, 0.822) ; 
-    border-radius: 8px;
-    width: 18%; 
-    text-align: right;
+#search-box {
+  padding: 0.5%;
+  font-size: large;
+  border: 2px solid rgba(197, 231, 202, 0.822);
+  border-radius: 8px;
+  width: 18%;
+  text-align: right;
 }
 #search-but {
-    padding: 0.5%; /* מרווח פנימי */
-    font-size: large; /* גודל גופן */
-    border: 2px solid  rgba(25, 134, 98, 0.986); /* ללא קו גבול */
-    border-radius: 8px; /* עיגול הפינות */
-    background-color: rgba(197, 231, 202, 0.822); /* צבע הרקע */
-    color: black; /* צבע הטקסט */
-    cursor: pointer; /* משתנה לצורת יד בעת העכבר על הכפתור */
-    transition: background-color 0.3s; /* אנימציה על צבע הרקע */
-    color: rgba(25, 134, 98, 0.986);
+  padding: 0.5%;
+  font-size: large;
+  border: 2px solid rgba(25, 134, 98, 0.986);
+  border-radius: 8px;
+  background-color: rgba(197, 231, 202, 0.822);
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: rgba(25, 134, 98, 0.986);
 }
 
 /* שינוי צבע רקע כשמעבירים את העכבר מעל הכפתור */
-#search-but:hover{
-    background-color: rgba(163, 223, 172, 0.863); 
-  }
-  .card {
-    position: relative;
-    margin: 2%;
-    border: 2px solid rgba(197, 231, 202, 0.822);
-    width: 20rem;
-    height: 12em;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
+#search-but:hover {
+  background-color: rgba(163, 223, 172, 0.863);
+}
+.card {
+  position: relative;
+  margin: 2%;
+  border: 2px solid rgba(197, 231, 202, 0.822);
+  width: 20rem;
+  height: 12em;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
 }
 .card-body {
-    position: relative;
-    text-align: center; /* Align text to the right */
-    z-index: 3;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    font-size: large;
-    font-family: 'regular';
-    width: 100%; /* Ensure card-body takes full width */
-    padding: 1rem;
-    box-sizing: border-box;
+  position: relative;
+  text-align: center; /* Align text to the right */
+  z-index: 3;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  font-family: 'regular';
+  width: 100%; /* Ensure card-body takes full width */
+  padding: 1rem;
+  box-sizing: border-box;
 }
-#Tcard
-{
-    font-family: 'medium';
+#Tcard {
+  font-family: 'medium';
 }
-.actions
-{
-    display: flex;
-    justify-content:space-evenly;
-    margin-top: auto ;
+.actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-top: auto;
 }
+.actions a {
+  color: rgba(25, 134, 98, 0.986);
+  font-size: large;
+}
+
 #link1
 {
     color: rgba(25, 134, 98, 0.986);
@@ -146,3 +147,46 @@
     margin-left: 55%;
     font-size: large;
 }
+.container {
+  display: grid; /* הופך את הקונטיינר ל-Grid */
+  grid-template-columns: repeat(auto-fill, minmax(15%, 1fr)); /* יוצר עמודות אוטומטיות עם רוחב מינימלי של 200px */
+  gap: 13%; /* רווח בין הכרטיסים */
+  position: relative;
+  margin-left: 7%;
+  grid-row-gap: 3%; /* רווח ספציפי בין השורות */
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    margin-left: 2%;
+  }
+
+  .actions a {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    margin-left: 1%;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .actions a {
+    font-size: small;
+  }
+}
+

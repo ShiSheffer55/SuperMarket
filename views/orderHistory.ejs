@@ -25,6 +25,7 @@
         <br>
         <br>
         <% if (orders.length > 0) { %>
+
             <ul class="list-group">
                 <% orders.forEach(order => { %>
                     <li class="list-group-item">
@@ -44,9 +45,9 @@
                     </li>
                 <% }); %>
             </ul>
-        <% } else { %>
-            <p>No orders found.</p>
-        <% } %>
+            <% } else { %>
+                <p id="no-orders-message">אין לך הזמנות עדיין</p>
+            <% } %>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

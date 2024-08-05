@@ -7,6 +7,11 @@
     text-shadow: black;
     text-align: center;
 }
+#total
+{
+    position: relative;
+    margin-left: 70%;
+}
 
 h1 {
     text-align: center;
@@ -79,6 +84,8 @@ td a:hover {
 
 
 .delete-btn {
+    position: relative;
+    margin-left: 40%;
     background-color: transparent;
     border: none;
     cursor: pointer;

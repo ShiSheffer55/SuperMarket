@@ -1,8 +1,9 @@
 footer {
-    background: rgba(197, 231, 202, 0.822);
-    color: #fff;
+    background-color: rgb(219, 253, 224);
+    color: rgb(120, 170, 127);;
     padding: 20px 0;
     text-align: center;
+    box-shadow: 0 1px 4px black;  
 }
 .footer-container {
     display: flex;

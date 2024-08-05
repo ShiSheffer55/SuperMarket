@@ -32,6 +32,8 @@ $(document).ready(function() {
 
     // Empty the cart
     $('#cancel-cart').on('click', function(e) {
+    // Empty the cart
+    $('#cancel-cart').on('click', function(e) {
         e.preventDefault(); // Prevent default link behavior
 
         $.ajax({

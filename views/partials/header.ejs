@@ -17,7 +17,7 @@
                 <li>
                     <a id="cartIcon" href="/cart">
                         <i class="bi bi-cart3"></i> סל קניות
-                        <span class="badge bg-primary"><%= cart.length %></span>
+                        <span class="badge custom-badge"><%= cart.length %></span>
                     </a>
                 </li>
                 
@@ -31,12 +31,10 @@
                 <% if (user) { %>
                     <li><a href="/users/logout">התנתקות</a></li>
                 <% } %>
-                <ul>
-                    <% if (user && user.role === 'admin') { %>
-                        <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
-                    <% } %>
-                </ul>
-              
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard">פעולות מנהל</a></li>              
+                <% } %>
+
 
             </ul>
         </nav>
