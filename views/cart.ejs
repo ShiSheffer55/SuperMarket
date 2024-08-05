@@ -49,8 +49,7 @@
                     </tr>
                 <% }) %>
                 <tr id="total">
-                    <td colspan="5">סה"כ</td>
-                    <td><%= cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2) %>₪</td>
+                    <td><%= cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2) %>₪ סה"כ</td>
                 </tr>
             </tbody>
         </table>
