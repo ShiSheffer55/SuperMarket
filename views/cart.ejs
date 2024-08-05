@@ -35,7 +35,6 @@
                     <th>מחיקה</th>
                 </tr>
             </thead>
-        
             <tbody>
                 <% cart.forEach(item => { %>
                     <tr data-product-id="<%= item.id %>" data-product-name="<%= item.title %>">
@@ -45,31 +44,25 @@
                         <td><%= item.quantity %></td>
                         <td id="TotalPrice"><%= (item.price * item.quantity).toFixed(2) %>₪</td>
                         <td>
-                            <button class="delete-btn" data-product-id="<%= item.id %>"><i class="bi bi-trash"></i></button>
+                            <button class="delete-btn" data-product-name="<%= item.title %>"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
                 <% }) %>
-      
                 <tr id="total">
-                    <td><%= total.toFixed(2) %>₪     סה"כ</td>
-                   
+                    <td><%= cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2) %>₪ סה"כ</td>
                 </tr>
             </tbody>
-            
         </table>
         <div class="actions">
             <a href="#" id="cancel-cart">מחק סל</a>
             <a href="/cart/checkout">מעבר לסיום קנייה</a>
-            <!-- <a href="/">המשך קנייה</a> -->
         </div>
-
     <% } %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JavaScript/cart.js"></script>
     <script src="/JavaScript/categoryBar.js"></script>
 </body>
 </html>
-
 
 
 
