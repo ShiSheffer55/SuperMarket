@@ -1,3 +1,4 @@
+//Checking if a session user is admin
 const isAdmin = (req, res, next) => {
     console.log('Checking if user is admin:', req.session.user);
     if (req.session.user && req.session.user.role === 'admin') {
@@ -9,7 +10,8 @@ const isAdmin = (req, res, next) => {
     }
 };
 
-const ensureAuthenticated = (req, res, next) => {
+//checking if a session user is Authenticated
+const isUser = (req, res, next) => {
     if (req.session && req.session.user) {
         return next();
     } else {
@@ -18,16 +20,9 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 
-const isUser = (req, res, next) => {
-    if (req.session && req.session.user) {
-        return next();
-    } else {
-        res.redirect('/users/login');
-    }
-};
+
 
 module.exports = { 
     isAdmin,
-    ensureAuthenticated,
     isUser
- }; 
+}; 

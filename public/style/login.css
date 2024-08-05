@@ -1,17 +1,11 @@
  
-body{
-
-    
-    background-color: transparent;
-    background: url(e1924646c99584b62845a6ae30647e06.jpg) no-repeat;
-    background-position: center;
-
-} 
-
+body {
+    background: linear-gradient(90deg, rgba(158, 241, 195, 0.459), rgba(96, 255, 157, 0.774)) ;
+  } 
 .warning{
     text-align: center;
 }
-.wrapper{
+/* .wrapper{
     display:flex; 
     justify-content: center;
     align-items: center;
@@ -21,7 +15,7 @@ body{
     padding: 30px 40px;
     width: 100%;
 
-}
+} */
 .wrapper h1{
     font-size: 36px;
     text-align: center;
@@ -97,14 +91,15 @@ font-weight: 100;
 
 .login-box {
     position: relative;
-    margin-left: 33%;
-    background: rgba(255, 255, 255, 0.9); 
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
     padding: 2%;
     border-radius: 2.5%;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
-    width: 100%;
-    max-width: 33%; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    max-width: 500px; /* Adjusted for better control */
 }
+
 @font-face 
   {
   font-family:'Medium' ;
@@ -134,14 +129,17 @@ h2 {
 
 .btn {
     position: relative;
-    margin-left: 37%;
+    margin-left: 0; /* Centered alignment */
     border-radius: 8px;
     background-color: rgba(197, 231, 202, 0.822);
     color: rgba(25, 134, 98, 0.986);
     border: solid;
     border-color: rgba(25, 134, 98, 0.986);
     border-width: 0.5mm;
+    width: 100%; /* Full width on small screens */
+    padding: 10px; /* Adjusted padding */
 }
+
 .hidden {
     display: none;
 }
@@ -159,6 +157,6 @@ h2 {
 {
    color: rgba(25, 134, 98, 0.986);
    position: relative;
-   margin-left: 34%;
+   margin-left: 37%;
    font-size: large;
 }

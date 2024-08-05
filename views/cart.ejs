@@ -16,9 +16,16 @@
     <% if (cart.length === 0) { %>
         <p class="empty-cart">סל הקניות ריק</p>
     <% } else { %>
-        <p id="numOfProducts"><%= cart.length %> מוצרים</p>
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <p>? האם אתה בטוח שברצונך למחוק את הסל</p>
+                <button id="confirm-yes" class="btn">כן</button>
+                <button id="confirm-no" class="btn">לא</button>
+            </div>
+        </div>
+        <p id="numOfProducts" class="rtl-text"><%= cart.length %> מוצרים</p>
         <table id="cart-table">
-            <thead>
+            <thead class="top">
                 <tr>
                     <th>תמונה</th>
                     <th>מוצר</th>
@@ -42,18 +49,20 @@
                         </td>
                     </tr>
                 <% }) %>
-                <tr>
-                    <td  colspan="3"><strong>סה"כ</strong></td>
-                    <td><%= total.toFixed(2) %>₪</td>
+      
+                <tr id="total">
+                    <td><%= total.toFixed(2) %>₪     סה"כ</td>
+                   
                 </tr>
             </tbody>
             
         </table>
         <div class="actions">
             <a href="#" id="cancel-cart">מחק סל</a>
-            <a href="/cart/checkout">המשך לסיום קנייה</a>
-            <a href="/">המשך קנייה</a>
+            <a href="/cart/checkout">מעבר לסיום קנייה</a>
+            <!-- <a href="/">המשך קנייה</a> -->
         </div>
+
     <% } %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JavaScript/cart.js"></script>

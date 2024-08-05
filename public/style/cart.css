@@ -7,6 +7,10 @@
     text-shadow: black;
     text-align: center;
 }
+.rtl-text {
+    direction: rtl;
+}
+
 #total
 {
     position: relative;
@@ -21,11 +25,12 @@ h1 {
 
 table {
     width: 80%;
-    margin: 20px auto;
+    margin: 20px auto; /* Center the entire table within its parent */
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 th, td {
     padding: 15px;
@@ -34,8 +39,8 @@ th, td {
 }
 
 th {
-    background-color: rgb(219, 253, 224);
-    color: black;
+    background-color: rgba(197, 231, 202, 0.822);
+    color:  rgba(25, 134, 98, 0.986);
 }
 
 tr:nth-child(even) {

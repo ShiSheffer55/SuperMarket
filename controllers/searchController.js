@@ -9,7 +9,7 @@ const searchProductsAcrossCollections = async (query) => {
     const categories = {
         meat: ['בשרים'],
         fish: ['דגים'],
-        milk: ['מוצר חלב', 'מוצרי חלב', 'חלבי'],
+        milk: [ 'מוצרי חלב'],
         fruits: ['פרי', 'פירות'],
         vegetables: ['ירק', 'ירקות'],
         cleanliness: ['ניקיון', 'ניקיונות'],
@@ -29,7 +29,7 @@ const searchProductsAcrossCollections = async (query) => {
 
     const fuseOptions = {
         keys: ['term'],
-        threshold: 0.2
+        threshold: 0.0
     };
 
     const fuse = new Fuse(fuseData, fuseOptions);
@@ -60,8 +60,8 @@ const searchProductsAcrossCollections = async (query) => {
         }
 
         const options = {
-            keys: ['name', 'title', 'sub'],
-            threshold: 0.35,
+            keys: ['name', 'title', 'manufacturer'],
+            threshold: 0.3,
             distance: 100
         };
 

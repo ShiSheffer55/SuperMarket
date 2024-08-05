@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/style/header.css">
     <link rel="stylesheet" href="/style/adminOrders.css">
-    <link rel="stylesheet" href="/style/orderHistory.css">
+    <!-- <link rel="stylesheet" href="/style/orderHistory.css"> -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -36,6 +36,8 @@
     </form>
 
 <br>
+<div class="c">
+<div class="cont">
     <table id="table">
         <thead>
             <tr id="row">
@@ -59,7 +61,7 @@
                         <%= order.userDetails.gmail %>
                     </td>
                     <td>
-                        <ul>
+                        <ul id="pro">
                             <% order.products.forEach(product => { %>
                                 <li><%= product.title %> x <%= product.quantity %> - ₪<%= product.price * product.quantity %></li>
                             <% }) %>
@@ -79,6 +81,8 @@
             <% }) %>
         </tbody>
     </table>
+</div>
+</div>
     <br>
 
     <script src="/JavaScript/adminOrders.js"></script>

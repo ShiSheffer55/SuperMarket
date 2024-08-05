@@ -1,41 +1,53 @@
 const mongoose = require('mongoose');
-// Singleton connection
-const mongoURI = 'mongodb+srv://noamlugassi1:2EzrVHzJKRznFVb6@cluster0.sgohd8f.mongodb.net/products?retryWrites=true&w=majority';
-const connection = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-connection.on('connected', () => {
-    console.log('Connected to MongoDB');
-});
-
-connection.on('error', (err) => {
-    console.error('Error connecting to MongoDB:', err);
-});
+const { productsConnection } = require('../databases'); // import the existing products connection
 
 const productSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    img: { type: String, required: true },
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    sub: { type: String, required: true },
-    supplier: { type: String, required: true },
-    amount: { type: Number },
-    recommended:{type: Boolean},
-    kashrut:
-    {
+    title: {
+        type: String,
+        required: true
+    },
+    img: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    supplier: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number
+    },
+    sub: { 
+        type: String, 
+        required: false 
+    },
+    recommended: { 
+        type: Boolean, 
+       default:false 
+    },
+    kashrut: {
         type: String, 
         required: true
     },
-    
-manufacturer:
-{
-    
+    manufacturer:
+    {
     type: String, 
     required: true
-}
+    }
 });
 
+//returns a model for a specific collection using the productSchema
+//useful when have multiple collections with the same schema
 function getProductModel(collectionName) {
-    return connection.model(collectionName, productSchema, collectionName);
+    return productsConnection.model(collectionName, productSchema, collectionName);
 }
 
 module.exports = getProductModel;

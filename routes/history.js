@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ordersController = require('../controllers/ordersController'); // שים לב לנתיב הנכון
+const ordersController = require('../controllers/ordersController'); 
 
 // נתיבים עבור היסטוריית ההזמנות
 router.get('/:userId', ordersController.getOrderHistory);
