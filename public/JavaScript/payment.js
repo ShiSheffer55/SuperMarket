@@ -46,7 +46,7 @@ document.querySelector('.cvv-input').addEventListener('keypress', function (e) {
 
 document.querySelector('.card-holder-input').addEventListener('keypress', function (e) {
     const char = String.fromCharCode(e.which || e.keyCode);
-    if (!char.match(/^[\p{L}]$/u)) {
+    if (!char.match(/^[\p{L}\s]$/u)) {
         e.preventDefault();
     }
 });
@@ -109,3 +109,38 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+const monthSelect = document.getElementById('monthSelect');
+  const yearSelect = document.getElementById('yearSelect');
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-based
+
+  yearSelect.addEventListener('change', function() {
+    const selectedYear = parseInt(this.value);
+
+    // Clear existing month options
+    while (monthSelect.firstChild) {
+      monthSelect.removeChild(monthSelect.firstChild);
+    }
+
+    // Add the default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = "";
+    defaultOption.textContent = "חודש";
+    defaultOption.selected = true;
+    defaultOption.disabled = true;
+    monthSelect.appendChild(defaultOption);
+
+    // Determine the start month based on the selected year
+    let startMonth = 1;
+    if (selectedYear === currentYear) {
+      startMonth = currentMonth; // Only allow future or current months for the current year
+    }
+
+    // Add month options
+    for (let i = startMonth; i <= 12; i++) {
+      const option = document.createElement('option');
+      option.value = i < 10 ? '0' + i : i;
+      option.textContent = i < 10 ? '0' + i : i;
+      monthSelect.appendChild(option);
+    }
+  });
