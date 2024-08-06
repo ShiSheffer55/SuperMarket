@@ -6,6 +6,7 @@ const User = require('../models/user');
 // פונקציה להציג את היסטוריית ההזמנות
 const getOrderHistory = async (req, res) => {
     try {
+        // שליפת ההזמנות של המשתמש לפי מזהה
         const orders = await Order.find({ user: req.params.userId });
        
         res.render('orderHistory', { orders });

@@ -194,6 +194,7 @@ const removeProductFromCart = async (req, res) => {
     try {
         // Fetch the product from the database
         const product = await Product.findOne({ title: productName });
+        //מחפשת את המוצר לפי השם שלו ומחכה לסיום החיפוש, שומרת במשתנה
 
         if (!product) {
             console.log('Product not found in database');

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { productsConnection } = require('../databases'); // import the existing products connection
+//productsConnectionמאםשר להשתמש ב
 
 const productSchema = new mongoose.Schema({
     title: {

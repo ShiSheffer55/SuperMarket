@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');//השורה הזו מייבאת את הספרייה Mongoose ומאחסנת אותה במשתנה mongoose.
+const Schema = mongoose.Schema;//השורה הזו מייבאת את אובייקט ה-Schema מתוך הספרייה Mongoose ומאחסנת אותו במשתנה Schema. 
 
 const ItemSchema = new Schema({
     productId: {
