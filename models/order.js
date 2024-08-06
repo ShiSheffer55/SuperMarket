@@ -38,7 +38,15 @@ const orderSchema = new mongoose.Schema({
         default: 'Pending'
     }
 });
+orderSchema.pre('save', function(next) {
+    const timezoneOffset = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
 
+    if (this.isNew) {
+        this.createdAt = new Date(this.createdAt.getTime() + timezoneOffset);
+    }
+  
+    next();
+});
 const Order = ordersConnection.model('Order', orderSchema);
 
 module.exports = Order;
