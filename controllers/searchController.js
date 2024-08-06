@@ -7,13 +7,13 @@ const Fuse = require('fuse.js');
 const searchProductsAcrossCollections = async (query) => {
     const collections = ['meat', 'fish', 'milk', 'fruits', 'vegetables', 'cleanliness', 'dry', 'sweets and snacks', 'drinks', 'frozen', 'Bread and pastries'];
     const categories = {
-        meat: ['בשרים'],
-        fish: ['דגים'],
-        milk: [ 'מוצרי חלב'],
+        meat: ['בשרים', 'בשר'],
+        fish: ['דגים', 'דג'],
+        milk: [ 'מוצרי חלב', 'מוצר חלב'],
         fruits: ['פרי', 'פירות'],
         vegetables: ['ירק', 'ירקות'],
         cleanliness: ['ניקיון', 'ניקיונות'],
-        dry: ['יבשים'],
+        dry: ['יבשים', 'יבש'],
         'sweets and snacks': ['חטיפים וממתקים', 'ממתקים וחטיפים', 'חטיפים ומתוקים', 'מתוקים וחטיפים'],
         drinks: ['משקה', 'משקאות', 'שתייה', 'שתיה'],
         frozen: ['קפוא', 'קפואים'],
