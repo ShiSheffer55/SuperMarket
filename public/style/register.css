@@ -82,3 +82,17 @@ h2 {
     width: 100%; /* Make image responsive */
     max-width: 500px; /* Constrain image width */
 }
+@media (max-width: 1287px)
+{
+    #register-image
+    {
+        display: none;
+    }
+}
+@media (min-width: 1286px) and (max-width:1537px)
+{
+    #register-image
+    {
+        margin-right: -10%;
+    }
+}

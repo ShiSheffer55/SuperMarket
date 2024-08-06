@@ -31,10 +31,12 @@
       }
     #simple {
       position: relative;
-      margin-left: 35%;
       border-style: solid;
       border-color: rgb(219, 253, 224);
-      width: 30%;
+      margin-left: auto;
+      margin-right: auto; 
+      width: 100%; /* לדוגמה, רוחב קבוע בפיקסלים */
+      max-width: 500px; /* רוחב מקסימלי של האלמנט */
     }
     #but:hover{
       background-color: rgba(163, 223, 172, 0.863); 

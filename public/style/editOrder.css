@@ -26,15 +26,17 @@
     font-style: italic;
     text-shadow: 60%;
     }
-      #chart{
+#chart{
         text-align: center;
       }
     #simple {
       position: relative;
-      margin-left: 35%;
       border-style: solid;
       border-color: rgb(219, 253, 224);
-      width: 30%;
+      width: 60%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto; 
     }
     #but:hover{
       background-color: rgba(163, 223, 172, 0.863); 
@@ -56,6 +58,7 @@
       border: solid;
       border-color: rgba(25, 134, 98, 0.986);
       border-width: 0.3mm;
+      
     }
     
     #d1, #d2{
@@ -87,7 +90,5 @@
     display: flex; /* מאפשר סידור הכפתורים בשורה אחת */
     gap: 10px; /* רווח בין הכפתורים (תוכל לשנות את הערך לפי הצורך) */
     position: relative;
-    margin-left: 36%;
+   margin: 0 auto;
 }
-
-

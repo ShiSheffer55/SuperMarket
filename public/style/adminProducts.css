@@ -1,13 +1,13 @@
 #T2 {
     position: relative;
-    margin-left: 40%;
+    text-align: center;
     font-family: 'Rubik';
     font-style: italic;
     text-shadow: 60%;
     }
     #t6 {
       position: relative;
-      margin-left: 20%;
+     text-align: center;
       font-family: 'Rubik';
       font-style: italic;
       text-shadow: 60%;
@@ -15,13 +15,16 @@
     
       #chart{
         text-align: center;
+       
       }
     #simple {
       position: relative;
-      margin-left: 34%;
+      margin-left: auto;
+      margin-right: auto; 
       border-style: solid;
       border-color: rgb(219, 253, 224);
-      width: 30%;
+      width: 100%;
+      max-width: 500px;
     }
     #but:hover{
       background-color: rgba(163, 223, 172, 0.863); 

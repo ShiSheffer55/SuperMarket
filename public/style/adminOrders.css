@@ -93,8 +93,7 @@ text-align: center;
 }
 table {
  position: relative;
-    border-collapse: collapse; /* מסיר רווחים בין התאים */
-  /* מרכז את הטבלה בתוך הקונטיינר */
+    border-collapse: collapse;
     text-align: center;
 }
 /* הגדרת רוחב לפי מחלקות */
