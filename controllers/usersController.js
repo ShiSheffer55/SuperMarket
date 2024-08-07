@@ -79,11 +79,12 @@ const loginUser = async (req, res) => {
     const { userName, password } = req.body;
     try {
         const user = await User.findOne({ userName });
+       
         if (!user) {
-            return res.render('login', { error: 'שם משתמש שגוי'});
+            return res.render('login', { error: ' שם משתמש שגוי או לא קיים'});
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.render('login', { error: 'סיסמה שגויה' });
         }

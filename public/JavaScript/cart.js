@@ -46,7 +46,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Optionally update the UI to show the cart is empty
                 $('#cart-container').html('<p>הסל ריק</p>'); // Example update
-                alert(response.message);
+                // alert(response.message);
                 location.reload(); // Reload the page to update the cart
             },
             error: function(xhr) {
