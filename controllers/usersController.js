@@ -136,8 +136,10 @@ const addUser = async (req, res) => {
         const existingUser = await User.findOne({ $or: [{ gmail }, { userName }, { tel }] });
 
         if (existingUser) {
-            // Return error message as JSON if the user already exists
-            return res.status(400).json({ error: 'המשתמש כבר קיים' });
+             // Fetch users to display in the template
+             const users = await User.find();
+             // Render with error message if the user already exists
+             return res.render('adminUsers', { users, error: 'המשתמש כבר קיים' });
         }
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);

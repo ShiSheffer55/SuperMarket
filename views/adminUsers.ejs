@@ -21,6 +21,9 @@
  <h1 id="T1">&#9734; הוספת משתמש  &#9734;</h1>
  <form action="/admin/users/add" method="POST">
     <table id="simple" class="table">
+        <% if (typeof error !== 'undefined') { %>
+            <div id="conta"><div class="warning"><%= error %></div></div>
+        <% } %>
         <tbody>
             <tr id="d1">
                 <td><input type="text" id="userName" name="userName" class="form-control" required></td>
