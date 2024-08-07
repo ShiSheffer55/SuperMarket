@@ -71,7 +71,7 @@ h2 {
 /* Image */
 .absolute-container {
     position: absolute;
-    top: 65%;
+    top: 75%;
     transform: translate(-50%, -50%); /* Center the container */
     width: 50%;
     display: flex;
