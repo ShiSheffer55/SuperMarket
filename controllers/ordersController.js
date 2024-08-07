@@ -66,7 +66,7 @@ const searchOrders = async (req, res) => {
         // Create a regex query for string fields
         const regexQuery = new RegExp(query, 'i');
 
-        // Fetch matching users
+        // Fetch matching users based on first name, last name, or email
         const users = await User.find({
             $or: [
                 { fName: regexQuery },
@@ -83,20 +83,29 @@ const searchOrders = async (req, res) => {
         console.log('User IDs:', userIds);
 
         // Prepare search conditions for orders
-        const orderConditions = [
-            { user: { $in: userIds } } // Orders that match the user IDs
-        ];
+        const orderConditions = [];
 
-        // Check if the query is a valid ObjectId or date
+        // Check if the query is a valid ObjectId
         if (mongoose.Types.ObjectId.isValid(query)) {
-            orderConditions.push({ _id: mongoose.Types.ObjectId(query) });
-        } else if (!isNaN(new Date(query).getTime())) {
+            // Add condition to search by order ID
+            orderConditions.push({ _id: query });
+        }
+
+        // If it's a valid date, add a condition to search by creation date
+        if (!isNaN(new Date(query).getTime())) {
             orderConditions.push({ createdAt: { $gte: new Date(query) } });
-        } else {
-            // Add regex search only if it's a string query
+        }
+
+        // If query is not a valid ObjectId, search by user details and users found
+        if (!mongoose.Types.ObjectId.isValid(query)) {
             orderConditions.push({ 'userDetails.fName': regexQuery });
             orderConditions.push({ 'userDetails.lName': regexQuery });
             orderConditions.push({ 'userDetails.gmail': regexQuery });
+        }
+
+        // Add condition to include orders from found users
+        if (userIds.length > 0) {
+            orderConditions.push({ user: { $in: userIds } });
         }
 
         // Fetch matching orders based on conditions
@@ -128,7 +137,6 @@ const searchOrders = async (req, res) => {
         });
     }
 };
-
 
 
 
