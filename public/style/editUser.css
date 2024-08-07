@@ -21,6 +21,7 @@
 }
 
 #warning{
+  position: relative;
   text-align: center;
 }
 #T2 {
@@ -96,4 +97,11 @@
     margin-left: 36%;
 }
 
-
+#conta
+{
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-left: 0;
+  margin-right: 0;
+}

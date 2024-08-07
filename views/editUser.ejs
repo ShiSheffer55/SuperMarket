@@ -17,7 +17,7 @@
         <h1 id="T2"> &#9734; עריכת משתמש &#9734;</h1>
         <form action="/admin/users/edit/<%= user._id %>" method="POST">
             <% if (typeof error !== 'undefined') { %>
-                <div class="warning"><%= error %></div>
+                <div id="conta"><div class="warning"><%= error %></div></div>
             <% } %>
             <table id="simple" class="table">
                 <tbody>
