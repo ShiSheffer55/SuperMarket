@@ -133,6 +133,12 @@ const addUser = async (req, res) => {
     const { userName, fName, lName, password, gmail, tel, city, isLivesInCenter, role } = req.body;
 
     try {
+        const existingUser = await User.findOne({ $or: [{ gmail }, { userName }, { tel }] });
+
+        if (existingUser) {
+            // Return error message as JSON if the user already exists
+            return res.status(400).json({ error: 'המשתמש כבר קיים' });
+        }
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
         const userRole = role === 'כן' ? 'admin' : 'user';
@@ -179,6 +185,12 @@ const updateUser = async (req, res) => {
     const { userName, fName, lName, gmail, password, tel, city, role } = req.body;
 
     try {
+        const existingUser = await User.findOne({ $or: [{ gmail }, { userName }, { tel }] });
+
+        if (existingUser) {
+            // Return error message as JSON if the user already exists
+            return res.status(400).json({ error: 'המשתמש כבר קיים' });
+        }
         // Hash the password if it's provided
         const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
         const userRole = role === 'כן' ? 'admin' : 'user';
