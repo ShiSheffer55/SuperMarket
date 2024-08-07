@@ -159,6 +159,14 @@ text-align: center;
   max-width: 90%;
   grid-row-gap: 3%; /* רווח ספציפי בין השורות */
 }
+#conta
+{
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 /* Responsive styles */
 @media (min-width: 769px) and (max-width: 1200px) {
