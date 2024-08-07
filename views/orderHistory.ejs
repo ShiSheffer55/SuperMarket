@@ -32,7 +32,6 @@
                         <h5 id="t1">Order ID: <%= order._id %></h5>
                         <p id="greeting">Total: ₪<%= order.total.toFixed(2) %></p>
                         <p id="greeting">Status: <%= order.status %></p>
-                        <p id="greeting"> Created At: <%= order.createdAt %></p>
                         <h6 id="greeting">Products:</h6>
                         <ul >
                             <% order.products.forEach(product => { %>
