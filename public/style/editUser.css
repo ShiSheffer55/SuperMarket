@@ -19,6 +19,10 @@
   font-style: normal ;
   font-weight: 100;
 }
+
+#warning{
+  text-align: center;
+}
 #T2 {
     position: relative;
     text-align: center;

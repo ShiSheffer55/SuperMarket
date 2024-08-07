@@ -171,7 +171,7 @@ const addUser = async (req, res) => {
 const renderEditUserForm = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        res.render('editUser', { user });
+        res.render('editUser', { user, error: null }); // Pass user data and null error
     } catch (error) {
         console.error('Error fetching user for edit:', error);
         req.flash('error_msg', 'Failed to fetch user');
@@ -181,19 +181,27 @@ const renderEditUserForm = async (req, res) => {
 
 
 
+
 const updateUser = async (req, res) => {
     const { userName, fName, lName, gmail, password, tel, city, role } = req.body;
 
     try {
         const existingUser = await User.findOne({ $or: [{ gmail }, { userName }, { tel }] });
 
-        if (existingUser) {
-            // Return error message as JSON if the user already exists
-            return res.status(400).json({ error: 'המשתמש כבר קיים' });
+        if (existingUser && existingUser._id.toString() !== req.params.id) {
+            // Redirect with an error message in the query parameters and the current user data
+            const user = await User.findById(req.params.id);
+            return res.render('editUser', { 
+                user, 
+                error: 'המשתמש כבר קיים',
+                userName, fName, lName, gmail, tel, city, role 
+            });
         }
+
         // Hash the password if it's provided
         const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
         const userRole = role === 'כן' ? 'admin' : 'user';
+
         // Prepare update object
         const updateData = {
             userName,
@@ -204,7 +212,7 @@ const updateUser = async (req, res) => {
             city,
             role: userRole
         };
-        
+
         // Include password in the update if it's hashed
         if (hashedPassword) {
             updateData.password = hashedPassword;
